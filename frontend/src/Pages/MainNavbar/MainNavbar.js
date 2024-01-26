@@ -1,7 +1,8 @@
-import './NavbarClient.css';
+import { Link } from 'react-router-dom';
+import './MainNavbar.css';
 
 
-function NavbarClient() {
+function MainNavbar() {
     return <div>
         
 
@@ -14,7 +15,12 @@ function NavbarClient() {
     <hr/>
   </div>
   <div id="nav-content">
-    <div class="nav-button"><i class="fas fa-palette"></i><span>Your Work</span></div>
+    
+    <Link to={"/customer"}>
+    
+    <div class="nav-button"><i class="fas fa-palette"></i><span>Customer</span></div>
+    </Link>
+    
     <div class="nav-button"><i class="fas fa-images"></i><span>Assets</span></div>
     <div class="nav-button"><i class="fas fa-thumbtack"></i><span>Pinned Items</span></div>
     <hr/>
@@ -48,4 +54,4 @@ function NavbarClient() {
 }
 
 
-export default NavbarClient;
+export default MainNavbar;
