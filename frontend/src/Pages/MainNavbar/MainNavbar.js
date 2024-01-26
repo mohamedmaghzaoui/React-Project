@@ -16,10 +16,17 @@ function MainNavbar() {
   </div>
   <div id="nav-content">
     
-    <Link to={"/customer"}>
     
-    <div class="nav-button"><i class="fas fa-palette"></i><span>Customer</span></div>
-    </Link>
+    
+    <div class="nav-button"><i class="fas fa-palette"></i>
+    
+    
+    <span><Link to={"/Customer"}>Customer</Link></span>
+    
+    
+    
+    </div>
+    
     
     <div class="nav-button"><i class="fas fa-images"></i><span>Assets</span></div>
     <div class="nav-button"><i class="fas fa-thumbtack"></i><span>Pinned Items</span></div>
