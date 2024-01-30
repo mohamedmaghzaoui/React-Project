@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 class UserController extends AbstractController
 {
     #[Route('/create1', name: 'app_user_create')]
-    public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine): Response
+    public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
         $user = new User($passwordHasher);
         $form = $this->createForm(UserType::class, $user);
@@ -26,12 +26,11 @@ class UserController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            //$userAuthenticator->authenticateUser($user, $formLoginAuthenticator, $request);
+            $userAuthenticator->authenticateUser($user, $formLoginAuthenticator, $request);
 
             return $this->redirectToRoute('projects');
         }
         return $this->render('security/user.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-}
+    }}
