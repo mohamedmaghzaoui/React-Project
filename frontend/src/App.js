@@ -3,17 +3,22 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Customer } from './Pages/Customer/Customer';
 import { Home } from './Pages/Home/Home';
-import NavbarClient from './Pages/NavbarClient/NavbarClient';
+import MainNavbar from './Pages/MainNavbar/MainNavbar';
+
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <MainNavbar/>
+
         <Routes>
+        
+
           <Route path="/" element={<Home />} />
           <Route path="/Customer" element={<Customer />} />
-          <Route path="/Navbar" element={<NavbarClient />} />
+          
         </Routes>
 
       </BrowserRouter>
