@@ -1,7 +1,19 @@
-export const Home=()=>{
-    return(
+// Home.js
+import React from 'react';
+import Header from '../../Components/Header';
+import Welcome from '../../Components/Welcome';
+import Footer from '../../Components/Footer';
 
-        <h2>hello</h2>
+const Home = () => {
+  return (
+    <div>
+      <Header />
+      <main>
+        <Welcome />
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
-    )
-}
+export default Home;
