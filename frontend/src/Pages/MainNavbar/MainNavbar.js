@@ -14,7 +14,7 @@ function MainNavbar() {
         </div>
 
         <div>
-          <Link className="link" to={"/"}>
+          <Link className="link" to={"/Customer"}>
             <span className="line py-1 "></span>
             <FaBriefcase
               className="my-4 "
