@@ -5,6 +5,12 @@ import Welcome from '../../Components/Welcome';
 import Footer from '../../Components/Footer';
 
 const Home = () => {
+import React from "react";
+import Header from "../../Components/Header";
+import Welcome from "../../Components/Welcome";
+import Footer from "../../Components/Footer";
+
+export const Home = () => {
   return (
     <div>
       <Header />
@@ -17,3 +23,4 @@ const Home = () => {
 };
 
 export default Home;
+

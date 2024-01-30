@@ -1,11 +1,21 @@
-// App.js
-import React from 'react';
-import Home from './Pages/Home/Home';
+
+
 
 function App() {
   return (
     <div className="App">
+
       <Home />
+
+      <BrowserRouter>
+        <MainNavbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Customer" element={<Customer />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
