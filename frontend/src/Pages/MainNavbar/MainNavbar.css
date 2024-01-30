@@ -1,6 +1,8 @@
 #navbar {
-  background-color: rgb(18, 19, 35);
+  background-color: rgb(16, 19, 40);
   padding-top: 5%;
+  padding-right: 8%;
+  padding-left: 3%;
 }
 
 .line {
@@ -10,9 +12,20 @@
   opacity: 0; /* Start with opacity set to 0 */
   transition: opacity 0.4s ease; /* Add a smooth transition effect */
   position: relative;
-  right: 120%;
+  right: 115%;
 }
-
+.title {
+  opacity: 0; /* Start with opacity set to 0 */
+  transition: opacity 0.4s ease; /* Add a smooth transition effect */
+}
+.link {
+  text-decoration: none;
+}
 .link:hover .line {
   opacity: 1; /* Set opacity to 1 when hovering over the link */
+}
+#show {
+  position: absolute;
+  right: 5%;
+  top: 0%;
 }
