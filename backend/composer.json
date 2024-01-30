@@ -7,14 +7,22 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "symfony/console": "6.4.*",
-        "symfony/dotenv": "6.4.*",
+        "doctrine/doctrine-bundle": "^2.11",
+        "doctrine/doctrine-migrations-bundle": "^3.3",
+        "doctrine/orm": "^2.17",
+        "symfony/asset": "7.*",
+        "symfony/console": "7.*",
+        "symfony/dotenv": "7.*",
         "symfony/flex": "^2",
-        "symfony/framework-bundle": "6.4.*",
-        "symfony/runtime": "6.4.*",
-        "symfony/yaml": "6.4.*"
-    },
-    "require-dev": {
+        "symfony/form": "7.*",
+        "symfony/framework-bundle": "7.*",
+        "symfony/runtime": "7.*",
+        "symfony/security-bundle": "7.*",
+        "symfony/twig-bundle": "7.*",
+        "symfony/validator": "7.*",
+        "symfony/yaml": "7.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
@@ -61,7 +69,10 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.4.*"
+            "require": "7.*"
         }
+    },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.52"
     }
 }
