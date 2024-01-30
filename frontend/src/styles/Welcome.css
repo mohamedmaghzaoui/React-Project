@@ -1,0 +1,16 @@
+/* Welcome.css */
+section {
+    text-align: center;
+    padding: 2em;
+    background-color: #3498db;
+    color: #ffffff;
+  }
+  
+  h2 {
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    color: #ecf0f1;
+  }
+  
