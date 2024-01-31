@@ -8,14 +8,17 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid m-0 p-0">
       <BrowserRouter>
-        <MainNavbar />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Customer" element={<Customer />} />
-        </Routes>
+        <div className="row m-0 p-0">
+          <MainNavbar className="" />
+          <div className="col-12 col-lg-11 m-0 p-0">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Customer" element={<Customer />} />
+            </Routes>
+          </div>
+        </div>
       </BrowserRouter>
     </div>
   );
