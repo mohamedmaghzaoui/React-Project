@@ -2,6 +2,7 @@
 import React from "react";
 
 export const Home = () => {
+  
   return (
     <div className="position-relative">
       <img
@@ -12,17 +13,34 @@ export const Home = () => {
       />
       <div
         style={{ left: "10%", top: "5%" }}
-        className="position-absolute  translate-middle"
+        className="position-absolute translate-middle"
       >
         <input
           id="name"
           type="text"
           placeholder="search "
           name="name"
-          class="form-control   fw-bold border-0"
-          style={{ background: "#1F2937", width: "140%" }}
-        ></input>
+          className="form-control fw-bold border-0"
+          style={{ background: "#1F2937", color: "white", width: "140%" }}
+        />
       </div>
+      <div className="position-absolute" style={{ left: "25%", top: "105%" }}>
+        {['Web design', "Programmation", "Animation vidéo", "Rédaction", "Photographie", "Audio"].map((index) => (
+          <button
+            key={index}
+            className="btn btn-outline-danger mx-2"
+            style={{
+              cursor: "pointer",
+              color: "black",
+            }}
+          >
+             {index}
+          </button>
+        ))}
+        
+      </div>
+      
     </div>
+  
   );
 };
