@@ -1,0 +1,9 @@
+#search {
+  background-color: #1f2937;
+  width: 120%;
+  height: 50px;
+}
+#search::placeholder {
+  color: aliceblue;
+  font-weight: 500;
+}

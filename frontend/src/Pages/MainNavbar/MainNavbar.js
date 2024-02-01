@@ -7,7 +7,11 @@ function MainNavbar() {
   const [navIcon, setNavIcon] = useState("bars");
 
   return (
-    <div id="navbar" className="col-1 " style={{ height: "100vh" }}>
+    <div
+      id="navbar"
+      className="col-xl-1 col-lg-1 col-12"
+      style={{ height: "100vh" }}
+    >
       <div className="icon">
         {navIcon == "bars" ? (
           <FaBars
