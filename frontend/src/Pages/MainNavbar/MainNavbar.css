@@ -5,7 +5,7 @@
   border: solid 4px;
 
   border-color: #d62929;
-  opacity: 0; /* Start with opacity set to 0 */
+
   transition: opacity 0.4s ease; /* Add a smooth transition effect */
   position: relative;
   right: 35%;
@@ -16,9 +16,4 @@
 }
 .link {
   text-decoration: none;
-}
-.link:hover .line {
-  opacity: 1; /* Set opacity to 1 when hovering over the link */
-}
-#show {
 }
