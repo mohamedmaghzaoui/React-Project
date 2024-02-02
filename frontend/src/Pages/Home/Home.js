@@ -1,9 +1,12 @@
 // Home.js
 import React from "react";
+import { useState, useEffect } from "react";
+import Login from "./Login/loginForm";
 import styles from "./Css/home.module.css";
 import { FaSearch } from "react-icons/fa";
 
 export const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="position-relative ">
       <img
@@ -23,7 +26,7 @@ export const Home = () => {
               id={styles.search}
               type="text"
               placeholder="Rechercher quelque chose"
-              name="name"
+              name="rechercher"
               className="form-control text-light fw-bold border-0"
             ></input>
           </div>
@@ -48,11 +51,14 @@ export const Home = () => {
           style={{ top: "3.5%", left: "40%" }}
         >
           <button
+            onClick={() => setIsOpen(true)}
             style={{ color: "#D62929" }}
             className=" col-lg-2 col-1  fw-bold btn btn-light btn-lg  "
           >
             S'identifier
           </button>
+          <Login open={isOpen} onClose={() => setIsOpen(false ) }></Login>
+
           <button className="text-light-emphasis mx-5 fw-bold btn btn-outline-danger btn-lg">
             Creer compte
           </button>

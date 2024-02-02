@@ -33,4 +33,23 @@ class UserController extends AbstractController
         return $this->render('security/user.html.twig', [
             'form' => $form->createView(),
         ]);
-    }}
+    }
+    #[Route('/roles', name:"roles")]
+    public function users(ManagerRegistry $doctrine)
+    {
+        $userRepository = $doctrine->getRepository(User::class);
+        $users = $userRepository->findAll();
+
+        return $this->render('security/roles.html.twig', [
+            'users' => $users,
+        ]);
+    }
+    #[Route('/roles/{id}/{role}')]
+    public function setRole(User $user, string $role, ManagerRegistry $doctrine)
+    {
+        $user->setRoles([$role]);
+        $doctrine->getManager()->flush();
+
+        return $this->redirectToRoute('roles');
+    }
+}
