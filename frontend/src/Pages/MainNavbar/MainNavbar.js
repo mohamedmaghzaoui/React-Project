@@ -15,7 +15,7 @@ function MainNavbar() {
     //begin navbar
     <div
       id="navbar"
-      className="col-xl-1 col-lg-1 col-12 py-4"
+      className="col-xl-1 col-lg-1 col-12 py-5"
       style={{ height: "100vh" }}
     >
       {/* first icon*/}
