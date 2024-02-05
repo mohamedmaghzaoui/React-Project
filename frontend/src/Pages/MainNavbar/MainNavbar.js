@@ -1,96 +1,116 @@
+import styles from "./MainNavbar.module.css";
 import { Link } from "react-router-dom";
-import "./MainNavbar.css";
-import {
-  FaHome,
-  FaBell,
-  FaBriefcase,
-  FaBars,
-  FaTimes,
-  FaHeart,
-} from "react-icons/fa";
-import { useState } from "react";
 
 function MainNavbar() {
-  const [navIcon, setNavIcon] = useState("bars");
-  const [linesOpacities, setLinesOpacities] = useState([1, 0, 0, 0]);
-  const [iconColors, setIconeColors] = useState([
-    "#D62929",
-    "white",
-    "white",
-    "white",
-  ]);
-
   return (
     //begin navbar
-    <div
-      id="navbar"
-      className="col-xl-1 col-lg-1 col-12 py-4"
-      style={{ height: "100vh" }}
-    >
-      <div
-        className="px-2 "
-        onClick={() => {
-          setLinesOpacities([1, 0, 0, 0]);
-          setIconeColors(["#D62929", "white", "white", "white"]);
-        }}
-      >
-        <Link className="link d-block text-center" to={"/"}>
-          <span className={`line py-1 opacity-${linesOpacities[0]} `}></span>
-          <FaHome
-            className="my-4"
-            style={{ color: `${iconColors[0]}` }}
-            size={35}
-          />
-        </Link>
-      </div>
-      <div
-        className="px-2"
-        onClick={() => {
-          setLinesOpacities([0, 1, 0, 0]);
-          setIconeColors(["White", "#D62929", "white", "white"]);
-        }}
-      >
-        <Link className="link d-block text-center" to={"/Customer"}>
-          <span className={`line py-1 opacity-${linesOpacities[1]} `}></span>
-          <FaBriefcase
-            className="my-4"
-            style={{ color: `${iconColors[1]}` }}
-            size={35}
-          />
-        </Link>
-      </div>
-      <div
-        className="px-2"
-        onClick={() => {
-          setLinesOpacities([0, 0, 1, 0]);
-          setIconeColors(["white", "white", "#D62929", "white"]);
-        }}
-      >
-        <Link className="link d-block text-center" to={"/"}>
-          <span className={`line py-1 opacity-${linesOpacities[2]} `}></span>
-          <FaBell
-            className="my-4"
-            style={{ color: `${iconColors[2]}` }}
-            size={35}
-          />
-        </Link>
-      </div>
-      <div
-        className="px-2"
-        onClick={() => {
-          setLinesOpacities([0, 0, 0, 1]);
-          setIconeColors(["white", "white", "white", "#D62929"]);
-        }}
-      >
-        <Link className="link d-block text-center" to={"/"}>
-          <span className={`line py-1 opacity-${linesOpacities[3]} `}></span>
-          <FaHeart
-            className="my-4"
-            style={{ color: `${iconColors[3]}` }}
-            size={35}
-          />
-        </Link>
-      </div>
+
+    <div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid ">
+          <Link
+            style={{ color: "#404145", fontSize: "30px" }}
+            class="navbar-brand fw-bold  "
+            to="/"
+          >
+            FreeEz
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse fw-medium"
+            id="navbarSupportedContent"
+          >
+            <ul
+              style={{ fontSize: "18px" }}
+              class="navbar-nav me-auto mb-2 mb-lg-0 offset-7"
+            >
+              <li class="nav-item">
+                <Link class="nav-link mx-3" href="#">
+                  Home
+                </Link>
+              </li>
+              <li class="nav-item dropdown">
+                <Link
+                  class="nav-link dropdown-toggle mx-3"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Discover
+                </Link>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Link class="dropdown-item " href="#">
+                      <span className="fw-medium">Projects</span>
+                      <br />
+                      <span style={{ fontSize: "15px", color: "#62646A" }}>
+                        discover our projects
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item " href="#">
+                      <span className="fw-medium">Projects</span>
+                      <br />
+                      <span style={{ fontSize: "15px", color: "#62646A" }}>
+                        discover our projects
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item " href="#">
+                      <span className="fw-medium">Projects</span>
+                      <br />
+                      <span style={{ fontSize: "15px", color: "#62646A" }}>
+                        discover our projects
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item " href="#">
+                      <span className="fw-medium">Projects</span>
+                      <br />
+                      <span style={{ fontSize: "15px", color: "#62646A" }}>
+                        discover our projects
+                      </span>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link mx-3" aria-current="page" href="#">
+                  English
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link mx-3" aria-current="page" href="#">
+                  Log in
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link
+                  class=" my-1 btn btn-outline-success fw-bold mx-3 "
+                  aria-current="page"
+                  href="#"
+                >
+                  Join
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }
