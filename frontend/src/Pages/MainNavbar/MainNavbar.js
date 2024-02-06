@@ -1,5 +1,7 @@
-import styles from "./MainNavbar.module.css";
+import "./MainNavbar.css";
 import { Link } from "react-router-dom";
+import { Dropdown } from "./components/dropdown";
+import { ResponsiveButton } from "./components/responsiveButton";
 
 function MainNavbar() {
   return (
@@ -15,79 +17,20 @@ function MainNavbar() {
           >
             FreeEz
           </Link>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse fw-medium"
-            id="navbarSupportedContent"
-          >
+          <ResponsiveButton />
+
+          <div class="collapse navbar-collapse fw-medium">
             <ul
-              style={{ fontSize: "18px" }}
-              class="navbar-nav me-auto mb-2 mb-lg-0 offset-7"
+              style={{ fontSize: "18px " }}
+              class="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
             >
+              <Dropdown />
               <li class="nav-item">
                 <Link class="nav-link mx-3" href="#">
-                  Home
+                  freelancer
                 </Link>
               </li>
-              <li class="nav-item dropdown">
-                <Link
-                  class="nav-link dropdown-toggle mx-3"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Discover
-                </Link>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item " href="#">
-                      <span className="fw-medium">Projects</span>
-                      <br />
-                      <span style={{ fontSize: "15px", color: "#62646A" }}>
-                        discover our projects
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item " href="#">
-                      <span className="fw-medium">Projects</span>
-                      <br />
-                      <span style={{ fontSize: "15px", color: "#62646A" }}>
-                        discover our projects
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item " href="#">
-                      <span className="fw-medium">Projects</span>
-                      <br />
-                      <span style={{ fontSize: "15px", color: "#62646A" }}>
-                        discover our projects
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item " href="#">
-                      <span className="fw-medium">Projects</span>
-                      <br />
-                      <span style={{ fontSize: "15px", color: "#62646A" }}>
-                        discover our projects
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+
               <li class="nav-item">
                 <Link class="nav-link mx-3" aria-current="page" href="#">
                   English
