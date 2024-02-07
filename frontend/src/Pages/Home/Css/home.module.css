@@ -1,9 +1,15 @@
-#search {
-  background-color: #1f2937;
-  width: 120%;
-  height: 50px;
+#home {
+  height: 660px;
+  animation: colorChange 7s infinite alternate;
 }
-#search::placeholder {
-  color: aliceblue;
-  font-weight: 500;
+
+@keyframes colorChange {
+  0%,
+  30% {
+    background-color: rgb(158, 60, 91);
+  }
+  70%,
+  100% {
+    background-color: rgb(3, 59, 7);
+  }
 }

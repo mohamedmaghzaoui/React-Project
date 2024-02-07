@@ -12,21 +12,34 @@ function MainNavbar() {
         <div class="container-fluid ">
           <Link
             style={{ color: "#404145", fontSize: "30px" }}
-            class="navbar-brand fw-bold  "
+            class="offset navbar-brand fw-bold text-success   "
             to="/"
           >
             FreeEz
           </Link>
-          <ResponsiveButton />
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          <div class="collapse navbar-collapse fw-medium">
+          <div
+            id="navbarSupportedContent"
+            class="collapse navbar-collapse fw-medium"
+          >
             <ul
               style={{ fontSize: "18px " }}
               class="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
             >
               <Dropdown />
               <li class="nav-item">
-                <Link class="nav-link mx-3" href="#">
+                <Link class="nav-link  mx-3" href="#">
                   freelancer
                 </Link>
               </li>
@@ -54,6 +67,7 @@ function MainNavbar() {
           </div>
         </div>
       </nav>
+      <hr className="m-0 " />
     </div>
   );
 }

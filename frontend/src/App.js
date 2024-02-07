@@ -8,11 +8,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
   return (
-    <div className="container-fluid m-0 p-0">
+    <div className="">
       <BrowserRouter>
-        <div className="row m-0 p-0">
+        <div className="">
           <MainNavbar className="" />
-          <div className=" col-xl-11 col-lg-11 col-12 m-0 p-0">
+          <div className=" ">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Customer" element={<Customer />} />
