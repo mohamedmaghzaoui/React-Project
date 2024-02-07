@@ -1,18 +1,19 @@
 // Home.js
 import React from "react";
-import { Header } from "./Components/header";
+//card component
 import { Cards } from "./Components/Card";
-import { Content } from "./Components/Content";
-import { useState, useEffect } from "react";
+//styles using css modules
 import styles from "./Css/home.module.css";
 
 export const Home = () => {
   return (
-    //begin home page
+    //begin home page container
     <div id={styles.home} className="  container-fluid    ">
       <br />
+      {/* begin row to divide main element*/}
       <div style={{ marginTop: "7%" }} className="row container-fluid">
-        <div className="py-5 px-5 col-8 ">
+        {/* first element*/}
+        <div className=" px-5 col-8 ">
           <h1 className=" text-light     fw-bold">Find the right Freelance</h1>
           <h1 className=" text-light  fw-bold">do the right Work</h1>
           <p className="text-light fw-semibold fs-5">
@@ -20,20 +21,27 @@ export const Home = () => {
             secure,
             <p> flexible and cost-effective platform.</p>
           </p>
-
+          {/*search from */}
           <div class="row input-group-lg py-2">
             <input type="text" className=" form-control w-75" />
             <button class="col-2 btn btn-success">search</button>
           </div>
+          {/*cards component */}
+          <Cards />
         </div>
-        <div className="col">
+        {/*begin second element*/}
+
+        <div className="col ">
           <img
             className="img-fluid "
             src="https://res.cloudinary.com/upwork-cloud-acquisition-prod/image/upload/c_scale,w_440,h_300,f_auto,q_auto,dpr_2.0/brontes/hero/searching-talent@1x.png"
             alt=""
           />
         </div>
-      </div>
+        {/* end elements*/}
+      </div>{" "}
+      {/* n end row to divide main element*/}
     </div>
+    //end home page container
   );
 };
