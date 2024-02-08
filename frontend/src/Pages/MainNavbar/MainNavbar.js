@@ -1,9 +1,14 @@
 import "./MainNavbar.css";
 import { Link } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
+import Login from "../Home/Login/loginForm";
+import Join from "../Home/Join/JoinForm";
+import { useState, useEffect } from "react";
 import { ResponsiveButton } from "./components/responsiveButton";
 
 function MainNavbar() {
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
+  const [isOpenJoin, setIsOpenJoin] = useState(false);
   return (
     //begin navbar
 
@@ -49,20 +54,26 @@ function MainNavbar() {
                   English
                 </Link>
               </li>
+
               <li class="nav-item">
-                <Link class="nav-link mx-3" aria-current="page" href="#">
-                  Log in
-                </Link>
+                <button
+                  onClick={() => setIsOpenLogin(true)}  
+                  className=" nav-link mx-3  ">
+                  login
+                </button>
               </li>
+              <Login openLogin={isOpenLogin} onCloseLogin={() => setIsOpenLogin(false)}></Login>
+
+
               <li class="nav-item">
-                <Link
-                  class=" my-1 btn btn-outline-success fw-bold mx-3 "
-                  aria-current="page"
-                  href="#"
-                >
+                <button
+                  onClick={() => setIsOpenJoin(true)}  
+                  className="my-1 btn btn-outline-success fw-bold mx-3">
                   Join
-                </Link>
+                </button>
               </li>
+              <Join openJoin={isOpenJoin} onCloseJoin={() => setIsOpenJoin(false)}></Join>
+
             </ul>
           </div>
         </div>

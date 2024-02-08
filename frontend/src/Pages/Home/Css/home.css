@@ -1,0 +1,7 @@
+.not-rounded-right {
+  border-radius: 5% 0% 0% 5% !important;
+}
+
+.not-rounded-left {
+  border-radius: 0% 10% 10% 0% !important;
+}

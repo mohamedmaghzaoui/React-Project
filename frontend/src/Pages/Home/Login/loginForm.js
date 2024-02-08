@@ -10,10 +10,16 @@ const LOGIN_STYLE = {
     backgroundColor: "white",
     padding: "50px",
     zIndex: "9999",
+    "text-align": "center",
+    "border-radius": "25px",
 }
 
+const LOGIN_TITTLE = {
 
-export default function Login({ open, onClose }) {
+};
+
+
+export default function Login({ openLogin, onCloseLogin }) {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -47,7 +53,7 @@ export default function Login({ open, onClose }) {
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
-        // Invalid password
+        // Invalid password 
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
@@ -84,11 +90,11 @@ export default function Login({ open, onClose }) {
       </form>
     </div>
   );
-  if (!open) return null;
+  if (!openLogin) return null;
   return (
     <div style={LOGIN_STYLE}>
-      <button onClick={onClose}>x</button>
-      <div className="title">Sign In</div>
+      <button onClick={onCloseLogin}>x</button>
+      <div className="title">login</div>
       {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
     </div>
   );
