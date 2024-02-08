@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 //customer component
 export const Customer = () => {
-//server url
+  //server url
   const url = "http://localhost:8000/test";
   //useState initialize to null
   const [TestData, SetTestData] = useState(null);
@@ -17,10 +17,10 @@ export const Customer = () => {
     }
   }
 
-//useffect hook 
+  //useffect hook
   useEffect(() => {
     // Use useEffect to make the API request when the component mounts
-    
+
     fetchData(); // Call the fetchData function
   }, []); // The empty array [] ensures the effect runs once on component mount
 
@@ -28,18 +28,14 @@ export const Customer = () => {
     //display data
     <div>
       <h1>Customer</h1>
-     
-    
-      {TestData && (
-        TestData.map((value)=>
-        <div>
+
+      {TestData &&
+        TestData.map((value) => (
+          <div>
             <p>{value.name}</p>
             <p>{value.age}</p>
-        </div>
-      
-        
-        
-        )
-      )}
-    </div> );
+          </div>
+        ))}
+    </div>
+  );
 };

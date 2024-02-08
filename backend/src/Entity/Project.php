@@ -2,68 +2,159 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[ORM\Entity]
 class Project
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy:"AUTO")]
+    #[ORM\Column(type:"integer")]
+    private int $id;
+
+    #[ORM\Column(type:"string")]
+      #[Assert\NotBlank(message:"Le nom ne peut pas etre vide")]
+      #[Assert\Length(
+           min : 5,
+           max :70,
+           minMessage :"Le nom est trop court",
+          maxMessage : "Le nom est trop long"
+      )]
+     
+    private string $name;
+
+    #[ORM\Column(type:"text")]
+    /**
+     * @Assert\NotBlank(message="La description ne peut pas etre vide")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 300,
+     *      minMessage = "La description  est trop courte",
+     *      maxMessage = "La description est trop long",
+     * )
+     */
+    private string $description;
+
+    #[ORM\Column(type:"date")]
+    /**
+     * @Assert\NotBlank(message="Le nom ne peut pas etre vide")
+     */
+    private \DateTime $date;
+
+    
+
     #[ORM\Column]
-    private ?int $id = null;
+    private string $image;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    
+    #[ORM\Column(type:"date")]
 
-    public function getId(): ?int
+    
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): static
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function getTitle(): ?string
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): static
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * Get the value of description
+     */ 
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    /**
+     * Get the value of date
+     */ 
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set the value of date
+     *
+     * @return  self
+     */ 
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    
+
+   
+
+    
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
     {
         $this->image = $image;
 

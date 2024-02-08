@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <div className="row m-0 p-0">
           <MainNavbar className="" />
-          <div className="col-12 col-lg-11 m-0 p-0">
+          <div className=" col-xl-11 col-lg-11 col-12 m-0 p-0">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Customer" element={<Customer />} />
