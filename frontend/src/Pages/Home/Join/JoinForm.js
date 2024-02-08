@@ -24,6 +24,14 @@ export default function Join({ openJoin, onCloseJoin }) {
   const renderForm = (
     <div className="form">
       <form >
+      <div className="input-container">
+          <label>Name </label>
+          <input type="text" name="name" required />
+        </div>
+        <div className="input-container">
+          <label>Lastname </label>
+          <input type="text" name="lname" required />
+        </div>
         <div className="input-container">
           <label>Username </label>
           <input type="text" name="uname" required />
