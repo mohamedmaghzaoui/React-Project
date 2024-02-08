@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    /** mettre 'name, lastname username et email' **/
+
     /**
      * A visual identifier that represents this user.
      *
