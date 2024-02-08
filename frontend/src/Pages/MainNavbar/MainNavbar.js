@@ -1,64 +1,75 @@
-import { Link } from 'react-router-dom';
-import './MainNavbar.css';
-
+import "./MainNavbar.css";
+import { Link } from "react-router-dom";
+import { Dropdown } from "./components/dropdown";
+import { ResponsiveButton } from "./components/responsiveButton";
 
 function MainNavbar() {
-    return <div>
-        
+  return (
+    //begin navbar
 
-        <div id="nav-bar">
-  <input id="nav-toggle" type="checkbox"/>
-  
+    <div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid ">
+          <Link
+            style={{ color: "#404145", fontSize: "30px" }}
+            class="offset navbar-brand fw-bold text-success   "
+            to="/"
+          >
+            FreeEz
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <div id="nav-header"><a id="nav-title" href="https://codepen.io" target="_blank">PR<i class="fab fa-codepen"></i>JEASY</a>
-    <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-    <hr/>
-  </div>
-  <div id="nav-content">
-    
-    
-    
-    <div class="nav-button"><i class="fas fa-palette"></i>
-    
-    
-    <span><Link to={"/Customer"}>Customer</Link></span>
-    
-    
-    
+          <div
+            id="navbarSupportedContent"
+            class="collapse navbar-collapse fw-medium"
+          >
+            <ul
+              style={{ fontSize: "18px " }}
+              class="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
+            >
+              <Dropdown />
+              <li class="nav-item">
+                <Link class="nav-link  mx-3" href="#">
+                  freelancer
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link mx-3" aria-current="page" href="#">
+                  English
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link mx-3" aria-current="page" href="#">
+                  Log in
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link
+                  class=" my-1 btn btn-outline-success fw-bold mx-3 "
+                  aria-current="page"
+                  href="#"
+                >
+                  Join
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <hr className="m-0 " />
     </div>
-    
-    
-    <div class="nav-button"><i class="fas fa-images"></i><span>Assets</span></div>
-    <div class="nav-button"><i class="fas fa-thumbtack"></i><span>Pinned Items</span></div>
-    <hr/>
-    <div class="nav-button"><i class="fas fa-heart"></i><span>Following</span></div>
-    <div class="nav-button"><i class="fas fa-chart-line"></i><span>Trending</span></div>
-    <div class="nav-button"><i class="fas fa-fire"></i><span>Challenges</span></div>
-    <div class="nav-button"><i class="fas fa-magic"></i><span>Spark</span></div>
-    <hr/>
-    <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div>
-    <div id="nav-content-highlight"></div>
-  </div>
-  <input id="nav-footer-toggle" type="checkbox"/>
-  <div id="nav-footer">
-    <div id="nav-footer-heading">
-      <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
-      <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">uahnbu</a><span id="nav-footer-subtitle">Admin</span></div>
-      <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-    </div>
-    <div id="nav-footer-content">
-      ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </div>
-  </div>
-</div>
-
-         
-
-
-
-
-    </div>
+  );
 }
-
 
 export default MainNavbar;
