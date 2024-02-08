@@ -10,8 +10,8 @@ const LOGIN_STYLE = {
     backgroundColor: "white",
     padding: "50px",
     zIndex: "9999",
-    "text-align": "center",
-    "border-radius": "25px",
+    textAlign: "center",
+    borderRadius: "25px",
 }
 
 const LOGIN_TITTLE = {
@@ -19,7 +19,7 @@ const LOGIN_TITTLE = {
 };
 
 
-export default function Login({ open, onClose }) {
+export default function Login({ openLogin, onCloseLogin }) {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,18 +42,17 @@ export default function Login({ open, onClose }) {
   };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
-
     var { uname, pass } = document.forms[0];
+
+   
 
     // Find user login info
     const userData = database.find((user) => user.username === uname.value);
-
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
-        // Invalid password
+        // Invalid password 
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
@@ -69,10 +68,15 @@ export default function Login({ open, onClose }) {
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
     );
-
-  // JSX code for login form
+ const handleOutsideClick = (event) => {
+      // Close the popup if the click is outside the login component
+      if (event.target === event.currentTarget) {
+        onCloseLogin();
+      }
+    };
+  
   const renderForm = (
-    <div className="form">
+    <div className="form" onClick={handleOutsideClick}>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
@@ -90,10 +94,10 @@ export default function Login({ open, onClose }) {
       </form>
     </div>
   );
-  if (!open) return null;
+  if (!openLogin) return null;
   return (
     <div style={LOGIN_STYLE}>
-      <button onClick={onClose}>x</button>
+      <button onClick={onCloseLogin}>x</button>
       <div className="title">login</div>
       {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
     </div>
