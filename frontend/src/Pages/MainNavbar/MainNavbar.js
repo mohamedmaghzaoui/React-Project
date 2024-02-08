@@ -1,9 +1,12 @@
 import "./MainNavbar.css";
 import { Link } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
+import Login from "../Home/Login/loginForm";
+import { useState, useEffect } from "react";
 import { ResponsiveButton } from "./components/responsiveButton";
 
 function MainNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     //begin navbar
 
@@ -49,6 +52,19 @@ function MainNavbar() {
                   English
                 </Link>
               </li>
+              <button
+                onClick={() => setIsOpen(true)}
+                style={{ color: "#D62929" }}
+                className=" col-lg-2 col-1  fw-bold btn btn-light btn-lg  "
+              >
+                S'identifier
+              </button>
+              <Login open={isOpen} onClose={() => setIsOpen(false)}></Login>
+
+              <button className="text-light-emphasis mx-5 fw-bold btn btn-outline-danger btn-lg">
+                Creer compte
+              </button>
+
               <li class="nav-item">
                 <Link class="nav-link mx-3" aria-current="page" href="#">
                   Log in

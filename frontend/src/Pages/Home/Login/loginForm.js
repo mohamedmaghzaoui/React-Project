@@ -10,7 +10,13 @@ const LOGIN_STYLE = {
     backgroundColor: "white",
     padding: "50px",
     zIndex: "9999",
+    "text-align": "center",
+    "border-radius": "25px",
 }
+
+const LOGIN_TITTLE = {
+
+};
 
 
 export default function Login({ open, onClose }) {
@@ -88,7 +94,7 @@ export default function Login({ open, onClose }) {
   return (
     <div style={LOGIN_STYLE}>
       <button onClick={onClose}>x</button>
-      <div className="title">Sign In</div>
+      <div className="title">login</div>
       {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
     </div>
   );
