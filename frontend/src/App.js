@@ -5,7 +5,7 @@ import { Home } from "./Pages/Home/Home";
 import MainNavbar from "./Pages/MainNavbar/MainNavbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
 
 function App() {
   return (

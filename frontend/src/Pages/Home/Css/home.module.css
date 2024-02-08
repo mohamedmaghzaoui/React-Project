@@ -3,6 +3,10 @@
   animation: colorChange 7s infinite alternate;
 }
 
+#footer {
+  animation: colorChange 7s infinite alternate;
+}
+
 @keyframes colorChange {
   0%,
   30% {
