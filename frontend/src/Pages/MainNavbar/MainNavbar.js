@@ -1,9 +1,12 @@
 import "./MainNavbar.css";
 import { Link } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
+import Login from "../Home/Login/loginForm";
+import { useState, useEffect } from "react";
 import { ResponsiveButton } from "./components/responsiveButton";
 
 function MainNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     //begin navbar
 
@@ -50,15 +53,21 @@ function MainNavbar() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link mx-3" aria-current="page" href="#">
-                  Log in
-                </Link>
+                <button
+                  onClick={() => setIsOpen(true)}
+                  style={{ color: "#D62929" }}
+                  className=" nav-link mx-3  "
+                >
+                  login
+                </button>
               </li>
+              <Login open={isOpen} onClose={() => setIsOpen(false)}></Login>
+
               <li class="nav-item">
                 <Link
                   class=" my-1 btn btn-outline-success fw-bold mx-3 "
                   aria-current="page"
-                  href="#"
+                  href="./"
                 >
                   Join
                 </Link>
