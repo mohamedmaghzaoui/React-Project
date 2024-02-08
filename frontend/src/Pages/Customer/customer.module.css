@@ -1,3 +1,8 @@
 #category:hover {
   color: #28a745;
 }
+#name {
+  background-image: url("https://t3.ftcdn.net/jpg/05/34/32/88/360_F_534328839_9okCb2Qdrb2oIaHbvoa0TYMvfmWBuQXz.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

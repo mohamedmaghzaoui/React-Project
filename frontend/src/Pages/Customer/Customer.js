@@ -27,9 +27,8 @@ export const Customer = () => {
   }, []); // The empty array [] ensures the effect runs once on component mount
 
   return (
-    <div>
-      <Categories />
-      <hr />
+    <div className="w-100">
+      <Categories className="row" />
     </div>
   );
 };
