@@ -5,14 +5,15 @@ import Login from "../Home/Login/loginForm";
 import { useState, useEffect } from "react";
 import { ResponsiveButton } from "./components/responsiveButton";
 
+
 function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     //begin navbar
 
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary nav-c">
+        <div class="container-fluid nav-c ">
           <Link
             style={{ color: "#404145", fontSize: "30px" }}
             class="offset navbar-brand fw-bold text-success   "
