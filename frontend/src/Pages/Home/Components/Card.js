@@ -1,23 +1,21 @@
+//cards component
 export const Cards = () => {
+  //cards array
+  const arrayCards = [
+    "Web design",
+    "web development",
+    "Photographie",
+    "Marketing",
+  ];
   return (
-    <div className="position-absolute" style={{ left: "15%", top: "87%" }}>
-      {[
-        "Web design",
-        "Programmation",
-        "Animation vidéo",
-        "Rédaction",
-        "Photographie",
-        "Audio",
-      ].map((index) => (
+    <div className="py-1 ">
+      {arrayCards.map((value) => (
         <button
-          key={index}
-          className="btn btn-outline-danger mx-2"
-          style={{
-            cursor: "pointer",
-            color: "white",
-          }}
+          key={value}
+          type="button"
+          className="rounded-pill btn btn-outline-light mx-1"
         >
-          {index}
+          {value}
         </button>
       ))}
     </div>
