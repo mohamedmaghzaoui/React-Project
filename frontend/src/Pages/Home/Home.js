@@ -4,11 +4,12 @@ import React from "react";
 import { Cards } from "./Components/Card";
 //styles using css modules
 import styles from "./Css/home.module.css";
+import "./Css/home.css";
 
 export const Home = () => {
   return (
     //begin home page container
-    <div id={styles.home} className="  container-fluid    ">
+    <div id={styles.home} className="container-fluid">
       <br />
       {/* begin row to divide main element*/}
       <div style={{ marginTop: "7%" }} className="row container-fluid">
@@ -22,9 +23,9 @@ export const Home = () => {
             <p> flexible and cost-effective platform.</p>
           </p>
           {/*search from */}
-          <div class="row input-group-lg py-2">
-            <input type="text" className=" form-control w-75" />
-            <button class="col-2 btn btn-success">search</button>
+          <div class="row py-2 form-floating">
+            <input type="text" className="form-control not-rounded-right w-75" />
+            <button className="not-rounded-left col-2 btn btn-success">search</button>
           </div>
           {/*cards component */}
           <Cards />
