@@ -52,24 +52,17 @@ function MainNavbar() {
                   English
                 </Link>
               </li>
-              <button
-                onClick={() => setIsOpen(true)}
-                style={{ color: "#D62929" }}
-                className=" col-lg-2 col-1  fw-bold btn btn-light btn-lg  "
-              >
-                S'identifier
-              </button>
+              <li class="nav-item">
+                <button
+                  onClick={() => setIsOpen(true)}
+                  style={{ color: "#D62929" }}
+                  className=" nav-link mx-3  "
+                >
+                  login
+                </button>
+              </li>
               <Login open={isOpen} onClose={() => setIsOpen(false)}></Login>
 
-              <button className="text-light-emphasis mx-5 fw-bold btn btn-outline-danger btn-lg">
-                Creer compte
-              </button>
-
-              <li class="nav-item">
-                <Link class="nav-link mx-3" aria-current="page" href="#">
-                  Log in
-                </Link>
-              </li>
               <li class="nav-item">
                 <Link
                   class=" my-1 btn btn-outline-success fw-bold mx-3 "
