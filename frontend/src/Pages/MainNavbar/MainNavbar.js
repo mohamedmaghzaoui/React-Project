@@ -74,7 +74,7 @@ function MainNavbar() {
                 <Link
                   class=" my-1 btn btn-outline-success fw-bold mx-3 "
                   aria-current="page"
-                  href="#"
+                  href="./"
                 >
                   Join
                 </Link>
