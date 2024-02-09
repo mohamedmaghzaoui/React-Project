@@ -6,6 +6,7 @@ import Join from "../Home/Join/JoinForm";
 import { useState, useEffect } from "react";
 import { ResponsiveButton } from "./components/responsiveButton";
 
+
 function MainNavbar() {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenJoin, setIsOpenJoin] = useState(false);
@@ -13,8 +14,8 @@ function MainNavbar() {
     //begin navbar
 
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary nav-c">
+        <div class="container-fluid nav-c ">
           <Link
             style={{ color: "#404145", fontSize: "30px" }}
             class="offset navbar-brand fw-bold text-success   "
