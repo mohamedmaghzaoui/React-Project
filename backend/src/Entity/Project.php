@@ -13,6 +13,10 @@ class Project
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private $user;
+
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -22,6 +26,12 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\Column]
+    private ?int $price = null;
+
+    #[ORM\Column]
+    private array $reviews = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +40,18 @@ class Project
     public function setId(int $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -66,6 +88,35 @@ class Project
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+    /**
+     * @see ProjectInterface
+     */
+    public function getReviews(): array
+    {
+        $reviews = $this->reviews;
+        // guarantee every user at least has ROLE_USER
+
+        return $reviews;
+    }
+
+    public function setReviews(array $reviews): static
+    {
+        $this->reviews = $reviews;
 
         return $this;
     }
