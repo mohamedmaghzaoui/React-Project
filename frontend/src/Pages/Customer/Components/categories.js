@@ -6,7 +6,7 @@ export const Categories = () => {
   //dynamic category change
   const [Category, setCategory] = useState("Chose your Category");
   //category lisy
-  const categories = ["Technology ", "Graphics", "Animation", "Design"];
+  const categories = ["Technology", "Graphics", "Animation", "Design"];
   return (
     <div>
       <div className="mx-xl-5 px-xl-5 row  ">
@@ -44,7 +44,7 @@ export const Categories = () => {
         <br />
       </div>
       ;
-      <CategoriesCard />
+      <CategoriesCard Category={Category} />
     </div>
   );
 };
