@@ -30,7 +30,7 @@ class Project
     private ?int $price = null;
 
     #[ORM\Column]
-    private array $reviews = [];
+    private array $reviews = [0];
 
     public function getId(): ?int
     {
