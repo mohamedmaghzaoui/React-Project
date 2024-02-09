@@ -9,20 +9,7 @@ function NewNavbar() {
   const [isOpenJoin, setIsOpenJoin] = useState(false);
 
   // Utilisez useEffect pour activer les tooltips après le rendu du composant
-  useEffect(() => {
-    // Sélectionnez tous les éléments de bouton avec l'attribut data-bs-toggle="tooltip"
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    
-    // Créez des instances de tooltip pour chaque élément
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new window.bootstrap.Tooltip(tooltipTriggerEl);
-    });
 
-    // Nettoyez les instances de tooltip lors du démontage du composant
-    return () => {
-      tooltipList.forEach(tooltip => tooltip.dispose());
-    };
-  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">

@@ -1,6 +1,8 @@
 //import dependencies
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { cate } from "./Components/categories";
+import { Categories } from "./Components/categories";
 //customer component
 export const Customer = () => {
   //server url
@@ -25,10 +27,14 @@ export const Customer = () => {
   }, []); // The empty array [] ensures the effect runs once on component mount
 
   return (
-    //display data
+    <div className="w-100">
+      <Categories className="row" />
+    </div>
+  );
+};
+/* 
+ //display data
     <div>
-      <h1>Customer</h1>
-
       {TestData &&
         TestData.map((value) => (
           <div>
@@ -36,6 +42,4 @@ export const Customer = () => {
             <p>{value.age}</p>
           </div>
         ))}
-    </div>
-  );
-};
+    </div>*/
