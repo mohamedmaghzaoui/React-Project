@@ -47,14 +47,16 @@ class Project
     
 
     #[ORM\Column]
-    private string $image;
+    private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
-    
-    #[ORM\Column(type:"date")]
-
-    
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     /**
      * Get the value of id
@@ -72,6 +74,18 @@ class Project
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -157,6 +171,35 @@ class Project
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+    /**
+     * @see ProjectInterface
+     */
+    public function getReviews(): array
+    {
+        $reviews = $this->reviews;
+        // guarantee every user at least has ROLE_USER
+
+        return $reviews;
+    }
+
+    public function setReviews(array $reviews): static
+    {
+        $this->reviews = $reviews;
 
         return $this;
     }

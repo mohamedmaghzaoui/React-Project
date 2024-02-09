@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+
 export const Dropdown = () => {
   return (
-    <li class="nav-item dropdown">
+    <li className="nav-item dropdown">
       <Link
-        class="nav-link dropdown-toggle mx-3"
+        className="nav-link dropdown-toggle mx-3"
         href="#"
         role="button"
         data-bs-toggle="dropdown"
@@ -11,9 +12,9 @@ export const Dropdown = () => {
       >
         Discover
       </Link>
-      <ul class="dropdown-menu">
+      <ul className="dropdown-menu" style={{ width: "350px", marginTop: "10px" }}>
         <li>
-          <Link style={{ width: "200px" }} class="dropdown-item  " href="#">
+          <Link className="dropdown-item" href="#">
             <span className="fw-medium">Projects</span>
             <br />
             <span style={{ fontSize: "15px", color: "#62646A" }}>
@@ -22,8 +23,8 @@ export const Dropdown = () => {
           </Link>
         </li>
         <li>
-          <Link class="dropdown-item " href="#">
-            <span className="fw-medium">freelancers</span>
+          <Link className="dropdown-item" href="#">
+            <span className="fw-medium">Freelancers</span>
             <br />
             <span style={{ fontSize: "15px", color: "#62646A" }}>
               discover our freelancers
@@ -31,7 +32,7 @@ export const Dropdown = () => {
           </Link>
         </li>
         <li>
-          <Link class="dropdown-item " href="#">
+          <Link className="dropdown-item" href="#">
             <span className="fw-medium">Community</span>
             <br />
             <span style={{ fontSize: "15px", color: "#62646A" }}>
@@ -40,7 +41,7 @@ export const Dropdown = () => {
           </Link>
         </li>
         <li>
-          <Link class="dropdown-item " href="#">
+          <Link className="dropdown-item" href="#">
             <span className="fw-medium">Members</span>
             <br />
             <span style={{ fontSize: "15px", color: "#62646A" }}>

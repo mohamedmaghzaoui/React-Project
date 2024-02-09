@@ -7,6 +7,10 @@
   animation: colorChange 7s infinite alternate;
 }
 
+#central {
+  background-color: azure;
+}
+
 @keyframes colorChange {
   0%,
   30% {
