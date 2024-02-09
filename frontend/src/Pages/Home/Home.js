@@ -48,15 +48,15 @@ export const Home = () => {
       </div>{" "}
       {/* n end row to divide main element*/}
     </div>
-    <div className="  container-fluid    ">
-      <h3 style={{ margin:"5%", marginBottom: "2%"}}>You need it, we've got it</h3>
+    <div id={styles.central} className="  container-fluid    ">
+      <h3 style={{ padding:"5%", paddingBottom: "0%"}}>You need it, we've got it</h3>
       <div className="d-flex flex-wrap justify-content-center">
         <ServicesIconsList name="Graphics" src="https://cdn-icons-png.flaticon.com/512/4091/4091459.png" href=""/>
         <ServicesIconsList name="Marketing" src="https://cdn-icons-png.flaticon.com/512/3408/3408823.png" href=""/>
         <ServicesIconsList name="Translation" src="https://cdn-icons-png.flaticon.com/512/2793/2793765.png" href=""/>
         <ServicesIconsList name="Video" src="https://w7.pngwing.com/pngs/314/584/png-transparent-computer-icons-video-display-resolution-others-angle-text-rectangle-thumbnail.png" href=""/>
         </div>
-        <div className="d-flex flex-wrap justify-content-center">
+        <div style={{paddingBottom: "5%"}} className="d-flex flex-wrap justify-content-center">
         <ServicesIconsList name="Programming" src="https://p7.hiclipart.com/preview/734/59/634/computer-icons-programmer-computer-programming-source-code-coder.jpg" href=""/>
         <ServicesIconsList name="Business" src="https://cdn-icons-png.flaticon.com/512/2747/2747468.png" href=""/>
         <ServicesIconsList name="Lifestyle" src="https://static.thenounproject.com/png/5708815-200.png" href=""/>
@@ -65,9 +65,12 @@ export const Home = () => {
       </div>
     </div>
     <div id={styles.footer} className="  container-fluid    ">
-
+  <div className="d-flex">
   <Footer categoryname="Category" name1="Graphics" name2="Marketing" name3="Translation" name4="Video" name5="Programming" name6="Business" name7="Lifestyle" name8="Photography"/>
+  <Footer categoryname="About" name1="Privacy Policy" name2="Terms Of Service" name3="Press & News" name4="Partnerships" name5="Intellectual Property" />
+  <Footer categoryname="Support" name1="Help & Support" name2="Trust & Safety" name3="Contact" />
 
+  </div>
     </div>
     </div>
     //end home page container

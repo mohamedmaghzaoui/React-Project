@@ -1,7 +1,10 @@
 .not-rounded-right {
-  border-radius: 5% 0% 0% 5% !important;
+  border-radius: 5% 0% 0% 10% !important;
 }
 
 .not-rounded-left {
   border-radius: 0% 10% 10% 0% !important;
+}
+.dropdown-menu a:visited {
+  color: #62646A; /* Définissez la couleur souhaitée pour les liens visités */
 }

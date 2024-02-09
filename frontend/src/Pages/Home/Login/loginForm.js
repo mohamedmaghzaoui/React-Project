@@ -10,8 +10,8 @@ const LOGIN_STYLE = {
     backgroundColor: "white",
     padding: "50px",
     zIndex: "9999",
-    "text-align": "center",
-    "border-radius": "25px",
+    textAlign: "center",
+    borderRadius: "25px",
 }
 
 const LOGIN_TITTLE = {
@@ -42,14 +42,13 @@ export default function Login({ openLogin, onCloseLogin }) {
   };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
-
     var { uname, pass } = document.forms[0];
+
+   
 
     // Find user login info
     const userData = database.find((user) => user.username === uname.value);
-
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
@@ -69,10 +68,15 @@ export default function Login({ openLogin, onCloseLogin }) {
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
     );
-
-  // JSX code for login form
+ const handleOutsideClick = (event) => {
+      // Close the popup if the click is outside the login component
+      if (event.target === event.currentTarget) {
+        onCloseLogin();
+      }
+    };
+  
   const renderForm = (
-    <div className="form">
+    <div className="form" onClick={handleOutsideClick}>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
