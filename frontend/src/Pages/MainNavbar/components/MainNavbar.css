@@ -1,0 +1,13 @@
+/* styles.css */
+
+.nav-link {
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #28a745 !important; /* Set the hover color to a different color */
+}
+.dropdown-menu a:visited {
+  color: #62646A; /* Définissez la couleur souhaitée pour les liens visités */
+}

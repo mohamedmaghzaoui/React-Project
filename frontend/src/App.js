@@ -14,6 +14,7 @@ import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
 function App() {
   return (
     <div className="">
+
       <BrowserRouter>
         <div className="">
           <MainNavbar className="" />

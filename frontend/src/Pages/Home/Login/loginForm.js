@@ -1,23 +1,29 @@
 import { useState } from "react";
 import axios from "axios";
 
-
 const LOGIN_STYLE = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "white",
-    padding: "50px",
-    zIndex: "9999",
-    textAlign: "center",
-    borderRadius: "25px",
-}
-
-const LOGIN_TITTLE = {
-
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  backgroundColor: "white",
+  padding: "50px",
+  zIndex: "9999",
+  textAlign: "center",
+  borderRadius: "25px",
+  width: "90%", // Ajustement de la largeur
+  maxWidth: "1000px", // Ajustement de la largeur maximale
+  display: "flex",
 };
 
+const IMAGE_STYLE = {
+  flex: "1",
+  marginRight: "20px",
+};
+
+const FORM_STYLE = {
+  flex: "1",
+};
 
 export default function Login({ openLogin, onCloseLogin }) {
   // React States
@@ -37,22 +43,20 @@ export default function Login({ openLogin, onCloseLogin }) {
   ];
 
   const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
+    uname: "Invalid username",
+    pass: "Invalid password",
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    var { uname, pass } = document.forms[0];
-
-   
+    var { uname, pass } = event.target.elements;
 
     // Find user login info
     const userData = database.find((user) => user.username === uname.value);
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
-        // Invalid password 
+        // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
@@ -68,38 +72,64 @@ export default function Login({ openLogin, onCloseLogin }) {
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
     );
- const handleOutsideClick = (event) => {
-      // Close the popup if the click is outside the login component
-      if (event.target === event.currentTarget) {
-        onCloseLogin();
-      }
-    };
-  
+
+  const handleOutsideClick = (event) => {
+    // Close the popup if the click is outside the login component
+    if (event.target === event.currentTarget) {
+      onCloseLogin();
+    }
+  };
+
   const renderForm = (
-    <div className="form" onClick={handleOutsideClick}>
+    <div className="form" onClick={handleOutsideClick} style={FORM_STYLE}>
       <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
+          <input type="text" name="uname" className="form-control" id="exampleInputEmail1" required />
           {renderErrorMessage("uname")}
         </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+          <input type="password" name="pass" className="form-control" id="exampleInputPassword1" required />
           {renderErrorMessage("pass")}
         </div>
-        <div className="button-container">
-          <input type="submit" />
+        <div className="mb-3 form-check">
+          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
         </div>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
+
   if (!openLogin) return null;
   return (
     <div style={LOGIN_STYLE}>
-      <button onClick={onCloseLogin}>x</button>
-      <div className="title">login</div>
-      {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+      <button
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          backgroundColor: "transparent",
+          border: "none",
+          cursor: "pointer",
+          fontSize: "1.5rem",
+        }}
+        onClick={onCloseLogin}
+      >
+        &times;
+      </button>
+      <div style={IMAGE_STYLE}>
+        <img
+          src="https://www.shutterstock.com/image-vector/man-key-near-computer-account-260nw-1499141258.jpg"
+          alt="Login Image"
+          style={{ width: "100%" }}
+        />
+      </div>
+      <div style={FORM_STYLE}>
+        <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Login</div>
+        {renderForm}
+      </div>
     </div>
   );
 }
