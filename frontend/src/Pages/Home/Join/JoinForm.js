@@ -28,23 +28,49 @@ const FORM_STYLE = {
 export default function Join({ openJoin, onCloseJoin }) {
   const renderForm = (
     <div className="form" style={FORM_STYLE}>
-      <form>
- 
+      <form method="post" action="http://localhost:8000/create1">
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" name="email" id="email" className="form-control" required />
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="form-control"
+            required
+          />
         </div>
-        
+
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" name="password" id="password" className="form-control" required />
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            className="form-control"
+            required
+          />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label"> Repeat Password</label>
-          <input type="password" name="password" id="password" className="form-control" required />
+          <label htmlFor="password" className="form-label">
+            {" "}
+            Repeat Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            className="form-control"
+            required
+          />
         </div>
         <div className="button-container">
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </div>
       </form>
     </div>

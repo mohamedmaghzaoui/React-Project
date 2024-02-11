@@ -18,23 +18,28 @@ class UserController extends AbstractController
     #[Route('/create1', name: 'app_user_create')]
     public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
-        $user = new User($passwordHasher);
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles(["ROLE_USER"]);
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            $userAuthenticator->authenticateUser($user, $formLoginAuthenticator, $request);
+        // Get data from the request
+        $data = json_decode($request->getContent(), true);
+        dd($data);
 
-            return $this->redirectToRoute('projects');
-        }
-        return $this->render('security/user.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        // Create a new user with the data
+        $user = new User($passwordHasher);
+        $user->setUsername($data['username']);
+        $user->setPassword($data['password']);
+        $user->setRoles(["ROLE_USER"]);
+
+        // Persist the user to the database
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        // Authenticate the user
+        $userAuthenticator->authenticateUser($user, $formLoginAuthenticator, $request);
+
+        return $this->redirectToRoute('projects');
     }
-    #[Route('/roles', name:"roles")]
+
+    #[Route('/roles', name: "roles")]
     public function users(ManagerRegistry $doctrine)
     {
         $userRepository = $doctrine->getRepository(User::class);
