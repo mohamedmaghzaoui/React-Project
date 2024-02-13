@@ -57,14 +57,15 @@ export default function Join({ openJoin, onCloseJoin }) {
   } = useForm({
     resolver: yupResolver(userSchema), //chose userSchema for validation
   }); //use useform library
+  //function to submit user data to symfony server
   const submitData = (data) => {
     console.log(data);
   };
-  //formulaire
+  //show just one  error only if user submit data else show nothing
   const combinedError =
-    (isSubmitted ? errors.email?.message : null) ||
-    (isSubmitted ? errors.password?.message : null) ||
-    (isSubmitted ? errors.repeatedPassword?.message : null);
+    (isSubmitted ? errors.email?.message : null) || //email error
+    (isSubmitted ? errors.password?.message : null) || //password error
+    (isSubmitted ? errors.repeatedPassword?.message : null); //repeated password error
 
   const renderForm = (
     <div className="form" style={FORM_STYLE}>
@@ -79,6 +80,7 @@ export default function Join({ openJoin, onCloseJoin }) {
             name="email"
             id="email"
             className="form-control"
+            //hide error msg when user change the form data
             onChange={() => {
               setIsSubmitted(false);
             }}
@@ -95,6 +97,7 @@ export default function Join({ openJoin, onCloseJoin }) {
             name="password"
             id="password"
             className="form-control"
+            //hide error msg when user change the form data
             onChange={() => {
               setIsSubmitted(false);
             }}
@@ -111,11 +114,13 @@ export default function Join({ openJoin, onCloseJoin }) {
             name="repeatedPassword"
             id="password"
             className="form-control"
+            //hide error msg when user change the form data
             onChange={() => {
               setIsSubmitted(false);
             }}
           />
         </div>
+        {/* show just one error if user submit the form */}
         {combinedError ? (
           <span className="text-danger fw-normal">{combinedError}</span>
         ) : (
