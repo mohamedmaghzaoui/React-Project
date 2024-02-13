@@ -82,9 +82,6 @@ export default function Join({ openJoin, onCloseJoin }) {
             onChange={() => {
               setIsSubmitted(false);
             }}
-            style={{
-              borderColor: errors.email && "red",
-            }}
           />
         </div>
 
@@ -111,7 +108,7 @@ export default function Join({ openJoin, onCloseJoin }) {
           <input
             {...register("repeatedPassword")}
             type="password"
-            name="password"
+            name="repeatedPassword"
             id="password"
             className="form-control"
             onChange={() => {
@@ -137,7 +134,7 @@ export default function Join({ openJoin, onCloseJoin }) {
     </div>
   );
   //cheeck wether to show or not the form component
-
+  console.log(combinedError);
   if (!openJoin) return null;
   return (
     <div style={JOIN_STYLE}>
