@@ -6,9 +6,10 @@ import Join from "../Home/Join/JoinForm";
 import Language from "./components/LanguagePopup.js"; // corrected import
 
 function MainNavbar() {
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenJoin, setIsOpenJoin] = useState(false);
-  const [isOpenPop, setIsOpenPop] = useState(false);
+  //states
+  const [isOpenLogin, setIsOpenLogin] = useState(false); //login form pop
+  const [isOpenJoin, setIsOpenJoin] = useState(false); //join or sign in form pop
+  const [showLanguagePop, setShowLanguagePop] = useState(false); //language
   const location = useLocation();
 
   const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
@@ -71,15 +72,15 @@ function MainNavbar() {
 
               <li className="nav-item">
                 <button
-                  onClick={() => setIsOpenPop(!isOpenPop)}
+                  onClick={() => setShowLanguagePop(!showLanguagePop)}
                   className="nav-link mx-3"
                 >
                   Language
                 </button>
               </li>
               <Language
-                openPop={isOpenPop} // Corrected prop name
-                onClosePop={() => setIsOpenPop(false)}
+                openPop={showLanguagePop} // Corrected prop name
+                onClosePop={() => setShowLanguagePop(false)}
               />
 
               <li className="nav-item">
