@@ -1,10 +1,4 @@
-//import libraries
-import { useState } from "react";
-import axios from "axios";
-import { useForm } from "react-hook-form"; //useForm to manages form data
-import * as yup from "yup"; //yup library for error validation
-import { yupResolver } from "@hookform/resolvers/yup"; //yup resolver to connect between useForm and yup
-
+import { RenderForm } from "./components/renderForm";
 //style
 const JOIN_STYLE = {
   position: "fixed",
@@ -26,120 +20,7 @@ const IMAGE_STYLE = {
   marginRight: "20px",
 };
 
-const FORM_STYLE = {
-  flex: "1",
-};
-
 export default function Join({ openJoin, onCloseJoin }) {
-  //state to verify if form is submitted or not and to render error msgs
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  //user schema for form validation
-  const userSchema = yup.object().shape({
-    //email validation
-    email: yup.string().required("email is required"),
-    //password validation
-    password: yup
-      .string()
-      .required("password is required")
-      .min(6, "password must be more that 6 letters"),
-    //repeated password validation
-    repeatedPassword: yup
-      .string()
-      .required("repeat password is required")
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
-  });
-  const {
-    register,
-    handleSubmit,
-    setValue,
-
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(userSchema), //chose userSchema for validation
-  }); //use useform library
-  //function to submit user data to symfony server
-  const submitData = (data) => {
-    console.log(data);
-  };
-  //show just one  error only if user submit data else show nothing
-  const combinedError =
-    (isSubmitted ? errors.email?.message : null) || //email error
-    (isSubmitted ? errors.password?.message : null) || //password error
-    (isSubmitted ? errors.repeatedPassword?.message : null); //repeated password error
-
-  const renderForm = (
-    <div className="form" style={FORM_STYLE}>
-      <form onSubmit={handleSubmit(submitData)}>
-        <div className="mb-2">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            {...register("email")} //register email in a object using react hook form
-            type="email"
-            name="email"
-            id="email"
-            className="form-control"
-            //hide error msg when user change the form data
-            onChange={() => {
-              setIsSubmitted(false);
-            }}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            {...register("password")} //register password in a object using react hook form
-            type="password"
-            name="password"
-            id="password"
-            className="form-control"
-            //hide error msg when user change the form data
-            onChange={() => {
-              setIsSubmitted(false);
-            }}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            {" "}
-            Repeat Password
-          </label>
-          <input
-            {...register("repeatedPassword")}
-            type="password"
-            name="repeatedPassword"
-            id="password"
-            className="form-control"
-            //hide error msg when user change the form data
-            onChange={() => {
-              setIsSubmitted(false);
-            }}
-          />
-        </div>
-        {/* show just one error if user submit the form */}
-        {combinedError ? (
-          <span className="text-danger fw-normal">{combinedError}</span>
-        ) : (
-          <br />
-        )}
-        <div className="button-container py-2">
-          <button
-            onClick={() => setIsSubmitted(true)}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-  //cheeck wether to show or not the form component
-  console.log(combinedError);
   if (!openJoin) return null;
   return (
     <div style={JOIN_STYLE}>
@@ -166,7 +47,7 @@ export default function Join({ openJoin, onCloseJoin }) {
         />
       </div>
       <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Join us</div>
-      {renderForm}
+      <RenderForm />
     </div>
   );
 }

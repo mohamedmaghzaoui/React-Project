@@ -1,0 +1,21 @@
+#join_style {
+  position: "fixed";
+  top: "50%";
+  left: "50%";
+  transform: "translate(-50%; -50%)";
+  backgroundcolor: "white";
+  padding: "50px";
+  zindex: "9999";
+  textalign: "center";
+  borderradius: "25px";
+  width: "90%";
+  maxwidth: "1000px";
+  display: "flex";
+}
+#img_style {
+  flex: "1";
+  marginright: "20px";
+}
+#form_style {
+  flex: "1";
+}

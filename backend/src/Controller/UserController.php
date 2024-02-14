@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -15,30 +16,39 @@ use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 
 class UserController extends AbstractController
 {
-    #[Route('/create1', name: 'app_user_create')]
+    #[Route('/adduser', name: 'app_user_create')]
     public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
+        $repository = $doctrine->getRepository(User::class);
+
         // Get data from the request
         $data = json_decode($request->getContent(), true);
-        dd($data);
+
+        // Check if the email already exists
+        $existingUser = $repository->findOneBy(['email' => $data['email']]);
+        if ($existingUser) {
+            return $this->json(['error' => 'Email already exists'], Response::HTTP_CONFLICT);
+        }
 
         // Create a new user with the data
         $user = new User($passwordHasher);
-        $user->setUsername($data['username']);
-        $user->setPassword($data['password']);
-        $user->setRoles(["ROLE_USER"]);
+        $user->setEmail($data['email']);
+        $user->setRoles(["ROLE_CLIENT"]); // Initial role set to 'client'
+        $user->setUsername(""); // Initial username set to null
+
+        // Hash the password
+        $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
+        $user->setPassword($hashedPassword);
 
         // Persist the user to the database
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
 
-        // Authenticate the user
-        $userAuthenticator->authenticateUser($user, $formLoginAuthenticator, $request);
-
-        return $this->redirectToRoute('projects');
+        // Authenticate the user if needed (optional)
+        // Note: Authenticating the user immediately might not be necessary depending on your use case.
+        return $this->json([]);
     }
-
     #[Route('/roles', name: "roles")]
     public function users(ManagerRegistry $doctrine)
     {
