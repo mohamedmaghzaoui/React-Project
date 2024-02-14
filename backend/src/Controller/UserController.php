@@ -27,7 +27,7 @@ class UserController extends AbstractController
         // Check if the email already exists
         $existingUser = $repository->findOneBy(['email' => $data['email']]);
         if ($existingUser) {
-            return $this->json(['error' => 'Email already exists'], Response::HTTP_CONFLICT);
+            return $this->json(['Email already exists']);
         }
 
         // Create a new user with the data

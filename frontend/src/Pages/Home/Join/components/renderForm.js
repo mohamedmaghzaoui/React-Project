@@ -10,6 +10,7 @@ const FORM_STYLE = {
 export const RenderForm = () => {
   //state to verify if form is submitted or not and to render error msgs
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailError, setEmailError] = useState(""); //state to check if email already exist
   //user schema for form validation
   const userSchema = yup.object().shape({
     //email validation
@@ -36,23 +37,29 @@ export const RenderForm = () => {
   }); //use useform library
   //function to submit user data to symfony server
   const submitData = async (userData) => {
+    //send data using axois
     try {
       const response = await axios.post(
         "http://localhost:8000/adduser",
         userData
       );
 
-      console.log(response.data);
+      console.log(response);
+      //if email exist store error in email error state
+      if (response.data[0] == "Email already exists") {
+        setEmailError(response.data[0]);
+      }
     } catch (error) {
-      console.error("Error submitting data:", error.message);
+      console.error("Error submitting data:", error);
     }
   };
 
-  //show just one  error only if user submit data else show nothing
+  //variable to stock one error of user beginnig with email error -> password error -> repeated password error and finaly if email already exist
   const combinedError =
     (isSubmitted ? errors.email?.message : null) || //email error
     (isSubmitted ? errors.password?.message : null) || //password error
-    (isSubmitted ? errors.repeatedPassword?.message : null); //repeated password error
+    (isSubmitted ? errors.repeatedPassword?.message : null) || //password error
+    (isSubmitted ? emailError : null); //email already exist error
 
   //cheeck wether to show or not the form component
   console.log(combinedError);
