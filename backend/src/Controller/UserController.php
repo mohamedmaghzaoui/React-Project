@@ -27,10 +27,11 @@ class UserController extends AbstractController
         // Check if the email already exists
         $existingUser = $repository->findOneBy(['email' => $data['email']]);
         if ($existingUser) {
-            return $this->json(['Email already exists']);
+            return $this->json(['Email already exists'], Response::HTTP_CONFLICT);
         }
 
         // Create a new user with the data
+        /*
         $user = new User($passwordHasher);
         $user->setEmail($data['email']);
         $user->setRoles(["ROLE_CLIENT"]); // Initial role set to 'client'
@@ -44,10 +45,11 @@ class UserController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
+        */
 
         // Authenticate the user if needed (optional)
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
-        return $this->json([]);
+        return $this->json(["user succesfylly added"]);
     }
     #[Route('/roles', name: "roles")]
     public function users(ManagerRegistry $doctrine)

@@ -1,4 +1,5 @@
 import { RenderForm } from "./components/renderForm";
+
 //style
 const JOIN_STYLE = {
   position: "fixed",
@@ -46,7 +47,7 @@ export default function Join({ openJoin, onCloseJoin }) {
           style={{ width: "100%" }}
         />
       </div>
-      <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Join us</div>
+
       <RenderForm />
     </div>
   );

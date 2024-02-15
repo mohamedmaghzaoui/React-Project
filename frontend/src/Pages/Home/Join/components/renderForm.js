@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form"; //useForm to manages form data
 import * as yup from "yup"; //yup library for error validation
+import { UsernameForm } from "./usernameForm";
 import { yupResolver } from "@hookform/resolvers/yup"; //yup resolver to connect between useForm and yup
 const FORM_STYLE = {
   flex: "1",
@@ -10,7 +11,7 @@ const FORM_STYLE = {
 export const RenderForm = () => {
   //state to verify if form is submitted or not and to render error msgs
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [emailError, setEmailError] = useState(""); //state to check if email already exist
+  const [emailError, setEmailError] = useState(null); //state to check if email already exist
   //user schema for form validation
   const userSchema = yup.object().shape({
     //email validation
@@ -45,12 +46,11 @@ export const RenderForm = () => {
       );
 
       console.log(response);
-      //if email exist store error in email error state
-      if (response.data[0] == "Email already exists") {
-        setEmailError(response.data[0]);
-      }
     } catch (error) {
-      console.error("Error submitting data:", error);
+      console.log(error.response.data[0]);
+      if (error.response.data[0] == "Email already exists") {
+        setEmailError(error.response.data[0]);
+      }
     }
   };
 
@@ -62,9 +62,10 @@ export const RenderForm = () => {
     (isSubmitted ? emailError : null); //email already exist error
 
   //cheeck wether to show or not the form component
-  console.log(combinedError);
+
   return (
     <div className="form" style={FORM_STYLE}>
+      <h2>Join us</h2>
       <form onSubmit={handleSubmit(submitData)}>
         <div className="mb-2">
           <label htmlFor="email" className="form-label">
@@ -77,8 +78,9 @@ export const RenderForm = () => {
             className="form-control"
             {...register("email")} //register email in a object using react hook form
             //hide error msg when user change the form data
-            onChange={() => {
+            onInput={() => {
               setIsSubmitted(false);
+              setEmailError(""); //set email error to null so that it dissapear
             }}
           />
         </div>
@@ -94,7 +96,7 @@ export const RenderForm = () => {
             className="form-control"
             {...register("password")} //register password in a object using react hook form
             //hide error msg when user change the form data
-            onChange={() => {
+            onInput={() => {
               setIsSubmitted(false);
             }}
           />
@@ -111,7 +113,7 @@ export const RenderForm = () => {
             className="form-control"
             {...register("repeatedPassword")}
             //hide error msg when user change the form data
-            onChange={() => {
+            onInput={() => {
               setIsSubmitted(false);
             }}
           />
@@ -127,7 +129,7 @@ export const RenderForm = () => {
           <button
             onClick={() => setIsSubmitted(true)}
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-success col-4"
           >
             Submit
           </button>
