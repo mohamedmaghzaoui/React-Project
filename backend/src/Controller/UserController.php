@@ -16,8 +16,9 @@ use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 
 class UserController extends AbstractController
 {
-    #[Route('/adduser', name: 'app_user_create')]
-    public function create(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
+    //function to verify user email for firest react registration form
+    #[Route('/verifyUser', name: 'verify_user')]
+    public function verifyUser(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
         $repository = $doctrine->getRepository(User::class);
 
@@ -30,12 +31,30 @@ class UserController extends AbstractController
             return $this->json(['Email already exists'], Response::HTTP_CONFLICT);
         }
 
-        // Create a new user with the data
-        /*
+        return $this->json(["user doesnt not exist"]);
+    }
+
+    //function to add a user to the data base
+    #[Route('/addUser', name: 'add_user')]
+    public function addUser(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
+    {
+        $repository = $doctrine->getRepository(User::class);
+
+        // Get data from the request
+        $data = json_decode($request->getContent(), true);
+
+        // Check again if email exist for safety reasons
+        $existingUser = $repository->findOneBy(['email' => $data['email']]);
+        if ($existingUser) {
+            return $this->json(['Email already exists'], Response::HTTP_CONFLICT);
+        }
+
+
         $user = new User($passwordHasher);
         $user->setEmail($data['email']);
+        $user->setUsername($data['username']);
         $user->setRoles(["ROLE_CLIENT"]); // Initial role set to 'client'
-        $user->setUsername(""); // Initial username set to null
+
 
         // Hash the password
         $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
@@ -45,11 +64,11 @@ class UserController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        */
+
 
         // Authenticate the user if needed (optional)
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
-        return $this->json(["user succesfylly added"]);
+        return $this->json(["user doesnt not exist"]);
     }
     #[Route('/roles', name: "roles")]
     public function users(ManagerRegistry $doctrine)

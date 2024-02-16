@@ -1,4 +1,6 @@
-import { RenderForm } from "./components/renderForm";
+import { useState } from "react";
+import { RegisterForm } from "./components/registerForm"; //first form
+import { UsernameForm } from "./components/usernameForm"; //second form
 
 //style
 const JOIN_STYLE = {
@@ -22,6 +24,8 @@ const IMAGE_STYLE = {
 };
 
 export default function Join({ openJoin, onCloseJoin }) {
+  const [userData, setUserData] = useState(); //user information state
+  const [form, setForm] = useState("register"); //form state used to either show first register form or second username form
   if (!openJoin) return null;
   return (
     <div style={JOIN_STYLE}>
@@ -47,8 +51,19 @@ export default function Join({ openJoin, onCloseJoin }) {
           style={{ width: "100%" }}
         />
       </div>
-
-      <RenderForm />
+      <h2>Join us</h2>
+      {/* condition to either show first or second form */}
+      {form === "register" ? (
+        //send props set userdata  and form state
+        <RegisterForm setForm={setForm} setUserData={setUserData} />
+      ) : (
+        //send props of  set Form userdata state and closeform function
+        <UsernameForm
+          closeForm={onCloseJoin}
+          setForm={setForm}
+          userData={userData}
+        />
+      )}
     </div>
   );
 }

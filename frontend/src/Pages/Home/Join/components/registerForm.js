@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup"; //yup resolver to connect
 const FORM_STYLE = {
   flex: "1",
 };
-export const RenderForm = () => {
+export const RegisterForm = (props) => {
   //state to verify if form is submitted or not and to render error msgs
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailError, setEmailError] = useState(null); //state to check if email already exist
@@ -41,31 +41,34 @@ export const RenderForm = () => {
     //send data using axois
     try {
       const response = await axios.post(
-        "http://localhost:8000/adduser",
+        "http://localhost:8000/verifyUser", //symfony route for email validation
         userData
       );
 
-      console.log(response);
+      props.setUserData(userData); //set userdata to use it in parent component and then in username component
+      props.setForm("username"); //switch to second form
     } catch (error) {
-      console.log(error.response.data[0]);
-      if (error.response.data[0] == "Email already exists") {
+      //if error exist and it equal to email not existing then render email error by update the state
+      if (error.response && error.response.data[0] === "Email already exists") {
         setEmailError(error.response.data[0]);
       }
     }
   };
 
-  //variable to stock one error of user beginnig with email error -> password error -> repeated password error and finaly if email already exist
+  //variable to stock one error of user beginnig with email error -> password error -> repeated pasword error and finaly if email already exist error
   const combinedError =
     (isSubmitted ? errors.email?.message : null) || //email error
     (isSubmitted ? errors.password?.message : null) || //password error
-    (isSubmitted ? errors.repeatedPassword?.message : null) || //password error
+    (isSubmitted ? errors.repeatedPassword?.message : null) || //repeatpassword error
     (isSubmitted ? emailError : null); //email already exist error
-
-  //cheeck wether to show or not the form component
 
   return (
     <div className="form" style={FORM_STYLE}>
-      <h2>Join us</h2>
+      <span>step 1 of 2</span>
+      <br />
+      <button className="btn btn-primary mx-2"></button>
+      <button className="btn  border border-secondary"></button>
+
       <form onSubmit={handleSubmit(submitData)}>
         <div className="mb-2">
           <label htmlFor="email" className="form-label">
@@ -131,7 +134,7 @@ export const RenderForm = () => {
             type="submit"
             className="btn btn-success col-4"
           >
-            Submit
+            Next
           </button>
         </div>
       </form>
