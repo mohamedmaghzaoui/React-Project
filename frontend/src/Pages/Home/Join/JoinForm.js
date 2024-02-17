@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RegisterForm } from "./components/registerForm"; //first form
 import { UsernameForm } from "./components/usernameForm"; //second form
-import styles from "../Css/overlay.module.css";
+import style from "../Css/overlay.module.css";
 
 //style
 const JOIN_STYLE = {
@@ -18,18 +18,16 @@ const JOIN_STYLE = {
   maxWidth: "1000px", // Ajustement de la largeur maximale
   display: "flex",
 };
-
 const IMAGE_STYLE = {
   flex: "1",
   marginRight: "20px",
 };
-
 export default function Join({ openJoin, onCloseJoin }) {
   const [userData, setUserData] = useState(); //user information state
   const [form, setForm] = useState("register"); //form state used to either show first register form or second username form
   if (!openJoin) return null;
   return (
-    <div className={styles.overlay}>
+    <div className={style.overlay}>
       <div style={JOIN_STYLE}>
         <button
           style={{
@@ -57,7 +55,7 @@ export default function Join({ openJoin, onCloseJoin }) {
         {/* condition to either show first or second form */}
         {form === "register" ? (
           //send props set userdata  and form state
-          <RegisterForm setUserData={setUserData} />
+          <RegisterForm setForm={setForm} setUserData={setUserData} />
         ) : (
           //send props of  set Form userdata state and closeform function
           <UsernameForm
