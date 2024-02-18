@@ -44,7 +44,7 @@ export const RegisterForm = (props) => {
         "http://localhost:8000/verifyUser", //symfony route for email validation
         userData
       );
-
+      console.log(response);
       props.setUserData(userData); //set userdata to use it in parent component and then in username component
       props.setForm("username"); //switch to second form
     } catch (error) {
