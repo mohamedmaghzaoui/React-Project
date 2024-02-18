@@ -55,10 +55,7 @@ class UserController extends AbstractController
         $user->setUsername($data['username']);
         $user->setRoles(["ROLE_CLIENT"]); // Initial role set to 'client'
 
-
-        // Hash the password
-        $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
-        $user->setPassword($hashedPassword);
+        $user->setPassword($data['password']);
 
         // Persist the user to the database
         $entityManager = $doctrine->getManager();
