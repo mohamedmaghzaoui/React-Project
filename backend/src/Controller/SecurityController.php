@@ -18,16 +18,16 @@ class SecurityController extends AbstractController
     {
         if (null == $user) {
             return $this->json([
-                'message' => 'missing credentials',
+                'invalid credentials',
             ], Response::HTTP_UNAUTHORIZED);
             # code...
         }
         return $this->json([
-            "userid" => $user->getUsername()
+            "userid" => $user->getId()
         ]);
     }
-    #[Route("logout", name: "logout")]
-    public function logout()
+    #[Route("logout", name: "app_logout")]
+    public function logout(): void
     {
     }
 }

@@ -30,7 +30,6 @@ export const RegisterForm = (props) => {
   const {
     register,
     handleSubmit,
-    setValue,
 
     formState: { errors },
   } = useForm({
@@ -48,6 +47,7 @@ export const RegisterForm = (props) => {
       props.setUserData(userData); //set userdata to use it in parent component and then in username component
       props.setForm("username"); //switch to second form
     } catch (error) {
+      console.log(error);
       //if error exist and it equal to email not existing then render email error by update the state
       if (error.response && error.response.data[0] === "Email already exists") {
         setEmailError(error.response.data[0]);
