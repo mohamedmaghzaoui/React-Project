@@ -3,44 +3,28 @@
 
 namespace App\Controller;
 
-use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 //login user
 class SecurityController extends AbstractController
 {
-    #[Route("/login", name: "app_login")]
-    public function login(AuthenticationUtils $utils, Request $request): Response
+    #[Route("/login", name: "app_login", methods: ['Post'])]
+    public function login(#[CurrentUser] User $user): Response
     {
-
-        $error = $utils->getLastAuthenticationError();
-        $lastUsername = $utils->getLastUsername();
-        if ($this->getUser()) {
-            echo ("authenticated");
+        if (null == $user) {
+            return $this->json([
+                'message' => 'missing credentials',
+            ], Response::HTTP_UNAUTHORIZED);
             # code...
         }
-        // Correctly retrieve the password field
-
-
-        // Debugging output
-
-
-
-        // Your existing code...
-
-
-
-        return $this->render(
-            'security/login.html.twig',
-            [
-                'controller_name' => 'LoginController',
-                "last_username" => $lastUsername,
-                "error" => $error
-            ]
-        );
+        return $this->json([
+            "userid" => $user->getUsername()
+        ]);
     }
     #[Route("logout", name: "logout")]
     public function logout()

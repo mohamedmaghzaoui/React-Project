@@ -20,7 +20,15 @@ export const UsernameForm = (props) => {
         "http://localhost:8000/addUser",
         userData
       );
-      console.log(response);
+      const userAuthentication = {
+        email: userData.email,
+        password: userData.password,
+      };
+      const response2 = await axios.post(
+        "http://localhost:8000/login",
+        userAuthentication
+      );
+      console.log(response2);
       props.setForm("register"); //return to first form
       props.closeForm(); //close form
     } catch (error) {

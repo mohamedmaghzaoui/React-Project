@@ -3,23 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
+
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class UserController extends AbstractController
 {
     //function to verify user email for firest react registration form
     #[Route('/verifyUser', name: 'verify_user')]
-    public function verifyUser(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
+    public function verifyUser(Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(User::class);
 
@@ -37,7 +33,7 @@ class UserController extends AbstractController
 
     //function to add a user to the data base
     #[Route('/addUser', name: 'add_user')]
-    public function addUser(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, UserAuthenticatorInterface $userAuthenticator, FormLoginAuthenticator $formLoginAuthenticator): Response
+    public function addUser(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(User::class);
 
@@ -77,6 +73,16 @@ class UserController extends AbstractController
         return $this->render('security/roles.html.twig', [
             'users' => $users,
         ]);
+    }
+    #[Route('/check', name: "roles")]
+    public function check(): Response
+
+    {
+        if ($this->getUser()) {
+            return $this->json("authenticated");
+        } else {
+            return $this->json("not authenticated");
+        }
     }
     #[Route('/roles/{id}/{role}')]
     public function setRole(User $user, string $role, ManagerRegistry $doctrine)
