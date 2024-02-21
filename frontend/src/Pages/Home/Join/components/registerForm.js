@@ -44,6 +44,7 @@ export const RegisterForm = (props) => {
         userData
       );
       console.log(response);
+      window.user = "worked";
       props.setUserData(userData); //set userdata to use it in parent component and then in username component
       props.setForm("username"); //switch to second form
     } catch (error) {

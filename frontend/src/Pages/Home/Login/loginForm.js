@@ -56,7 +56,7 @@ export default function Login({ openLogin, onCloseLogin }) {
         </div>
         <div style={FORM_STYLE}>
           <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Login</div>
-          <RenderForm />
+          <RenderForm closeForm={onCloseLogin} />
         </div>
       </div>
     </div>

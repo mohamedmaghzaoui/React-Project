@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
 import Login from "../Home/Login/loginForm";
 import Join from "../Home/Join/JoinForm";
 import Language from "./components/LanguagePopup.js"; // corrected import
+import { UserContext } from "../../Contexts/userContext.js";
 
 function MainNavbar() {
   //states
@@ -13,6 +14,7 @@ function MainNavbar() {
   const location = useLocation();
 
   const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
+  const { username } = useContext(UserContext);
 
   return (
     <div>
@@ -25,6 +27,7 @@ function MainNavbar() {
           >
             FreeEz
           </Link>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -36,6 +39,7 @@ function MainNavbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
           {showSearchBar && ( // Conditionally render search bar
             <nav class="navbar navbar-light bg-light">
               <form class="form-inline">
@@ -54,6 +58,12 @@ function MainNavbar() {
               </form>
             </nav>
           )}
+          <span className="mx-5">{username}</span>
+          {username ? (
+            <button className="btn btn-danger">logout</button>
+          ) : (
+            <span className="mx-5"></span>
+          )}
 
           <div
             id="navbarSupportedContent"
@@ -61,7 +71,7 @@ function MainNavbar() {
           >
             <ul
               style={{ fontSize: "18px" }}
-              className="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
+              className="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-6"
             >
               <Dropdown />
               <li className="nav-item">

@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import * as yup from "yup"; //yup library for error validation
 import { yupResolver } from "@hookform/resolvers/yup"; //yup resolver to connect between useForm and yup
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../../Contexts/userContext";
 
 const FORM_STYLE = {
   flex: "1",
 };
-export const RenderForm = () => {
+export const RenderForm = (props) => {
+  //get username data using context api to show username on login
+  const { setUsername } = useContext(UserContext);
   //api error state of error reciaved from symfony when username or password are wrong
   const [apiError, setApiError] = useState(null);
   //yup user schema for login validation
@@ -32,7 +35,9 @@ export const RenderForm = () => {
         "http://localhost:8000/login",
         userData
       );
-      console.log(response);
+
+      setUsername((prev) => prev + "a"); //change the username state by adding letter a  to re render
+      props.closeForm();
     } catch (error) {
       //if erros is 401 show invalid credential error
       if (error.response && error.response.status === 401) {
