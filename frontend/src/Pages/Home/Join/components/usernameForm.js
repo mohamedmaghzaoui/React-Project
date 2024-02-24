@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../../Contexts/userContext";
 
 export const UsernameForm = (props) => {
-  const [username, setUsername] = useState(); //username state
-  const [showUsernameError, setShowUsernameError] = useState(false); //state to control either to show or hide username error
+  //get set global username function to re render after a log in
+  const { setUsername } = useContext(UserContext);
+  const [username, setUsernameForm] = useState(); //username state
+  const [UsernameError, setUsernameError] = useState(""); //state to control either to show or hide username error
   //function to handel username input
   const handelInput = (e) => {
-    setUsername(e.target.value);
-    setShowUsernameError(false); //hide username error because we are filling the form
+    setUsernameForm(e.target.value);
+    setUsernameError(""); //hide username error because we are filling the form
   };
   //function to send data to symfony server
   const submitData = async () => {
@@ -15,20 +18,31 @@ export const UsernameForm = (props) => {
       ...props.userData,
       username,
     };
+    //sned user data to create user in database
     try {
+      //show a spinner instead of error
+      setUsernameError(
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      );
       const response = await axios.post(
         "http://localhost:8000/addUser",
         userData
       );
+      //get user emais and password and put them in an object
+
       const userAuthentication = {
         email: userData.email,
         password: userData.password,
       };
+      //send user authentication to log in after sign in
       const response2 = await axios.post(
         "http://localhost:8000/login",
         userAuthentication
       );
       console.log(response2);
+      setUsername((prev) => prev + "a"); //change username to re rernder
       props.setForm("register"); //return to first form
       props.closeForm(); //close form
     } catch (error) {
@@ -52,12 +66,8 @@ export const UsernameForm = (props) => {
         className="form-control"
       />
       <br />
-      {/* if show error is true render the username error else render nothing*/}
-      {showUsernameError ? (
-        <p className="text-danger"> username is required</p>
-      ) : (
-        <br />
-      )}
+      {/* if error show it*/}
+      {UsernameError ? <p className="text-danger"> {UsernameError}</p> : <br />}
       <p />
       {/* get back to the first form*/}
       <button
@@ -67,10 +77,12 @@ export const UsernameForm = (props) => {
         back
       </button>
 
-      {/* if username is empty set show error to true else to false*/}
+      {/* if username is empty set show error to a required else to ""*/}
       <button
         onClick={() => {
-          !username ? setShowUsernameError(true) : setShowUsernameError(false);
+          !username
+            ? setUsernameError("username is required")
+            : setUsernameError("");
           if (username) {
             submitData();
           }

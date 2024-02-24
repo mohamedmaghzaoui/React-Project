@@ -22,8 +22,10 @@ security:
                 password_path: password
             logout :
                 path: app_logout
+            
               
     access_control:
+    
     # Allow pre-flight requests for CORS
      
             

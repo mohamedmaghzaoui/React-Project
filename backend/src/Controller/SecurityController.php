@@ -23,11 +23,12 @@ class SecurityController extends AbstractController
             # code...
         }
         return $this->json([
-            "userid" => $user->getId()
+            "userid" => $user->getId(),
+            "username" => $user->getUsername()
         ]);
     }
     #[Route("logout", name: "app_logout")]
-    public function logout(): void
+    public function logout()
     {
     }
 }

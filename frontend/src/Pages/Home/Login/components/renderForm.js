@@ -31,6 +31,12 @@ export const RenderForm = (props) => {
   //function to send data to symfony server
   const submitData = async (userData) => {
     try {
+      //when sending request set apiError to a bootstrap spinner
+      setApiError(
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      );
       const response = await axios.post(
         "http://localhost:8000/login",
         userData

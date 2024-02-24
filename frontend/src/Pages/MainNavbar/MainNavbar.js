@@ -5,6 +5,7 @@ import Login from "../Home/Login/loginForm";
 import Join from "../Home/Join/JoinForm";
 import Language from "./components/LanguagePopup.js"; // corrected import
 import { UserContext } from "../../Contexts/userContext.js";
+import axios from "axios";
 
 function MainNavbar() {
   //states
@@ -14,8 +15,16 @@ function MainNavbar() {
   const location = useLocation();
 
   const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
-  const { username } = useContext(UserContext);
-
+  //get suername with useContext
+  const { username, setUsername } = useContext(UserContext);
+  //logout function
+  const logout = async () => {
+    try {
+      await axios.get("http://localhost:8000/logout");
+    } catch (error) {
+      setUsername(""); //symfony will return error when calling this route with axios
+    }
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-c">
@@ -60,7 +69,9 @@ function MainNavbar() {
           )}
           <span className="mx-5">{username}</span>
           {username ? (
-            <button className="btn btn-danger">logout</button>
+            <button onClick={() => logout()} className="btn btn-danger">
+              logout
+            </button>
           ) : (
             <span className="mx-5"></span>
           )}

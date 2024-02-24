@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class UserController extends AbstractController
 {
@@ -74,16 +75,22 @@ class UserController extends AbstractController
             'users' => $users,
         ]);
     }
-    #[Route('/check', name: "roles")]
-    public function check(): Response
-
+    #[Route('/get_user', name: "get_user")]
+    public function getUserData(#[CurrentUser] User $user): Response
     {
-        if ($this->getUser()) {
-            return $this->json("authenticated");
-        } else {
-            return $this->json("not authenticated");
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
         }
+        return $this->json([
+            "userid" => $user->getId(),
+            "username" => $user->getUsername(),
+            "role" => $user->getRoles()
+        ]);
     }
+
     #[Route('/roles/{id}/{role}')]
     public function setRole(User $user, string $role, ManagerRegistry $doctrine)
     {
