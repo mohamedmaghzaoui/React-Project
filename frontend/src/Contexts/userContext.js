@@ -15,7 +15,12 @@ export const UserProvider = ({ children }) => {
 
       setUsername(response.data.username);
       setUserRoles(response.data.role);
-    } catch (error) {}
+      console.log(response.data);
+    } catch (error) {
+      //if user does not exist symfony return an error
+      setUsername("");
+      setUserRoles("");
+    }
   };
   //useeffect to re render when username changes
   useEffect(() => {
