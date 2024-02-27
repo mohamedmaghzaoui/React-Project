@@ -4,6 +4,7 @@ import { Customer } from "./Pages/Customer/Customer";
 import { Home } from "./Pages/Home/Home";
 import MainNavbar from "./Pages/MainNavbar/MainNavbar";
 import { UserProvider } from "./Contexts/userContext";
+import { Freelancer } from "./Pages/Freelancer/freelance";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -27,12 +28,10 @@ function App() {
                   path="/Customer"
                   element={
                     //custom private route that get element and role as parameter
-                    <PrivateRoute
-                      element={<Customer />}
-                      allowRole={"ROLE_USER"}
-                    />
+                    <Customer />
                   }
                 />
+                <Route path="/freelancer" element={<Freelancer />} />
               </Routes>
             </div>
           </div>

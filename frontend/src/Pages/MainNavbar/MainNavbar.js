@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
 import Login from "../Home/Login/loginForm";
 import Join from "../Home/Join/JoinForm";
+import { SearchBar } from "./components/searchBar.js";
 import Language from "./components/LanguagePopup.js"; // corrected import
 import { UserContext } from "../../Contexts/userContext.js";
 import axios from "axios";
@@ -50,22 +51,7 @@ function MainNavbar() {
           </button>
 
           {showSearchBar && ( // Conditionally render search bar
-            <nav class="navbar navbar-light bg-light">
-              <form class="form-inline">
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                ></input>
-                <button
-                  class="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </form>
-            </nav>
+            <SearchBar />
           )}
           <span className="mx-5">{username}</span>
           {username ? (

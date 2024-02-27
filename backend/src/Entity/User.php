@@ -6,7 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\component\PasswordHasher\Hasher\UserPasswordHasher ;
+use Symfony\component\PasswordHasher\Hasher\UserPasswordHasher;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -35,6 +35,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $userImage = null;
+    #[ORM\Column]
+    private ?string $description = null;
+    #[ORM\Column]
+    private ?string $Country = null;
+    #[ORM\Column]
+    private ?array $languages = [];
 
     public function getId(): ?int
     {
@@ -118,5 +126,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * Get the value of userImage
+     */
+    public function getUserImage(): ?string
+    {
+        return $this->userImage;
+    }
+
+    /**
+     * Set the value of userImage
+     */
+    public function setUserImage(?string $userImage): self
+    {
+        $this->userImage = $userImage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     */
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Country
+     */
+    public function getCountry(): ?string
+    {
+        return $this->Country;
+    }
+
+    /**
+     * Set the value of Country
+     */
+    public function setCountry(?string $Country): self
+    {
+        $this->Country = $Country;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of languages
+     */
+    public function getLanguages(): ?array
+    {
+        return $this->languages;
+    }
+
+    /**
+     * Set the value of languages
+     */
+    public function setLanguages(?array $languages): self
+    {
+        $this->languages = $languages;
+
+        return $this;
     }
 }
