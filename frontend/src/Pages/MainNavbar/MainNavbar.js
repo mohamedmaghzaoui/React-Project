@@ -116,7 +116,7 @@ function MainNavbar() {
                 onCloseJoin={() => setIsOpenJoin(false)}
               />
             </ul>
-          </div>0
+          </div>
         </div>
       </nav>
       <hr className="m-0" />

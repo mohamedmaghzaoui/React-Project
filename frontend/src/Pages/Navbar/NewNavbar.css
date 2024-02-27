@@ -1,56 +1,48 @@
 
 .navbar {
-  background-color: #fafafa;
-}
+    background-color: #fafafa; /* Couleur de fond de la navbar */
+  }
+  
+  .navbar-brand {
+    color: #000000; /* Couleur du texte du logo */
+    font-size: 30px;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #f0f5f0; /* Couleur de l'icône du menu déroulant */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #ecefec; /* Couleur du texte des liens */
+    font-size: 20px;
+  }
+  
+  .form-control {
+    border: 1px solid #090909; /* Couleur de la bordure de la barre de recherche */
+  }
+  
+  .btn-icon {
+    color: #26b11f; /* Couleur des icônes */
+    font-size: 24px;
+  }
+  
 
-
-.navbar-brand {
-  color: #000000;
-  font-size: 30px;
-}
-
-
-.navbar-toggler-icon {
-  background-color: #f0f5f0;
-}
-
-
-.navbar-nav .nav-link {
-  color: #ecefec;
-  font-size: 20px;
-}
-
-
-.form-control {
-  border: 1px solid #090909;
-  width: 600px; 
-}
-
-
-.btn-icon {
-  color: #26b11f;
-  font-size: 24px;
-}
-
-
+/* Ajustez la couleur des icônes à noir */
 .btn-icon svg {
   fill: black;
 }
 
+/* Ajustez la couleur de la barre de recherche à noir */
 .form-control {
-  width: 600px !important; 
-  border: 1px solid #090909;
   color: black;
+  border-color: black;
 }
 
-
-
+/* Ajustez la couleur du texte de la barre de recherche à noir */
 .form-control::placeholder {
   color: black;
+  
 }
-
-
-.subtitle {
-  font-size: 15px;
-  color: #62646A;
-}
+  
+  
+  
