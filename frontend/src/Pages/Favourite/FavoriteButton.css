@@ -1,0 +1,37 @@
+
+  .favorite-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    height: 10vh; 
+    text-align: left; 
+  }
+  
+  .page-title {
+    margin-bottom: 20px;
+  }
+  .btn-success {
+    background-color: #28a745; 
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; 
+    border-color: #dc3545; 
+    color: #fff; 
+  }
+  .favorite-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px; /* Ajoutez un padding selon vos besoins */
+  }
+  
+  .button-container {
+    text-align: right;
+  }
+  
+  .text-container {
+    text-align: right;
+  }
+  
