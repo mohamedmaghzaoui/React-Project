@@ -6,10 +6,12 @@ import MainNavbar from "./Pages/MainNavbar/MainNavbar"
 import GigsPage from "./Pages/gigCard/GigPage";
 import GigForm from "./Pages/gigCard/GigForm";
 import Gigs from "./Pages/gigs/Gigs";
+import Gig from "./Pages/gig/gig";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
+
 
 
 function App() {
@@ -25,11 +27,13 @@ function App() {
               <Route path="/Customer" element={<Customer />} />
               <Route path="/GigsPage" element={<GigsPage gigs={[]} />} />
               <Route path="/GigForm" element={<GigForm />} />
-              <Route path="/Gigs" element={<Gigs />} />
+              <Route path="/Gigs" element={<Gigs gigs={[]}/>} />
+              <Route path="/Gig" element={<Gig Gig={[]}/>} />
         
             </Routes>
           </div>
         </div>
+        
       </BrowserRouter>
     </div>
   );

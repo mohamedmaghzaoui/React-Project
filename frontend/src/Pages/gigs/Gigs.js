@@ -1,16 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import './Gigs.css';
 import plus from "../gigCard/Components/plus.png";
-import gigs from "../../Data"
 import GigCard from "../gigCard/Components/GigCard";
-
+import gigsData from "../../Data.json";
 
 const Gigs = () => {
+    const [gigs, setGigs] = useState(gigsData);
     const [sort, setSort] = useState('sales')
     const [open, setOpen] = useState(false)
 
-    const reSort=(type)=>{
+    const reSort = (type) => {
         setSort(type)
         setOpen(false)
     }
@@ -20,9 +19,7 @@ const Gigs = () => {
             <div className="container">
                 <span className="breadcrumbs">FreeEZ GRAPHICS&DESIGN</span>
                 <h1>AI Artist</h1>
-                <p>
-                    Explore the boundaries of art and technology with FreeEZ AI artists.
-                </p>
+                <p>Explore the boundaries of art and technology with FreeEZ AI artists.</p>
                 <div className="menu">
                     <div className="left">
                         <span>Budget</span>
@@ -30,10 +27,10 @@ const Gigs = () => {
                         <input type="text" placeholder="max" />
                         <button>Search</button>
                     </div>
-                    < div className="right">
+                    <div className="right">
                         <span className="sortBy">Sort by : </span>
                         <span className="sortType">{sort === "sales" ? "Best Selling" : "Newest"}</span>
-                        <img src={plus} onClick={() => setOpen(!open)} />
+                        <img src={plus} onClick={() => setOpen(!open)} alt="Sort" />
 
                         {open && (
                             <div className="rightMenu">
@@ -44,13 +41,13 @@ const Gigs = () => {
                     </div>
                 </div>
                 <div className="cards">
-                    {
-                        gigs.map(gig=>(
-                            <GigCard key={gig.id} item={gig} />
-                        ))}
-                  </div>  
+                    {gigs.map((gig, index) => (
+                        <GigCard key={gig.id} index={index} item={gig} />
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
+
 export default Gigs;

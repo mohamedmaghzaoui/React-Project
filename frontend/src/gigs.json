@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "title": "Création de logo professionnel",
+    "description": "Je vais créer un logo professionnel pour votre entreprise selon vos besoins et vos spécifications. Vous recevrez un fichier vectoriel et plusieurs formats d'image.",
+    "price": 50.00,
+    "user": {
+      "id": 1,
+      "name": "John Doe",
+      "avatar": "https://example.com/avatar.jpg"
+    },
+    "image": "https://example.com/logo.jpg"
+  }
+  
