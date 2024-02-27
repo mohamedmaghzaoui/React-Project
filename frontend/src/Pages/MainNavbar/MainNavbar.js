@@ -1,30 +1,45 @@
-import "./MainNavbar.css";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
 import Login from "../Home/Login/loginForm";
 import Join from "../Home/Join/JoinForm";
-import { useState, useEffect } from "react";
-import { ResponsiveButton } from "./components/responsiveButton";
-
+import { SearchBar } from "./components/searchBar.js";
+import Language from "./components/LanguagePopup.js"; // corrected import
+import { UserContext } from "../../Contexts/userContext.js";
+import axios from "axios";
 
 function MainNavbar() {
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenJoin, setIsOpenJoin] = useState(false);
-  return (
-    //begin navbar
+  //states
+  const [isOpenLogin, setIsOpenLogin] = useState(false); //login form pop
+  const [isOpenJoin, setIsOpenJoin] = useState(false); //join or sign in form pop
+  const [showLanguagePop, setShowLanguagePop] = useState(false); //language
+  const location = useLocation();
 
+  const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
+  //get suername with useContext
+  const { username, setUsername } = useContext(UserContext);
+  //logout function
+  const logout = async () => {
+    try {
+      await axios.get("http://localhost:8000/logout");
+    } catch (error) {
+      setUsername(""); //symfony will return error when calling this route with axios
+    }
+  };
+  return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary nav-c">
-        <div class="container-fluid nav-c ">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary nav-c">
+        <div className="container-fluid nav-c">
           <Link
             style={{ color: "#404145", fontSize: "30px" }}
-            class="offset navbar-brand fw-bold text-success   "
+            className="offset navbar-brand fw-bold text-success"
             to="/"
           >
             FreeEz
           </Link>
+
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -32,54 +47,79 @@ function MainNavbar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
+
+          {showSearchBar && ( // Conditionally render search bar
+            <SearchBar />
+          )}
+          <span className="mx-5">{username}</span>
+          {username ? (
+            <button onClick={() => logout()} className="btn btn-danger">
+              logout
+            </button>
+          ) : (
+            <span className="mx-5"></span>
+          )}
 
           <div
             id="navbarSupportedContent"
-            class="collapse navbar-collapse fw-medium"
+            className="collapse navbar-collapse fw-medium"
           >
             <ul
-              style={{ fontSize: "18px " }}
-              class="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
+              style={{ fontSize: "18px" }}
+              className="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-6"
             >
               <Dropdown />
-              <li class="nav-item">
-                <Link class="nav-link  mx-3" href="#">
-                  freelancer
+              <li className="nav-item">
+                <Link className="nav-link  mx-3" href="#">
+                  Freelancer
                 </Link>
               </li>
 
-              <li class="nav-item">
-                <Link class="nav-link mx-3" aria-current="page" href="#">
-                  English
-                </Link>
-              </li>
-
-              <li class="nav-item">
+              <li className="nav-item">
                 <button
-                  onClick={() => setIsOpenLogin(true)}  
-                  className=" nav-link mx-3  ">
-                  login
+                  onClick={() => setShowLanguagePop(!showLanguagePop)}
+                  className="nav-link mx-3"
+                >
+                  Language
                 </button>
               </li>
-              <Login openLogin={isOpenLogin} onCloseLogin={() => setIsOpenLogin(false)}></Login>
+              <Language
+                openPop={showLanguagePop} // Corrected prop name
+                onClosePop={() => setShowLanguagePop(false)}
+              />
 
-
-              <li class="nav-item">
+              <li className="nav-item">
                 <button
-                  onClick={() => setIsOpenJoin(true)}  
-                  className="my-1 btn btn-outline-success fw-bold mx-3">
+                  onClick={() => setIsOpenLogin(!isOpenLogin)}
+                  className="nav-link mx-3"
+                >
+                  Login
+                </button>
+              </li>
+              <Login
+                openLogin={isOpenLogin}
+                onCloseLogin={() => setIsOpenLogin(false)}
+              />
+
+              <li className="nav-item">
+                <button
+                  onClick={() => setIsOpenJoin(!isOpenJoin)}
+                  className="my-1 btn btn-outline-success fw-bold mx-3"
+                >
                   Join
                 </button>
               </li>
-              <Join openJoin={isOpenJoin} onCloseJoin={() => setIsOpenJoin(false)}></Join>
-
+              <Join
+                openJoin={isOpenJoin}
+                onCloseJoin={() => setIsOpenJoin(false)}
+              />
             </ul>
           </div>0
         </div>
       </nav>
-      <hr className="m-0 " />
+      <hr className="m-0" />
     </div>
   );
 }

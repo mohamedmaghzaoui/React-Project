@@ -22,14 +22,17 @@ class Person
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
-    #[Route('/test', name: 'app_test')]
-    public function index(): JsonResponse
+    #[Route('/test')]
+    public function index(Request $request): JsonResponse
     {
-        // Create 4 objects
+
+        $data = $request->getContent();
+
         $person1 = new Person(1, "John", 25);
         $person2 = new Person(2, "Alice", 30);
         $person3 = new Person(3, "Bob", 28);
@@ -40,7 +43,7 @@ class TestController extends AbstractController
 
         //send json data
         return $this->json([
-            "test" => $people
+            "test" => $data
         ]);
     }
 }

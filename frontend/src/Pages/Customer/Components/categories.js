@@ -12,8 +12,9 @@ export const Categories = () => {
       <div className="mx-xl-5 px-xl-5 row  ">
         {categories.map((value) => {
           return (
+            //show diffrent categories
             <span
-              //change category onclick
+              //change current category onclick
               onClick={() => setCategory(value)}
               id={styles.category}
               style={{ cursor: "pointer" }}
@@ -32,6 +33,7 @@ export const Categories = () => {
       >
         <p className="fs-2 text-light fw-bold text-center p-0 m-0 ">
           {Category}
+          {/* display currrent category*/}
         </p>
         <p className="fs-4 text-light  text-center ">
           Make a choice and stand out

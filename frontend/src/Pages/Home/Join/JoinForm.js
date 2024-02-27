@@ -1,6 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
+import { RegisterForm } from "./components/registerForm"; //first form
+import { UsernameForm } from "./components/usernameForm"; //second form
+import style from "../Css/overlay.module.css";
 
+//style
 const JOIN_STYLE = {
   position: "fixed",
   top: "50%",
@@ -9,77 +12,59 @@ const JOIN_STYLE = {
   backgroundColor: "white",
   padding: "50px",
   zIndex: "9999",
-  "text-align": "center",
-  "border-radius": "25px",
+  textAlign: "center",
+  borderRadius: "25px",
+  width: "90%", // Ajustement de la largeur
+  maxWidth: "1000px", // Ajustement de la largeur maximale
+  display: "flex",
 };
-
-const JOIN_TITTLE = {};
-
+const IMAGE_STYLE = {
+  flex: "1",
+  marginRight: "20px",
+};
 export default function Join({ openJoin, onCloseJoin }) {
-  const renderForm = (
-    <div className="form">
-      <form>
-        <div className="input-container">
-          <label>Name </label>
-          <input type="text" name="name" required />
-        </div>
-        <div className="input-container">
-          <label>Lastname </label>
-          <input type="text" name="lname" required />
-        </div>
-        <div className="input-container">
-          <label>Email </label>
-          <input type="password" name="email" required />
-        </div>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="password" required />
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
+  const [userData, setUserData] = useState(); //user information state
+  const [form, setForm] = useState("register"); //form state used to either show first register form or second username form
   if (!openJoin) return null;
   return (
-    <div style={JOIN_STYLE}>
-      <button onClick={onCloseJoin}>x</button>
-      <div className="title">Join us</div>
-      {renderForm}
+    <div className={style.overlay}>
+      <div style={JOIN_STYLE}>
+        <button
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            backgroundColor: "transparent",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "1.5rem",
+          }}
+          //hide form
+          onClick={onCloseJoin}
+        >
+          &times;
+        </button>
+        <div style={IMAGE_STYLE}>
+          <img
+            src="https://imgs.search.brave.com/x6iqbJWLvymDlIcHHDsXqFoo6fP5UH86u2gqwTLL17U/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA0LzYyLzUzLzM0/LzM2MF9GXzQ2MjUz/MzQxMF9lNXZNRk9t/eEJHRmtCN3dEV1FE/RVd5WVhETnZ2Tndx/bi5qcGc"
+            alt="Join Image"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <h2>Join us</h2>
+        {/* condition to either show first or second form */}
+        {form === "register" ? (
+          //send props set userdata  and form state
+          <RegisterForm setForm={setForm} setUserData={setUserData} />
+        ) : (
+          //send props of  set Form userdata state and closeform function
+          <UsernameForm
+            closeForm={onCloseJoin}
+            setForm={setForm}
+            userData={userData}
+          />
+        )}
+      </div>
     </div>
   );
-  /* 
-
-  const nameInput = document.getElementById("name");
-  const lastnameInput = document.getElementById("lname");
-  const emailInput = document.getElementById("email");
-  const usernameInput = document.getElementById("uname");
-  const passwordInput = document.getElementById("password");
-  const btn = document.getElementById("btn");
-  
-  btn.addEventListener("click", () => {
-    const name = nameInput.value;
-    const lastname = lastnameInput.value;
-    const email = emailInput.value;
-    const username = usernameInput.value;
-    const password = passwordInput.value;
-  
-    axios.post("##########", {
-        name: name,
-        lastname: lastname,
-        email: email,
-        username: username,
-        password: password
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  });
-  
-  */
 }
