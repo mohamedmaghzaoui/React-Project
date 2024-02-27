@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -37,9 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $userImage = null;
-    #[ORM\Column]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
-    #[ORM\Column]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Country = null;
     #[ORM\Column]
     private ?array $languages = [];
