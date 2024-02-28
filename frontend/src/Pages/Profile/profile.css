@@ -1,0 +1,103 @@
+
+.profile-page {
+  display: flex;
+}
+
+.small-cards-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.large-card-container {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.space {
+  width: 500px;
+}
+
+.small-card {
+  background-color: #f0f0f0;
+  margin-bottom: 10px;
+  margin-left: 100px;
+  margin-top: 30px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-image-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
+}
+
+.profile-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-long {
+  width: 300px;
+  border-color: black;
+}
+
+.btn-long:hover {
+  background-color: gray;
+  color: white;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: gray;
+  margin: 25px 0;
+}
+
+.text-left {
+  align-self: flex-start;
+}
+.text-right {
+  align-self: flex-end;
+  
+}
+.text-center{
+
+
+align-self: center;}
+
+.button-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.location-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.large-card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 100px;
+  margin-top: 30px;
+}
