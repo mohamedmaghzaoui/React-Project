@@ -12,7 +12,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
 import { PrivateRoute } from "./private/privateRoute";
 
-
 function App() {
   return (
     <div className="">

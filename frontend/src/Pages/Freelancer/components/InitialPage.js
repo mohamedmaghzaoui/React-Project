@@ -3,7 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import React from "react";
 
 import { MdOutlinePublish } from "react-icons/md";
-export const InitialPage = () => {
+export const InitialPage = (props) => {
   const Data = [
     {
       title: "make a succesfull profile",
@@ -53,7 +53,12 @@ export const InitialPage = () => {
         src="https://www.germany-visa.org/wp-content/uploads/2019/11/working-freelancer-germany.jpeg"
         alt=""
       />
-      <button className="btn btn-success col-1 offset-1">Begin</button>
+      <button
+        onClick={() => props.setCurrentForm(1)}
+        className="btn btn-success col-1 offset-1"
+      >
+        Begin
+      </button>
     </div>
   );
 };
