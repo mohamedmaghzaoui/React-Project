@@ -1,54 +1,17 @@
-import webstieImage from "./imgs/website.webp";
-import mobileDev from "./imgs/mobiledev.jpg";
-import softwareDev from "./imgs/softwaredev.jpg";
-import motionDesign from "./imgs/motionDesign.jpg";
-import art from "./imgs/art.jpg";
-import logo from "./imgs/logo.jpg";
+import { Technology } from "./category";
+import { Graphics } from "./category";
 
 export const CategoriesCard = (props) => {
-  let categoryCard;
+  let categoryCard = Technology;
 
   console.log(props.Category);
 
   switch (props.Category) {
     case "Technology":
-      categoryCard = [
-        {
-          title: "Web development",
-          text: "Build stunning websites with code and creativity.",
-          image: webstieImage,
-        },
-        {
-          title: "Mobile development", // Changed from "name" to "title"
-          text: "Craft innovative mobile apps for a connected world.",
-          image: mobileDev,
-        },
-        {
-          title: "Software development", // Changed from "name" to "title"
-          text: "Craft innovative software solutions for a connected world.",
-          image: softwareDev,
-        },
-      ];
+      categoryCard = Technology;
       break;
     case "Graphics":
-      categoryCard = [
-        {
-          title: "mothion design",
-          text: "Transform static visuals into captivating narratives with the dynamic artistry of motion design",
-          image: motionDesign,
-        },
-
-        {
-          title: "Art",
-          text: "Express your innermost thoughts and emotions through the limitless canvas of artistic creation",
-          image: art,
-        },
-        {
-          title: "Logo design",
-          text: "Craft iconic symbols that speak volumes in simplicity – the essence of effective logo design",
-          image: logo,
-        },
-      ];
+      categoryCard = Graphics;
       break;
     default:
       break;
@@ -63,8 +26,8 @@ export const CategoriesCard = (props) => {
             <div className="card-body">
               <h5 className="card-title">{card.title}</h5>
               <p className="card-text">{card.text}</p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
+              <a href="#" className="btn btn-dark">
+                Check
               </a>
             </div>
           </div>

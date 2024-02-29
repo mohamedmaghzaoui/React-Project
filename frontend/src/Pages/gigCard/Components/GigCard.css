@@ -1,72 +1,58 @@
-.gigCard{
-    width: 288px;
-    height: 370px;
-    border:1px solid lightgray;
-    margin-bottom: 25px;
-
+/* GigCard.css */
+.gigCard {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
 }
 
-img{
+.gigCard img {
     width: 100%;
-    height: 50%;
-    object-fit: cover;
-}
-.info{
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    .user{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        img{
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-        }
-    }
-  
-    .star{
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        img{
-            width: 14px;
-            height: 14px;
-        }
-        span{
-            font-size: 14px;
-            font-weight: bold;
-            color: #ffc108;
-            font-weight: bold;
-        }
-    }
+    height: auto;
+    border-radius: 0.25rem;
 }
 
-.details{
-    padding: 10px 20px;
+.user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.star img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.details {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    img{
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-    }
-    .price{
-        span{
-            color: #999;
-            font-size: 12px;
-        }
-        h2{
-            font-size: 18px;
-            font-weight: 400;
-        }
-    }
+    align-items: center;
 }
 
+.price {
+    text-align: right;
+}
 
+.price span {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.price h2 {
+    font-size: 1.25rem;
+    color: #343a40;
+}
+
+.price h1 {
+    font-size: 1rem;
+    color: #495057;
+}
+
+#likeimg {
+    width: 30px;
+    height: auto;
+    margin-right: 5px;
+
+}

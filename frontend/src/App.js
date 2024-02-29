@@ -7,18 +7,24 @@ import GigsPage from "./Pages/gigCard/GigPage";
 import GigForm from "./Pages/gigCard/GigForm";
 import Gigs from "./Pages/gigs/Gigs";
 import Gig from "./Pages/gig/gig";
+import { UserProvider } from "./Contexts/userContext";
+import { Freelancer } from "./Pages/Freelancer/freelance";
+import{message} from "./Pages/Messages/message";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
-
+import { PrivateRoute } from "./private/privateRoute";
 
 
 function App() {
   return (
     <div className="">
+      <UserProvider>
+        {" "}
+        {/* user context*/}
+        <BrowserRouter>
 
-      <BrowserRouter>
         <div className="">
           <MainNavbar className="" />
           <div className=" ">
@@ -29,14 +35,24 @@ function App() {
               <Route path="/GigForm" element={<GigForm />} />
               <Route path="/Gigs" element={<Gigs gigs={[]}/>} />
               <Route path="/Gig" element={<Gig Gig={[]}/>} />
-        
+              <Route path="/Message" element={<messages/>} />
+              <Route
+                  path="/Customer"
+                  element={
+                    //custom private route that get element and role as parameter
+                    <Customer />
+                  }
+                />
+                <Route path="/freelancer" element={<Freelancer />} />
             </Routes>
           </div>
-        </div>
+          </div>
+        </BrowserRouter>
         
-      </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }
+  
 
 export default App;

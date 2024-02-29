@@ -30,7 +30,7 @@ const Gigs = () => {
                     <div className="right">
                         <span className="sortBy">Sort by : </span>
                         <span className="sortType">{sort === "sales" ? "Best Selling" : "Newest"}</span>
-                        <img src={plus} onClick={() => setOpen(!open)} alt="Sort" />
+                        <img src={plus} onClick={() => setOpen(!open)} alt="Sort" id="gigimg" />
 
                         {open && (
                             <div className="rightMenu">

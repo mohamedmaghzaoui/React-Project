@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "./components/dropdown";
 import Login from "../Home/Login/loginForm";
 import Join from "../Home/Join/JoinForm";
+import { SearchBar } from "./components/searchBar.js";
 import Language from "./components/LanguagePopup.js"; // corrected import
+import { UserContext } from "../../Contexts/userContext.js";
+import axios from "axios";
 
 function MainNavbar() {
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenJoin, setIsOpenJoin] = useState(false);
-  const [isOpenPop, setIsOpenPop] = useState(false);
+  //states
+  const [isOpenLogin, setIsOpenLogin] = useState(false); //login form pop
+  const [isOpenJoin, setIsOpenJoin] = useState(false); //join or sign in form pop
+  const [showLanguagePop, setShowLanguagePop] = useState(false); //language
   const location = useLocation();
 
   const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
-
+  //get suername with useContext
+  const { username, setUsername } = useContext(UserContext);
+  //logout function
+  const logout = async () => {
+    try {
+      await axios.get("http://localhost:8000/logout");
+    } catch (error) {
+      setUsername(""); //symfony will return error when calling this route with axios
+    }
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-c">
@@ -24,6 +37,7 @@ function MainNavbar() {
           >
             FreeEz
           </Link>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -35,23 +49,17 @@ function MainNavbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
           {showSearchBar && ( // Conditionally render search bar
-            <nav class="navbar navbar-light bg-light">
-              <form class="form-inline">
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                ></input>
-                <button
-                  class="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </form>
-            </nav>
+            <SearchBar />
+          )}
+          <span className="mx-5">{username}</span>
+          {username ? (
+            <button onClick={() => logout()} className="btn btn-danger">
+              logout
+            </button>
+          ) : (
+            <span className="mx-5"></span>
           )}
 
           <div
@@ -60,7 +68,7 @@ function MainNavbar() {
           >
             <ul
               style={{ fontSize: "18px" }}
-              className="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-7"
+              className="navbar-nav me-auto mb-2 mb-lg-0 offset-xl-6"
             >
               <Dropdown />
               <li className="nav-item">
@@ -71,15 +79,15 @@ function MainNavbar() {
 
               <li className="nav-item">
                 <button
-                  onClick={() => setIsOpenPop(!isOpenPop)}
+                  onClick={() => setShowLanguagePop(!showLanguagePop)}
                   className="nav-link mx-3"
                 >
                   Language
                 </button>
               </li>
               <Language
-                openPop={isOpenPop} // Corrected prop name
-                onClosePop={() => setIsOpenPop(false)}
+                openPop={showLanguagePop} // Corrected prop name
+                onClosePop={() => setShowLanguagePop(false)}
               />
 
               <li className="nav-item">

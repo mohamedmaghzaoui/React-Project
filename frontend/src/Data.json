@@ -7,33 +7,7 @@
       "desc": "mon projet1",
       "star": 4.5,
       "price": 20
-    },
-    {
-      "id": 2,
-      "img": "",
-      "pp": "",
-      "username": "Utilisateur 2",
-      "desc": "mon projet 2",
-      "star": 4.2,
-      "price": 30
-    },
-    {
-      "id": 3,
-      "img": "",
-      "pp": "",
-      "username": "Utilisateur 2",
-      "desc": "mon projet 2",
-      "star": 4.2,
-      "price": 30
-    },
-    {
-      "id": 4,
-      "img": "",
-      "pp": "",
-      "username": "Utilisateur 2",
-      "desc": "mon projet 2",
-      "star": 4.2,
-      "price": 30
     }
+    
   ]
   

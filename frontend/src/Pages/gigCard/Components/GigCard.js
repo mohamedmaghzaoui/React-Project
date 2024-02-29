@@ -18,7 +18,7 @@ const GigCard = ({item, index}) => {
                     </div>
                     <p>{item.desc}</p>
                     <div className="star">
-                        <img src={star} alt="" />
+                        <img src={star} alt="" id="starimg" />
                         <span>{item.star}</span>
                     </div>
                 </div>
@@ -26,7 +26,7 @@ const GigCard = ({item, index}) => {
 
 
                 <div className="details">
-                    <img src={like} alt="" />
+                    <img src={like} alt="" id="#likeimg"/>
                     <div className="price">
                         <span>{item.price}$</span>
                         <span>STARTING AT</span>

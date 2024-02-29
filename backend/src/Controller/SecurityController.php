@@ -1,32 +1,34 @@
-<?php 
+<?php
+//impport dependacies
+
 namespace App\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+//login user
 class SecurityController extends AbstractController
 {
-    #[Route(path:"/login", name:"login")]
-    public function login(AuthenticationUtils $utils)
+    #[Route("/login", name: "app_login", methods: ['Post'])]
+    public function login(#[CurrentUser] User $user): Response
     {
-        $error = $utils->getLastAuthenticationError();
-        $lastUsername = $utils->getLastUsername();
-        return $this->render("security/login.html.twig", [
-            "last_username" => $lastUsername,
-            "error"=> $error
-            ]);
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
         }
-   
-    #[Route(path:"/logout", name:"logout")]
+        return $this->json([
+            "userid" => $user->getId(),
+            "username" => $user->getUsername()
+        ]);
+    }
+    #[Route("logout", name: "app_logout")]
     public function logout()
     {
     }
 }
-
-
-
-
-
-
-
-
-?> 
