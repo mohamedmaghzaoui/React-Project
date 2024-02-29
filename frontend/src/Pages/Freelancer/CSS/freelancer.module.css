@@ -1,0 +1,46 @@
+#freelancerContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#freelancerTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#freelancerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#freelancerForm label {
+    margin-bottom: 5px;
+}
+
+#freelancerForm input,
+#freelancerForm textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#freelancerForm textarea {
+    resize: none;
+    height: 100px;
+}
+
+#submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background-color: #45a049;
+}
