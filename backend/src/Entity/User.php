@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\ErrorHandler\Collecting;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\component\PasswordHasher\Hasher\UserPasswordHasher;
@@ -13,18 +16,23 @@ use Symfony\component\PasswordHasher\Hasher\UserPasswordHasher;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     private $passwordHasher;
-    public function __construct(UserPasswordHasher $passwordHasher)
-    {
-        $this->passwordHasher = $passwordHasher;
-    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    
+
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
+    #[ORM\OneToMany(targetEntity: "App\Entity\Gig", mappedBy: "user")]
+    private Collection $gigs;
+
+    public function __construct(UserPasswordHasher $passwordHasher)
+    {
+        $this->gigs = new ArrayCollection();
+        $this->passwordHasher = $passwordHasher;
+    }
 
     #[ORM\Column(length: 55)]
     private ?string $username = null;

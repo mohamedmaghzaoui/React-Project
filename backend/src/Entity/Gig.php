@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Repository\GigRepository;
@@ -13,7 +14,9 @@ class Gig
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
     private $id;
-
+    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "gigs")]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private $user;
     #[ORM\Column(type: "string", length: 255)]
     private $title;
 
