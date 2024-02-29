@@ -6,13 +6,14 @@ import { Customer } from './Pages/Customer/Customer';
 import { Home } from './Pages/Home/Home';
 import NewNavbar from './Pages/Navbar/NewNavbar';
 import FavoriteButton from './Pages/Favourite/FavoriteButton';
+import MainNavbar from './Pages/MainNavbar/MainNavbar';
 
 function App() {
   return (
     <div className="app-container">
       <BrowserRouter>
         {/* Utilisation de la nouvelle navbar */}
-        <NewNavbar />
+        <MainNavbar  />
 
         <div className="content-container">
           <Routes>

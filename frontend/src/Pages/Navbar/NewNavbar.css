@@ -1,56 +1,46 @@
-
-.navbar {
+#navbar {
   background-color: #fafafa;
 }
 
-
-.navbar-brand {
+#navbar-brand {
   color: #000000;
   font-size: 30px;
 }
 
-
-.navbar-toggler-icon {
+#navbar-toggler-icon {
   background-color: #f0f5f0;
 }
 
-
-.navbar-nav .nav-link {
+#navbar-nav .nav-link {
   color: #ecefec;
   font-size: 20px;
 }
 
-
-.form-control {
+#search-input {
   border: 1px solid #090909;
-  width: 600px; 
+  width: 600px;
 }
 
-
-.btn-icon {
+#btn-icon {
   color: #26b11f;
   font-size: 24px;
 }
 
-
-.btn-icon svg {
+#btn-icon svg {
   fill: black;
 }
 
-.form-control {
-  width: 600px !important; 
+#search-input {
+  width: 600px !important;
   border: 1px solid #090909;
   color: black;
 }
 
-
-
-.form-control::placeholder {
+#search-input::placeholder {
   color: black;
 }
 
-
-.subtitle {
+#subtitle {
   font-size: 15px;
   color: #62646A;
 }
