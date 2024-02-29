@@ -1,0 +1,16 @@
+{# templates/gig/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Gig{% endblock %}
+
+{% block body %}
+    <h1>Nouveau Gig</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.price) }}
+    <button type="submit" class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+{% endblock %}
