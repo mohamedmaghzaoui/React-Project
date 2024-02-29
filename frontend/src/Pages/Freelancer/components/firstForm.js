@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Progress } from "./progress";
-export const FirstForm = () => {
-  const [Languages, setLanguages] = useState(null);
-  const [language, setLanguage] = useState("");
-  const addLanguage = () => {
-    const languageObject = {};
-    setLanguages();
-  };
 
+export const FirstForm = (props) => {
   return (
     <div>
       <Progress />
@@ -29,17 +23,30 @@ export const FirstForm = () => {
         </div>
         <br />
         <div className="row  my-3">
-          <label className="col-3">Languages</label>
-          <input
-            onChange={(e) => setLanguage(e.target.value)} //set the language state to current value
-            className="form-control col"
-            type=""
-          />
-          <button className="col-2 btn btn-success ">Add</button>
+          <label className="col-3">Country</label>
+          <select class="form-select col" aria-label="Default select example">
+            <option selected>Select your Country</option>
+            <option value="1">France</option>
+            <option value="2">Germany</option>
+            <option value="3">UK</option>
+            <option value="3">USA</option>
+            <option value="3">Spain</option>
+          </select>
         </div>
-        {language}
 
-        <button className="btn btn-success col-2 my-5">Continue</button>
+        <button
+          onClick={() => props.setCurrentForm(3)}
+          className="btn btn-success btn-lg col-3  "
+        >
+          Continue
+        </button>
+        <span
+          onClick={() => props.setCurrentForm(1)}
+          style={{ cursor: "pointer" }}
+          className="text-primary mx-5 fs-5"
+        >
+          back
+        </span>
       </form>
     </div>
   );
