@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import "./NewNavbar.css";
 
 const SearchForm = () => (
-  <form className="form-inline mx-auto">
+  <form id="search-form" className="form-inline mx-auto">
     <div className="input-group">
-      <input className="form-control" type="search" placeholder="Quel service rechercheriez-vous aujourd'hui?" aria-label="Search" />
+      <input id="search-input" className="form-control" type="search" placeholder="Quel service rechercheriez-vous aujourd'hui?" aria-label="Search" />
       <div className="input-group-append">
-        <button className="btn btn-success btn-icon" type="submit" data-toggle="tooltip" data-bs-tooltip="Rechercher"><GoSearch /></button>
+        <button id="btn-icon" className="btn btn-success btn-icon" type="submit" data-toggle="tooltip" data-bs-tooltip="Rechercher"><GoSearch /></button>
       </div>
     </div>
   </form>
@@ -27,22 +27,22 @@ const NewNavbar = () => {
   const [isOpenJoin, setIsOpenJoin] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
+    <nav id="navbar" className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
       <div className="container">
-        <a className="navbar-brand" href="/">FreeEz</a>
+        <a id="navbar-brand" className="navbar-brand" href="/">FreeEz</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+          <span id="navbar-toggler-icon" className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <SearchForm />
-          <ul className="navbar-nav ml-auto">
+          <ul id="navbar-nav" className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle mx-3 text-dark" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Commandes</Link>
               <div className="dropdown-menu"><WelcomeDropdownItem /></div>
             </li>
             {[GoHeart, GoMail, GoBell, GoPerson].map((Icon, index) => (
               <li className="nav-item" key={index}>
-                <button className="btn btn-icon" type="button" data-toggle="tooltip" data-bs-tooltip={['Cœur', 'Messagerie', 'Cloche', 'Profil'][index]}>
+                <button id="btn-icon" className="btn btn-icon" type="button" data-toggle="tooltip" data-bs-tooltip={['Cœur', 'Messagerie', 'Cloche', 'Profil'][index]}>
                   <Icon />
                 </button>
               </li>
