@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
 import { PrivateRoute } from "./private/privateRoute";
+import { ProfilePage } from "./Pages/Profile/profile";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                   }
                 />
                 <Route path="/freelancer" element={<Freelancer />} />
+                <Route path="/profile" element={<ProfilePage />} />
               </Routes>
             </div>
           </div>
