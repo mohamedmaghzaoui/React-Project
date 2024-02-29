@@ -9,7 +9,10 @@ import Gigs from "./Pages/gigs/Gigs";
 import Gig from "./Pages/gig/gig";
 import { UserProvider } from "./Contexts/userContext";
 import { Freelancer } from "./Pages/Freelancer/freelance";
+import FavoriteButton from "./Pages/Favourite/FavoriteButton";
+import NewNavbar from "./Pages/Navbar/NewNavbar";
 import{message} from "./Pages/Messages/message";
+import { ProfilePage } from "./Pages/Profile/profile";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -44,8 +47,11 @@ function App() {
                   }
                 />
                 <Route path="/freelancer" element={<Freelancer />} />
-            </Routes>
-          </div>
+                <Route path="/favori" element={<FavoriteButton />} />
+                <Route path="/profil" element={<ProfilePage />} />
+
+              </Routes>
+            </div>
           </div>
         </BrowserRouter>
         

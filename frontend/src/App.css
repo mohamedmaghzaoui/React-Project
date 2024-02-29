@@ -4,3 +4,12 @@
 body {
   overflow-x: hidden;
 }
+
+
+.app-container {
+  text-align: center;
+}
+
+.content-container {
+  overflow-x: hidden;
+}
