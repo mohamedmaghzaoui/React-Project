@@ -8,14 +8,20 @@ const LANGUAGE_STYLE = {
   transform: "translate(-50%, -50%)",
   backgroundColor: "white",
   zIndex: "9999",
-  textAlign: "left", // Aligner le texte à gauche
+  textAlign: "left", // Aligner tout le contenu à gauche
   borderRadius: "25px",
   width: "500px", // Ajuster la largeur de la pop-up
   height: "400px", // Ajuster la hauteur de la pop-up
+  padding: "20px", // Ajouter un padding
+  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)", // Ajouter une ombre
 };
 
 const BUTTON_STYLE = {
-  marginLeft: "10px", // Ajouter un espacement entre les boutons
+  margin: "5px", // Ajouter un espace entre les boutons
+  padding: "10px", // Ajouter un padding
+  borderRadius: "5px", // Arrondir les coins des boutons
+  backgroundColor: "#f0f0f0", // Couleur de fond des boutons
+  border: "1px solid #ccc", // Bordure des boutons
 };
 
 export default function Language({ openPop, onClosePop }) {
@@ -64,13 +70,12 @@ export default function Language({ openPop, onClosePop }) {
   if (!openPop) return null;
   return (
     <div style={LANGUAGE_STYLE} onClick={handleOutsideClick}>
-      <button onClick={onClosePop}>x</button>
+      <button style={{ float: "right", border: "none", background: "none", cursor: "pointer" }} onClick={onClosePop}>x</button>
       <div className="title">Language</div>
-      <div className="title">english </div>
-
+      <br />
       <div className="languages">{renderLanguages}</div>
       <div className="button-container">
-        <button onClick={handleLanguage}>Language</button>
+        <div>anglais <br />Français</div>
       </div>
     </div>
   );

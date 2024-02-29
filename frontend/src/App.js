@@ -21,7 +21,7 @@ function App() {
         {/* user context*/}
         <BrowserRouter>
           <div className="">
-            <NewNavbar className="" />
+            <MainNavbar className="" />
             <div className=" ">
               <Routes>
                 <Route path="/" element={<Home />} />
