@@ -50,9 +50,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Country = null;
+    private ?string $country = null;
     #[ORM\Column]
     private ?array $languages = [];
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $occupation = null;
 
     public function getId(): ?int
     {
@@ -179,15 +181,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getCountry(): ?string
     {
-        return $this->Country;
+        return $this->country;
     }
 
     /**
      * Set the value of Country
      */
-    public function setCountry(?string $Country): self
+    public function setCountry(?string $country): self
     {
-        $this->Country = $Country;
+        $this->country = $country;
 
         return $this;
     }
@@ -206,6 +208,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLanguages(?array $languages): self
     {
         $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of occupation
+     */
+    public function getOccupation(): ?string
+    {
+        return $this->occupation;
+    }
+
+    /**
+     * Set the value of occupation
+     */
+    public function setOccupation(?string $occupation): self
+    {
+        $this->occupation = $occupation;
 
         return $this;
     }
