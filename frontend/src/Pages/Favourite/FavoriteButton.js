@@ -73,11 +73,21 @@ const FavoriteButton = () => {
          Creer un liste
          
         </button>
-        <h1>Mes favoris</h1>
-        {isFavorite && <p>Ce contenu est dans vos favoris!</p>}
-        <h2>Listes existantes :</h2>
-        
-      </div>
+      
+     
+    <h1>Mes favoris</h1>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="fw-light">Organisez vos freelances préférés et vos services favoris dans</p>
+            <p class="fw-light">des listes personnalisées auxquelles vous pouvez facilement</p>
+            <p class="fw-light">accéder et que vous pouvez partager avec votre équipe.</p>
+        </div>
+    </div>
+
+    <h2>Listes existantes :</h2>
+</div>
+
     
 
       <div className="text-container">
