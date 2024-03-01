@@ -27,12 +27,12 @@ class Favorite
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setNom(?string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -63,4 +63,3 @@ class Favorite
         return $this;
     }
 }
-
