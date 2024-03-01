@@ -45,6 +45,9 @@ function MessageForm({ onMessageSubmit }) {
   };
 
   return (
+    <div>
+    <h1> saluuuut</h1> 
+    
     <form onSubmit={handleSubmit} className={styles.messageForm}> {/* Utilisation de styles.messageForm */}
       <input
         type="text"
@@ -55,7 +58,7 @@ function MessageForm({ onMessageSubmit }) {
       />
       <span className={styles.or}>ou</span>
       <button type="submit">Envoyer</button>
-    </form>
+    </form></div>
   );
 }
 

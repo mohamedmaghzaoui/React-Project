@@ -36,7 +36,7 @@ function App() {
                 <Route path="/GigForm" element={<GigForm />} />
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
-                <Route path="/Message" element={<messages />} />
+                <Route path="/chatList" element={<messages />} />
                 <Route
                   path="/Customer"
                   element={
