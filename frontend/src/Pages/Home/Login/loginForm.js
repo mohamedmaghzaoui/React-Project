@@ -49,7 +49,7 @@ export default function Login({ openLogin, onCloseLogin }) {
         </button>
         <div style={IMAGE_STYLE}>
           <img
-            src="https://www.shutterstock.com/image-vector/man-key-near-computer-account-260nw-1499141258.jpg"
+            src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg?w=740&t=st=1709291015~exp=1709291615~hmac=146569f8b39ebba1e5e455a6cc8ecff9bc8e7ed37d87701a2f7c1ecbc1fda571"
             alt="Login Image"
             style={{ width: "100%" }}
           />
