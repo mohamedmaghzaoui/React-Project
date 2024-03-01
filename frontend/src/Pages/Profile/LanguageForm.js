@@ -21,12 +21,13 @@ export const LanguageForm= ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="newDesc">Nouvelle language :</label>
-            <textarea
+            <input
+              type="text"
               className="form-control"
-              id="newDesc"
+              id="newUlanguage"
               value={newLanguage}
               onChange={handleChange}
-            ></textarea>
+            />
           </div>
           <button type="submit" className="btn btn-primary mr-2">Ajouter</button>
           <button type="button" className="btn btn-secondary" onClick={onClose}>Fermer</button>
