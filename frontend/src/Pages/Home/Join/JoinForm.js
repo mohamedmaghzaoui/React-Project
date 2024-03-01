@@ -46,7 +46,7 @@ export default function Join({ openJoin, onCloseJoin }) {
         </button>
         <div style={IMAGE_STYLE}>
           <img
-            src="https://imgs.search.brave.com/x6iqbJWLvymDlIcHHDsXqFoo6fP5UH86u2gqwTLL17U/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA0LzYyLzUzLzM0/LzM2MF9GXzQ2MjUz/MzQxMF9lNXZNRk9t/eEJHRmtCN3dEV1FE/RVd5WVhETnZ2Tndx/bi5qcGc"
+            src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7875.jpg?t=st=1709291346~exp=1709294946~hmac=e96622848c0a2adfd0b74c40094b2cc35b685aea5a437756244b2fd6839ef7da&w=740"
             alt="Join Image"
             style={{ width: "100%" }}
           />
