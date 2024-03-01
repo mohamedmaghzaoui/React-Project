@@ -5,9 +5,18 @@ import { faPencilAlt, faLocationDot, faUser } from '@fortawesome/free-solid-svg-
 import { UserContext } from "../../Contexts/userContext.js";
 import axios from "axios";
 import { Freelancer } from '../Freelancer/freelance.js';
+import { EditProfilePopup } from './EditProfilePopup.js';
+import { Desc } from './Desc.js';
+import { LanguageForm } from './LanguageForm.js';
 
 export const ProfilePage = () => {
   const { username, setUsername } = useContext(UserContext); // Assuming setUsername is a function to set username
+  const { desc, setDesc } = useContext(UserContext); // Assuming setUsername is a function to set username
+  const { language, setLanuage } = useContext(UserContext); // Assuming setUsername is a function to set username
+  const [showPopup, setShowPopup] = useState(false); // Déclaration de showPopup avec useState
+  const [showPopupDesc, setShowPopupDesc] = useState(false); // Déclaration de showPopup avec useState
+  const [showPopupLanguage, setShowPopupLanguage] = useState(false); // Déclaration de showPopup avec useState
+
 
   useEffect(() => {
     // Function to fetch and update the username
@@ -19,11 +28,46 @@ export const ProfilePage = () => {
         console.error('Erreur lors de la récupération du nom:', error);
       }
     };
+fetchUsername(); // Appel de la fonction pour récupérer le nom lors du rendu initial
+}, []);
+  useEffect(() => {
+    // Function to fetch and update the username
+    const fetchDesc= async () => {
+      try {
+        const response = await axios.get('useContext(UserContext)'); 
+        setDesc(response.data.desc); // Met à jour le nom avec la réponse de l'API
+      } catch (error) {
+        console.error('Erreur lors de la récupération du nom:', error);
+      }
+    };
+    fetchDesc(); // Appel de la fonction pour récupérer le nom lors du rendu initial
+  }, []);
+  useEffect(() => {
 
-    fetchUsername(); // Appel de la fonction pour récupérer le nom lors du rendu initial
+    const fetchLanguage= async () => {
+      try {
+        const response = await axios.get('useContext(UserContext)'); 
+        setDesc(response.data.language); // Met à jour le nom avec la réponse de l'API
+      } catch (error) {
+        console.error('Erreur lors de la récupération du nom:', error);
+      }
+    };
+    fetchLanguage(); // Appel de la fonction pour récupérer le nom lors du rendu initial
+
+
+    
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Le tableau vide assure que cette effect sera exécutée une seule fois après le premier rendu
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+  const togglePopupDesc = () => {
+    setShowPopupDesc(!showPopupDesc);
+  };
+  const togglePopupLanguage = () => {
+    setShowPopupLanguage(!showPopupLanguage);
+  };
 
   return (
     <div className="profile-page">
@@ -41,8 +85,13 @@ export const ProfilePage = () => {
           </div>
           <div className='profile-text'>
             <span>Votre nom d'affichage </span>
-            <FontAwesomeIcon icon={faPencilAlt} />
+            <FontAwesomeIcon
+              icon={faPencilAlt}
+              className="pencil-icon"
+              onClick={togglePopup}
+            />
           </div>
+          {showPopup && <EditProfilePopup onClose={togglePopup} />}
           <div>
             <span className="mx-5">{username}</span>
           </div>
@@ -76,10 +125,13 @@ export const ProfilePage = () => {
                  Description
               </span>
               
-              <span className='text-right'>
+              <span className='text-right'onClick={togglePopupDesc}>
                 Modifier Description
               </span>
+
             </div>
+            {showPopupDesc && <Desc onClose={togglePopupDesc} />}
+
             <div className="divider"></div>
 
             <br />
@@ -87,10 +139,12 @@ export const ProfilePage = () => {
               <span className='text-left'>
                Langues
               </span>
-              <span className='text-right'>
+              <span className='text-right' onClick={togglePopupLanguage}>
                 Ajouter 
               </span>
               </div>
+              {showPopupLanguage && <LanguageForm onClose={togglePopupLanguage} />}
+
 
 
 
