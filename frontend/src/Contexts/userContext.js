@@ -8,6 +8,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [userRoles, setUserRoles] = useState("");
+  const [userProfileData, setUserProfileData] = useState("");
   const [loading, setLoading] = useState(true);
 
   const getUserData = async () => {
@@ -15,7 +16,11 @@ export const UserProvider = ({ children }) => {
       const response = await axios.get("http://localhost:8000/get_user");
       setUsername(response.data.username);
       setUserRoles(response.data.role);
+      setUserProfileData(response.data.userProfileData);
+
       setLoading(false);
+      console.log(username);
+      console.log(userProfileData);
     } catch (error) {
       setUsername("");
       setUserRoles("");
@@ -28,7 +33,9 @@ export const UserProvider = ({ children }) => {
   }, [username]); // The empty dependency array means this effect runs once after the initial render
 
   return (
-    <UserContext.Provider value={{ username, setUsername, userRoles }}>
+    <UserContext.Provider
+      value={{ username, setUsername, userRoles, userProfileData }}
+    >
       {!loading && children}
     </UserContext.Provider>
   );

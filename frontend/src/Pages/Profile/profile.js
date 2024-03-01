@@ -15,8 +15,7 @@ import { LanguageForm } from "./LanguageForm.js";
 
 export const ProfilePage = () => {
   const { username } = useContext(UserContext); // Assuming setUsername is a function to set username
-  const { desc, setDesc } = useContext(UserContext); // Assuming setUsername is a function to set username
-  const { language, setLanuage } = useContext(UserContext); // Assuming setUsername is a function to set username
+  const { userProfileData } = useContext(UserContext);
   const [showPopup, setShowPopup] = useState(false); // Déclaration de showPopup avec useState
   const [showPopupDesc, setShowPopupDesc] = useState(false); // Déclaration de showPopup avec useState
   const [showPopupLanguage, setShowPopupLanguage] = useState(false); // Déclaration de showPopup avec useState
@@ -66,14 +65,14 @@ export const ProfilePage = () => {
               <span className="text-left">
                 <FontAwesomeIcon icon={faLocationDot} /> De
               </span>
-              <span className="text-right">France</span>
+              <span className="text-right">{userProfileData.country}</span>
             </div>
             <br />
             <div className="location-container">
               <span className="text-left">
-                <FontAwesomeIcon icon={faUser} /> Membre depuis
+                <FontAwesomeIcon icon={faUser} /> occupation
               </span>
-              <span className="text-right">Févr.2024</span>
+              <span className="text-right">{userProfileData.occupation}</span>
             </div>
           </div>
         </div>
@@ -86,15 +85,27 @@ export const ProfilePage = () => {
               Modifier Description
             </span>
           </div>
+
           {showPopupDesc && <Desc onClose={togglePopupDesc} />}
 
-          <div className="divider"></div>
+          <div className="divider">
+            <p>{userProfileData.description}</p>
+          </div>
 
           <br />
+          <br />
+
           <div className="location-container">
             <span className="text-left">Langues</span>
+
             <span className="text-right" onClick={togglePopupLanguage}>
-              Ajouter
+              {userProfileData.languages.map((value) => {
+                return (
+                  <div>
+                    <span>{value}</span>
+                  </div>
+                );
+              })}
             </span>
           </div>
           {showPopupLanguage && <LanguageForm onClose={togglePopupLanguage} />}

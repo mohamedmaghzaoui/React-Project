@@ -18,11 +18,7 @@ export const FirstForm = (props) => {
         <br />
         public profile, so that potential buyers can get to know you better.
       </p>
-      <form
-        encType="multipart/form-data"
-        onSubmit={handleSubmit(sendData)}
-        className="col-5 mx-5 my-4"
-      >
+      <form onSubmit={handleSubmit(sendData)} className="col-5 mx-5 my-4">
         <div className="row my-3">
           <label className="col-3">Profile image</label>
           <input

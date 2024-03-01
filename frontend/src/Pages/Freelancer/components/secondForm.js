@@ -24,11 +24,7 @@ export const SecondForm = (props) => {
     console.log(freelancerData);
     try {
       let url = "http://localhost:8000/add_freelancer";
-      const response = await axios.post(url, freelancerData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(url, freelancerData);
       console.log(response);
     } catch (error) {
       console.log(error);

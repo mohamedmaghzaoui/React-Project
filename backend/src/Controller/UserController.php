@@ -79,7 +79,15 @@ class UserController extends AbstractController
         return $this->json([
             "userid" => $user->getId(),
             "username" => $user->getUsername(),
-            "role" => $user->getRoles()
+            "role" => $user->getRoles(),
+            "userProfileData" => [
+                "occupation" => $user->getOccupation(),
+                "description" => $user->getDescription(),
+                "languages" => $user->getLanguages(),
+                "country" => $user->getCountry(),
+                "email" => $user->getEmail()
+            ]
+
 
         ]);
     }
@@ -96,27 +104,6 @@ class UserController extends AbstractController
 
 
         $data = json_decode($request->getContent(), true);
-        $uploadedFile = $request->files->get('user_image');
-
-        if ($uploadedFile instanceof UploadedFile) {
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-
-            try {
-                $uploadedFile->move(
-                    $this->getParameter('user_images_directory'),
-                    $newFilename
-                );
-            } catch (\Exception $e) {
-                return $this->json([
-                    'message' => 'Error uploading file',
-                ], Response::HTTP_INTERNAL_SERVER_ERROR);
-            }
-
-            $user->setUserImage($newFilename);
-        }
-
-
 
         $user->setDescription($data['description']);
         $user->setCountry($data['country']);
