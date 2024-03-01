@@ -18,7 +18,7 @@ export const UserDropDown = () => {
       className="dropdown-menu "
     >
       <li>
-        <Link to={"/profil"} className="dropdown-item" href="#">
+        <Link to={"/profile"} className="dropdown-item" href="#">
           Profile
         </Link>
       </li>
