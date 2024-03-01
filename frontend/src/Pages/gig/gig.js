@@ -1,37 +1,38 @@
-import React from "react";
-import Slider from "react-slick";
-import gigsData from "../../gigs.json"
-
+import React, { useState } from "react";
+import { FirstPage } from "../gig/components/firstPage";
+import { SecondPage } from "./components/secondPage";
 
 const Gig = () => {
-    return (
-        <div className="gig">
-            <div className="container">
-                <div className="left"></div>
-                <span className="breadCrumbs">FIVERR : Graphics & Design</span>
-                <h1>I will create ai artwork</h1>
+  const [currentForm, setCurrentForm] = useState(0);
+  const [formData, setFormData] = useState(null);
 
-                <div className="user">
-                    <img src="#" alt="" />
-                    <span>John Doe</span>
-                    <div className="stars">
-                        {[...Array(5)].map((_, index) => (
-                            <img key={index} src="http://localhost:3000/etoile.png" alt="" className="star-icon" />
-                        ))}
-                        <span>5</span>
-                    </div>
-                </div>
+  const handleNext = () => {
+    setCurrentForm(currentForm + 1);
+  };
 
-                <Slider slidesToShow={1} arrowScroll={1}>
-                    <img src="http://localhost:3000/img1.png" alt="" />
-                    <img src="http://localhost:3000/img1.png" alt="" />
-                    <img src="http://localhost:3000/img1.png" alt="" />
-                </Slider>
+  const handlePrevious = () => {
+    setCurrentForm(currentForm - 1);
+  };
 
-                <div className="right"></div>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      {currentForm === 0 && (
+        <firstPage setCurrentForm={setCurrentForm} />
+      )}
+      {currentForm === 1 && (
+        <fecondPage setCurrentForm={setCurrentForm} />
+      )}
+      
+
+      {/* Boutons de navigation */}
+      {currentForm !== 0 && (
+        <button onClick={handlePrevious}>Previous</button>
+      )}
+      {currentForm !== 4 && (
+        <button onClick={handleNext}>Next</button>
+      )}
+    </div>
+  );
 };
 
 export default Gig;
