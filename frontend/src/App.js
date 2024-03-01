@@ -46,7 +46,7 @@ function App() {
                 />
                 <Route path="/freelancer" element={<Freelancer />} />
                 <Route path="/favori" element={<FavoriteButton />} />
-                <Route path="/profil" element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
               </Routes>
             </div>
           </div>
