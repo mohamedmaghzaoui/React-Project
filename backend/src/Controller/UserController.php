@@ -6,6 +6,7 @@ use App\Entity\User;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -79,6 +80,7 @@ class UserController extends AbstractController
             "userid" => $user->getId(),
             "username" => $user->getUsername(),
             "role" => $user->getRoles()
+
         ]);
     }
     #[Route('/add_freelancer', name: "add_freelancer")]
@@ -94,13 +96,33 @@ class UserController extends AbstractController
 
 
         $data = json_decode($request->getContent(), true);
+        $uploadedFile = $request->files->get('user_image');
+
+        if ($uploadedFile instanceof UploadedFile) {
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
+
+            try {
+                $uploadedFile->move(
+                    $this->getParameter('user_images_directory'),
+                    $newFilename
+                );
+            } catch (\Exception $e) {
+                return $this->json([
+                    'message' => 'Error uploading file',
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            $user->setUserImage($newFilename);
+        }
+
 
 
         $user->setDescription($data['description']);
         $user->setCountry($data['country']);
-
+        $user->setOccupation($data['occupation']);
         $user->setRoles(["ROLE_FREELANCER"]); // Initial role set to 'client'
-
+        $user->setLanguages($data["languages"]);
 
         // Persist the user to the database
         $entityManager = $doctrine->getManager();
@@ -110,6 +132,22 @@ class UserController extends AbstractController
 
         // Authenticate the user if needed (optional)
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
-        return $this->json(["user doesnt not exist"]);
+        return $this->json(["user doesnt not exist" => $data]);
+    }
+    #[Route('/change_username', name: "change_username")]
+    public function changeUsername(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
+        $data = json_decode($request->getContent(), true);
+        $user->setUsername($data['username']);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->json(["user changed"]);
     }
 }

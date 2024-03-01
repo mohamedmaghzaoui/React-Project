@@ -16,14 +16,12 @@ export const LastForm = (props) => {
         journey
       </p>
 
-      <button className="btn btn-success btn-lg col-2 mx-5  ">Finish</button>
-      <span
+      <button
         onClick={() => props.setCurrentForm(0)}
-        style={{ cursor: "pointer" }}
-        className="text-primary mx-5 fs-5"
+        className="btn btn-success btn-lg col-2 mx-5  "
       >
-        back
-      </span>
+        Finish
+      </button>
     </div>
   );
 };

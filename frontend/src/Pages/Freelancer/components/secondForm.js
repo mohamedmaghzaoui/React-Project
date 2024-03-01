@@ -24,8 +24,15 @@ export const SecondForm = (props) => {
     console.log(freelancerData);
     try {
       let url = "http://localhost:8000/add_freelancer";
-      const response = await axios.post(url, freelancerData);
-    } catch (error) {}
+      const response = await axios.post(url, freelancerData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     props.setCurrentForm(4);
   };
 
@@ -38,7 +45,11 @@ export const SecondForm = (props) => {
         <br />
         and how you gained your skills, certifications and experience.
       </p>
-      <form onSubmit={handleSubmit(sendData)} className="col-5 mx-5 my-4">
+      <form
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(sendData)}
+        className="col-5 mx-5 my-4"
+      >
         <div className="row my-3">
           <label className="col-3">Occupation</label>
           <select

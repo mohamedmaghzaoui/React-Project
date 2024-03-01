@@ -44,7 +44,15 @@ function App() {
                     <Customer />
                   }
                 />
-                <Route path="/freelancer" element={<Freelancer />} />
+                <Route
+                  path="/freelancer"
+                  element={
+                    <PrivateRoute
+                      element={<Freelancer />}
+                      allowRoles={["ROLE_CLIENT", "ROLE_FREELANCER"]}
+                    />
+                  }
+                />
                 <Route path="/favori" element={<FavoriteButton />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Routes>

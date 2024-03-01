@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 export const FirstForm = (props) => {
   const sendData = (firstFormData) => {
     props.setCurrentForm(3);
+
     props.setFormData(firstFormData);
   };
   const { register, handleSubmit } = useForm(); //use useform library
@@ -17,13 +18,17 @@ export const FirstForm = (props) => {
         <br />
         public profile, so that potential buyers can get to know you better.
       </p>
-      <form onSubmit={handleSubmit(sendData)} className="col-5 mx-5 my-4">
+      <form
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(sendData)}
+        className="col-5 mx-5 my-4"
+      >
         <div className="row my-3">
           <label className="col-3">Profile image</label>
           <input
-            {...register("user_image")}
             className="form-control col"
             type="file"
+            {...register("user_image")}
           />
         </div>
         <br />
