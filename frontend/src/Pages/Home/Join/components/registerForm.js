@@ -136,8 +136,8 @@ export const RegisterForm = (props) => {
         <div className="button-container py-2">
           {/* if there is an error show it */}
           <button
-            onClick={() => setIsSubmitted(true)}
             type="submit"
+            onClick={() => setIsSubmitted(true)}
             className="btn btn-success col-4"
           >
             Next

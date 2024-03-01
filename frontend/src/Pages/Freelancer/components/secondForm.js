@@ -1,7 +1,8 @@
 import { useState } from "react";
-
+import axios from "axios";
 import { Progress } from "./progress";
 import { Table } from "./table";
+import { useForm } from "react-hook-form";
 export const SecondForm = (props) => {
   const [Languages, setLanguages] = useState("");
   const [language, setLanguage] = useState("");
@@ -13,6 +14,21 @@ export const SecondForm = (props) => {
     }
   };
 
+  const { register, handleSubmit } = useForm(); //use useform library
+  const sendData = async (secondFormData) => {
+    const freelancerData = {
+      ...props.formData,
+      ...secondFormData,
+      languages: Languages,
+    };
+    console.log(freelancerData);
+    try {
+      let url = "http://localhost:8000/add_freelancer";
+      const response = await axios.post(url, freelancerData);
+    } catch (error) {}
+    props.setCurrentForm(4);
+  };
+
   return (
     <div>
       <Progress second="second" />
@@ -22,15 +38,19 @@ export const SecondForm = (props) => {
         <br />
         and how you gained your skills, certifications and experience.
       </p>
-      <form className="col-5 mx-5 my-4">
+      <form onSubmit={handleSubmit(sendData)} className="col-5 mx-5 my-4">
         <div className="row my-3">
           <label className="col-3">Occupation</label>
-          <select class="form-select col" aria-label="Default select example">
+          <select
+            {...register("occupation")}
+            class="form-select col"
+            aria-label="Default select example"
+          >
             <option selected>Select your current Occupation</option>
-            <option value="1">Technology</option>
-            <option value="2">Graphics</option>
-            <option value="3">Animation</option>
-            <option value="3">Design</option>
+            <option value="Technology">Technology</option>
+            <option value="Graphics">Graphics</option>
+            <option value="Animation">Animation</option>
+            <option value="Design">Design</option>
           </select>
         </div>
 
@@ -42,26 +62,21 @@ export const SecondForm = (props) => {
             className="form-control col"
             type=""
           />
-          <a
+          <span
             onClick={() => {
               addLanguage();
             }}
             className="col-2 btn btn-success "
           >
             Add
-          </a>
+          </span>
           <br />
           {Languages && (
             <Table setLanguages={setLanguages} Languages={Languages} />
           )}
         </div>
 
-        <button
-          onClick={() => props.setCurrentForm(4)}
-          className="btn btn-success btn-lg col-3  "
-        >
-          Continue
-        </button>
+        <button className="btn btn-success btn-lg col-3  ">Continue</button>
         <span
           onClick={() => props.setCurrentForm(2)}
           style={{ cursor: "pointer" }}

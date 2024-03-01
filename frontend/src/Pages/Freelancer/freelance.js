@@ -7,6 +7,7 @@ import { LastForm } from "./components/lastForm";
 
 export const Freelancer = () => {
   const [currentForm, setCurrentForm] = useState(0);
+  const [formData, setFormData] = useState(null);
 
   return (
     <div>
@@ -16,9 +17,15 @@ export const Freelancer = () => {
       {currentForm === 1 ? (
         <SecondPage setCurrentForm={setCurrentForm} />
       ) : null}
-      {currentForm === 2 ? <FirstForm setCurrentForm={setCurrentForm} /> : null}
+      {currentForm === 2 ? (
+        <FirstForm setFormData={setFormData} setCurrentForm={setCurrentForm} />
+      ) : null}
       {currentForm === 3 ? (
-        <SecondForm setCurrentForm={setCurrentForm} />
+        <SecondForm
+          formData={formData}
+          setFormData={setFormData}
+          setCurrentForm={setCurrentForm}
+        />
       ) : null}
       {currentForm === 4 ? <LastForm setCurrentForm={setCurrentForm} /> : null}
     </div>
