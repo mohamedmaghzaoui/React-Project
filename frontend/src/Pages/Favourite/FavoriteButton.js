@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { Modal, Button, Form, Card } from "react-bootstrap";
-import "./FavoriteButton.css"; // Assurez-vous d'importer la feuille de style CSS
+
+import "./FavoriteButton.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const FavoriteButton = () => {
@@ -8,11 +10,28 @@ const FavoriteButton = () => {
   const [lists, setLists] = useState([]);
   const [newListName, setNewListName] = useState("");
   const [newListDescription, setNewListDescription] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editingList, setEditingList] = useState(null);
 
+  // Load lists from localStorage on component mount
+  useEffect(() => {
+    const storedLists = localStorage.getItem("favoriteLists");
+    if (storedLists) {
+      setLists(JSON.parse(storedLists));
+    }
+  }, []);
+
+  const saveListsToLocalStorage = (updatedLists) => {
+    localStorage.setItem("favoriteLists", JSON.stringify(updatedLists));
+  };
+
   const toggleFavorite = () => {
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+  };
+
+  const submitData = (data) => {
+    console.log(data);
   };
 
   const addList = () => {
@@ -21,11 +40,17 @@ const FavoriteButton = () => {
       name: newListName || "Nouvelle Liste",
       description: newListDescription,
       content: [],
-      image: "https://i0.wp.com/dordogne-ici-et-la.com/wp-content/uploads/2016/01/rubrique-image-vide.jpg?ssl=1", // Utilisation de l'URL fournie
+      image: selectedImage
+        ? URL.createObjectURL(selectedImage)
+        : "https://i0.wp.com/dordogne-ici-et-la.com/wp-content/uploads/2016/01/rubrique-image-vide.jpg?ssl=1",
     };
-    setLists((prevLists) => [...prevLists, newList]);
+    const updatedLists = [...lists, newList];
+    setLists(updatedLists);
+    saveListsToLocalStorage(updatedLists);
+
     setNewListName("");
     setNewListDescription("");
+    setSelectedImage(null);
     handleClose();
   };
 
@@ -38,21 +63,32 @@ const FavoriteButton = () => {
   };
 
   const updateList = () => {
-    setLists((prevLists) =>
-      prevLists.map((list) =>
-        list.id === editingList.id
-          ? { ...list, name: newListName, description: newListDescription }
-          : list
-      )
+    const updatedLists = lists.map((list) =>
+      list.id === editingList.id
+        ? {
+            ...list,
+            name: newListName,
+            description: newListDescription,
+            image: selectedImage
+              ? URL.createObjectURL(selectedImage)
+              : list.image,
+          }
+        : list
     );
+    setLists(updatedLists);
+    saveListsToLocalStorage(updatedLists);
+
     setEditingList(null);
     setNewListName("");
     setNewListDescription("");
+    setSelectedImage(null);
     handleClose();
   };
 
   const deleteList = (id) => {
-    setLists((prevLists) => prevLists.filter((list) => list.id !== id));
+    const updatedLists = lists.filter((list) => list.id !== id);
+    setLists(updatedLists);
+    saveListsToLocalStorage(updatedLists);
   };
 
   const handleShow = () => setShowModal(true);
@@ -60,50 +96,42 @@ const FavoriteButton = () => {
     setShowModal(false);
     setEditingList(null);
   };
+  const { register, handleSubmit } = useForm();
 
   return (
     <div className="favorite-container">
       <div className="button-container">
-   
         <button
           style={{ position: "absolute", left: "90%" }}
           className="btn btn-success"
           onClick={handleShow}
         >
-         Creer un liste
-         
+          Créer une liste
         </button>
-      
-     
-    <h1>Mes favoris</h1>
 
-    <div class="row">
-        <div class="col-12">
-            <p class="fw-light">Organisez vos freelances préférés et vos services favoris dans</p>
-            <p class="fw-light">des listes personnalisées auxquelles vous pouvez facilement</p>
-            <p class="fw-light">accéder et que vous pouvez partager avec votre équipe.</p>
+        <h1 className="text-start">Mes favoris</h1>
+
+        <div className="row">
+          <div className="col-20">
+            <p className="text-start">Organisez vos freelances préférés et vos services favoris dans</p>
+            <p className="text-start">des listes personnalisées auxquelles vous pouvez facilement</p>
+            <p className="text-start">accéder et que vous pouvez partager avec votre équipe.</p>
+          </div>
         </div>
-    </div>
 
-    <h2>Listes existantes :</h2>
-</div>
-
-    
+        <h2 className="text-start">Listes existantes :</h2>
+      </div>
 
       <div className="text-container">
-       
-
-       
-
         <Modal show={showModal} onHide={handleClose} size="lg">
           <Modal.Header closeButton>
             <Modal.Title>
               {editingList ? "Modifier une liste" : "Créer une nouvelle liste"}
             </Modal.Title>
           </Modal.Header>
-          
+
           <Modal.Body>
-            <Form>
+            <Form onSubmit={handleSubmit(submitData)}>
               <Form.Group controlId="formListName">
                 <Form.Label>Nom de la liste</Form.Label>
                 <Form.Control
@@ -117,11 +145,21 @@ const FavoriteButton = () => {
               <Form.Group controlId="formListDescription">
                 <Form.Label>Description (facultatif)</Form.Label>
                 <Form.Control
+                  {...register("Description")}
                   as="textarea"
                   rows={3}
                   placeholder="Par exemple, « De bons designers pour nos campagnes de marketing »."
                   value={newListDescription}
                   onChange={(e) => setNewListDescription(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formImage">
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setSelectedImage(e.target.files[0])}
                 />
               </Form.Group>
             </Form>
@@ -139,11 +177,10 @@ const FavoriteButton = () => {
           </Modal.Footer>
         </Modal>
 
-
         <div className="card-container d-flex flex-wrap">
           {lists.map((list) => (
             <Card key={list.id} style={{ width: "18rem", margin: "10px" }}>
-              <Card.Img variant="top" src={list.image} />
+              <Card.Img variant="top" src={list.image} alt="List Image" />
               <Card.Body>
                 <Card.Title>{list.name}</Card.Title>
                 <Card.Text>{list.description}</Card.Text>
