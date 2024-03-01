@@ -21,6 +21,8 @@ class Chat
     #[ORM\Column(type: "string", length: 255)]
     private $title;
 
+    
+
     /**
      * Get the value of id
      */
