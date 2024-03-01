@@ -106,7 +106,7 @@ const NewNavbar = () => {
                     </Link>
                   ) : null}
                   {Icon == GoMail ? (
-                    <Link to={"/message"}>
+                    <Link to={"/chatList"}>
                       {" "}
                       <Icon />{" "}
                     </Link>

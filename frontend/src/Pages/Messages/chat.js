@@ -13,17 +13,12 @@ function sendData(data) {
     });
 }
 
-function chatList({ chats, onChatClick }) {
+export const chatList = ({ chats, onChatClick }) {
+
     return (
         <div>
             <h1>Chat</h1>
-      <ul>
-        {chats.map((chat) => (
-          <li key={chat.id} onClick={() => onChatClick(chat.id)}>
-            {chat.name}
-          </li>
-        ))}
-      </ul>
+     
       </div>
     );
   }

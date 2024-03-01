@@ -42,6 +42,8 @@ function App() {
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
+                <Route path="/chatList" element={<chatList />} />
+
                 <Route
                   path="/Customer"
                   element={
