@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GoSearch, GoHeart, GoMail, GoBell, GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { UserDropDown } from "./userDropdown";
 import "./NewNavbar.css";
 
 const SearchForm = () => (
@@ -45,6 +46,7 @@ const WelcomeDropdownItem = () => (
 const NewNavbar = () => {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenJoin, setIsOpenJoin] = useState(false);
+  const [userDropdown, setUserDropdown] = useState(false);
 
   return (
     <nav
@@ -107,16 +109,23 @@ const NewNavbar = () => {
                     </Link>
                   ) : null}
                   {Icon == GoBell ? (
-                    <Link to={"/favori"}>
+                    <Link to={"/notif"}>
                       {" "}
                       <Icon />{" "}
                     </Link>
                   ) : null}
                   {Icon == GoPerson ? (
-                    <Link to={"/favori"}>
-                      {" "}
-                      <Icon />{" "}
-                    </Link>
+                    <div class="dropdown">
+                      <Icon
+                        class=" dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Dropdown button
+                      </Icon>
+                      <UserDropDown />
+                    </div>
                   ) : null}
                 </button>
               </li>

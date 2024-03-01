@@ -65,16 +65,7 @@ class UserController extends AbstractController
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
         return $this->json(["user doesnt not exist"]);
     }
-    #[Route('/roles', name: "roles")]
-    public function users(ManagerRegistry $doctrine)
-    {
-        $userRepository = $doctrine->getRepository(User::class);
-        $users = $userRepository->findAll();
 
-        return $this->render('security/roles.html.twig', [
-            'users' => $users,
-        ]);
-    }
     #[Route('/get_user', name: "get_user")]
     public function getUserData(#[CurrentUser] User $user): Response
     {
@@ -90,13 +81,35 @@ class UserController extends AbstractController
             "role" => $user->getRoles()
         ]);
     }
-
-    #[Route('/roles/{id}/{role}')]
-    public function setRole(User $user, string $role, ManagerRegistry $doctrine)
+    #[Route('/add_freelancer', name: "add_freelancer")]
+    public function addFreelancer(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
     {
-        $user->setRoles([$role]);
-        $doctrine->getManager()->flush();
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
 
-        return $this->redirectToRoute('roles');
+
+
+        $data = json_decode($request->getContent(), true);
+
+
+        $user->setDescription($data['description']);
+        $user->setCountry($data['country']);
+
+        $user->setRoles(["ROLE_FREELANCER"]); // Initial role set to 'client'
+
+
+        // Persist the user to the database
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+
+        // Authenticate the user if needed (optional)
+        // Note: Authenticating the user immediately might not be necessary depending on your use case.
+        return $this->json(["user doesnt not exist"]);
     }
 }

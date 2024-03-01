@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Progress } from "./progress";
+import { useForm } from "react-hook-form";
 
 export const FirstForm = (props) => {
+  const sendData = (firstFormData) => {
+    props.setCurrentForm(3);
+    props.setFormData(firstFormData);
+  };
+  const { register, handleSubmit } = useForm(); //use useform library
   return (
     <div>
       <Progress />
@@ -11,33 +17,43 @@ export const FirstForm = (props) => {
         <br />
         public profile, so that potential buyers can get to know you better.
       </p>
-      <form className="col-5 mx-5 my-4">
+      <form onSubmit={handleSubmit(sendData)} className="col-5 mx-5 my-4">
         <div className="row my-3">
           <label className="col-3">Profile image</label>
-          <input className="form-control col" type="file" />
+          <input
+            {...register("user_image")}
+            className="form-control col"
+            type="file"
+          />
         </div>
         <br />
         <div className="row my-3">
           <label className="col-3">Profile Description</label>
-          <textarea className="form-control col" cols="30" rows="3"></textarea>
+          <textarea
+            {...register("description")}
+            className="form-control col"
+            cols="30"
+            rows="3"
+          ></textarea>
         </div>
         <br />
         <div className="row  my-3">
           <label className="col-3">Country</label>
-          <select class="form-select col" aria-label="Default select example">
+          <select
+            {...register("country")}
+            class="form-select col"
+            aria-label="Default select example"
+          >
             <option selected>Select your Country</option>
-            <option value="1">France</option>
-            <option value="2">Germany</option>
-            <option value="3">UK</option>
-            <option value="3">USA</option>
-            <option value="3">Spain</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="UK">UK</option>
+            <option value="USA">USA</option>
+            <option value="Spain">Spain</option>
           </select>
         </div>
 
-        <button
-          onClick={() => props.setCurrentForm(3)}
-          className="btn btn-success btn-lg col-3  "
-        >
+        <button type="submit" className="btn btn-success btn-lg col-3  ">
           Continue
         </button>
         <span

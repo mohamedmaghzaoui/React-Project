@@ -18,14 +18,7 @@ function MainNavbar() {
   const showSearchBar = location.pathname !== "/"; // Condition to hide on the homepage
   //get suername with useContext
   const { username, setUsername } = useContext(UserContext);
-  //logout function
-  const logout = async () => {
-    try {
-      await axios.get("http://localhost:8000/logout");
-    } catch (error) {
-      setUsername(""); //symfony will return error when calling this route with axios
-    }
-  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-c">
@@ -55,9 +48,7 @@ function MainNavbar() {
           )}
           <span className="mx-5">{username}</span>
           {username ? (
-            <button onClick={() => logout()} className="btn btn-danger">
-              logout
-            </button>
+            <button className="btn btn-danger">logout</button>
           ) : (
             <span className="mx-5"></span>
           )}
@@ -72,7 +63,7 @@ function MainNavbar() {
             >
               <Dropdown />
               <li className="nav-item">
-                <Link className="nav-link  mx-3" href="#">
+                <Link to={"/freelancer"} className="nav-link  mx-3">
                   Freelancer
                 </Link>
               </li>
