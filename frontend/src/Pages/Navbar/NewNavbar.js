@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { GoSearch, GoHeart, GoMail, GoBell, GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
 import "./NewNavbar.css";
-
+import { Notifications } from "./NotificationsPopUp";
+import {UserDropDown} from'./userDropdown'
 const SearchForm = () => (
+
   <form id="search-form" className="form-inline mx-auto">
     <div className="input-group">
       <input id="search-input" className="form-control" type="search" placeholder="Quel service rechercheriez-vous aujourd'hui?" aria-label="Search" />
@@ -25,6 +27,9 @@ const WelcomeDropdownItem = () => (
 const NewNavbar = () => {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenJoin, setIsOpenJoin] = useState(false);
+  const [userDropdown, setUserDropdown] = useState(false);
+  const [notification, setNotifications] = useState(false);
+  
 
   return (
     <nav id="navbar" className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
@@ -42,8 +47,46 @@ const NewNavbar = () => {
             </li>
             {[GoHeart, GoMail, GoBell, GoPerson].map((Icon, index) => (
               <li className="nav-item" key={index}>
-                <button id="btn-icon" className="btn btn-icon" type="button" data-toggle="tooltip" data-bs-tooltip={['Cœur', 'Messagerie', 'Cloche', 'Profil'][index]}>
-                  <Icon />
+                <button
+                  id="btn-icon"
+                  className="btn btn-icon"
+                  type="button"
+                  data-toggle="tooltip"
+                  data-bs-tooltip={
+                    ["Cœur", "Messagerie", "Cloche", "Profil"][index]
+                  }
+                >
+                  {Icon == GoHeart ? (
+                    <Link to={"/favori"}>
+                      {" "}
+                      <Icon />{" "}
+                    </Link>
+                  ) : null}
+                  {Icon == GoMail ? (
+                    <Link to={"/message"}>
+                      {" "}
+                      <Icon />{" "}
+                    </Link>
+                  ) : null}
+                  {Icon == GoBell ? (
+                    <Link to={"/notif"}>
+                      {" "}
+                      <Icon  />{" "}
+                    </Link>
+                  ) : null}
+                  {Icon == GoPerson ? (
+                    <div class="dropdown">
+                      <Icon
+                        class=" dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Dropdown button
+                      </Icon>
+                      <UserDropDown />
+                    </div>
+                  ) : null}
                 </button>
               </li>
             ))}

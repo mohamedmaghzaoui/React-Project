@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240229161321 extends AbstractMigration
+final class Version20240301090020 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,12 @@ final class Version20240229161321 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE gig ADD user_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE gig ADD CONSTRAINT FK_D53020A2A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_D53020A2A76ED395 ON gig (user_id)');
+        $this->addSql('ALTER TABLE user ADD occupation VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE gig DROP FOREIGN KEY FK_D53020A2A76ED395');
-        $this->addSql('DROP INDEX IDX_D53020A2A76ED395 ON gig');
-        $this->addSql('ALTER TABLE gig DROP user_id');
+        $this->addSql('ALTER TABLE user DROP occupation');
     }
 }
