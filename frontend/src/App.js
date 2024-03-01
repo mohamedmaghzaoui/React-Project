@@ -10,8 +10,8 @@ import Gig from "./Pages/gig/gig";
 import { UserProvider } from "./Contexts/userContext";
 import { Freelancer } from "./Pages/Freelancer/freelance";
 import FavoriteButton from "./Pages/Favourite/FavoriteButton";
+import {DescriptionPage} from "./Pages/gig/components/firstPage"
 
-import { message } from "./Pages/Messages/message";
 import { ProfilePage } from "./Pages/Profile/profile";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -37,6 +37,7 @@ function App() {
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
+                <Route path="/DescriptionPage" element={<DescriptionPage />} />
                 <Route
                   path="/Customer"
                   element={
