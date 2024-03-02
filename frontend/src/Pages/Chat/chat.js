@@ -6,11 +6,11 @@ import { Modal, Button, Form, Card } from "react-bootstrap";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
+ 
 const ChatList = () => {
   const { GetChat, chattitle, } = useContext(ChatContext) || {};
-  const { isOpenNewChat, setIsOpenNewChat} = useState(false);
  const { isCloseNewChat, setIsCloseNewChat}= useState(false);
+ const [isOpenNewChat, setIsOpenNewChat] = useState(false);
   return (
     <div className="container item-center">
       <h2>Chat</h2>
@@ -18,11 +18,11 @@ const ChatList = () => {
      <button
           className="btn btn-primary"
           //hide form
-          onClick={setIsOpenNewChat(false)}
+          onClick={() => setIsOpenNewChat(true)}
         >
           new Chat
         </button>
-        <ChatForm />
+        <ChatForm openNewChat={isOpenNewChat} />
   <div className="container">
  <button onClick={GetChat}>Get Chat</button>
       
