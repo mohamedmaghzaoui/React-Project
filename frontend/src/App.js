@@ -8,6 +8,7 @@ import GigsPage from "./Pages/gigCard/GigPage";
 import GigForm from "./Pages/gigCard/GigForm";
 import Gigs from "./Pages/gigs/Gigs";
 import Gig from "./Pages/gig/gig";
+import ChatList from "./Pages/Chat/chat";
 import { UserProvider } from "./Contexts/userContext";
 import { Freelancer } from "./Pages/Freelancer/freelance";
 import FavoriteButton from "./Pages/Favourite/FavoriteButton";
@@ -42,7 +43,6 @@ function App() {
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
-                <Route path="/chatList" element={<chatList />} />
 
                 <Route
                   path="/Customer"
@@ -52,8 +52,8 @@ function App() {
                   }
                 />
                 <Route path="/favori" element={<FavoriteButton />} />
+                <Route path="/chatList" element={<ChatList />} />
                 <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/chatList" element={<messages />} />
                 <Route
                   path="/freelancer"
                   element={

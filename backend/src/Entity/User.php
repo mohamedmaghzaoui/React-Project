@@ -27,7 +27,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
     #[ORM\OneToMany(targetEntity: "App\Entity\Gig", mappedBy: "user")]
     private Collection $gigs;
-
+    #[ORM\OneToMany(targetEntity: "App\Entity\Message", mappedBy: "user")]
+    private Collection $messages;
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Chat", mappedBy: "user")]
+    private Collection $chats;
     public function __construct(UserPasswordHasher $passwordHasher)
     {
         $this->gigs = new ArrayCollection();
@@ -72,6 +75,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function setMessages(Collection $messages): self
+    {
+        $this->messages = $messages;
+
+        return $this;
+    }
+
+    public function getChats(): Collection
+    {
+        return $this->chats;
+    }
+
+    public function setChats(Collection $chats): self
+    {
+        $this->chats = $chats;
+
+        return $this;
+    }
+
     public function getUsername(): ?string
     {
         return $this->username;

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Chat;
 use App\Entity\User;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -83,6 +84,22 @@ class UserController extends AbstractController
 
         ]);
     }
+
+#[Route('/get_chats', name: 'get_chats')]
+public function getChats(#[CurrentUser] User $user): Response
+{
+    if (null == $user) {
+        return $this->json([
+            'invalid credentials',
+        ], Response::HTTP_UNAUTHORIZED);
+        # code...
+    }
+    return $this->json([
+        $user->getChats(),
+        ]);
+
+}
+
     #[Route('/add_freelancer', name: "add_freelancer")]
     public function addFreelancer(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
     {
@@ -150,4 +167,23 @@ class UserController extends AbstractController
         $entityManager->flush();
         return $this->json(["user changed"]);
     }
+
+
+#[Route('/change_description', name: "change_description")]
+public function changeDescription(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
+{
+    if (null == $user) {
+        return $this->json([
+            'invalid credentials',
+        ], Response::HTTP_UNAUTHORIZED);
+        # code...
+    }
+    $data = json_decode($request->getContent(), true);
+    $user->setDescription($data['description']);
+
+    $entityManager = $doctrine->getManager();
+    $entityManager->persist($user);
+    $entityManager->flush();
+    return $this->json(["description changed"]);
 }
+}}
