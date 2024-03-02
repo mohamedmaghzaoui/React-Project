@@ -43,17 +43,30 @@ function App() {
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
+<<<<<<< HEAD
 
+=======
+                <Route path="/Customer" element={<Customer />} />
+                <Route path="/favori" element={<FavoriteButton />} />
+                {/*profile private route only for freelancer and client role */}
+>>>>>>> 9b4b1b9db6fbb6b3e950a26ec58206acf88d2e20
                 <Route
-                  path="/Customer"
+                  path="/profile"
                   element={
-                    //custom private route that get element and role as parameter
-                    <Customer />
+                    <PrivateRoute
+                      //pass the elemnt and alloroles as props
+                      element={<ProfilePage />}
+                      allowRoles={["ROLE_CLIENT", "ROLE_FREELANCER"]}
+                    />
                   }
                 />
+<<<<<<< HEAD
                 <Route path="/favori" element={<FavoriteButton />} />
                 <Route path="/chatList" element={<ChatList />} />
                 <Route path="/profile" element={<ProfilePage />} />
+=======
+                <Route path="/chatList" element={<messages />} />
+>>>>>>> 9b4b1b9db6fbb6b3e950a26ec58206acf88d2e20
                 <Route
                   path="/freelancer"
                   element={
@@ -66,7 +79,12 @@ function App() {
 
                 {/* Ajoutez une route pour la deuxième page */}
                 <Route path="/SecondPage" element={<SecondPage />} />
-                <Route path="/DescriptionPage" element={<DescriptionPage setCurrentForm={handleBeginClick} />} />
+                <Route
+                  path="/DescriptionPage"
+                  element={
+                    <DescriptionPage setCurrentForm={handleBeginClick} />
+                  }
+                />
                 <Route path="/Customer" element={<Customer />} />
               </Routes>
             </div>

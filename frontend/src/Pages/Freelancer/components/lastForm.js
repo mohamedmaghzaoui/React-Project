@@ -1,5 +1,12 @@
+import { Link } from "react-router-dom";
 import { Progress } from "./progress";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../Contexts/userContext";
+import Login from "../../Home/Login/loginForm";
+
 export const LastForm = (props) => {
+  const { setUsername } = useContext(UserContext);
+  const [isOpenLogin, setIsOpenLogin] = useState(true);
   return (
     <div>
       <Progress third="third" />
@@ -15,13 +22,14 @@ export const LastForm = (props) => {
         changes, you can always revisit your profile settings. Good luck on your
         journey
       </p>
-
-      <button
-        onClick={() => props.setCurrentForm(0)}
-        className="btn btn-success btn-lg col-2 mx-5  "
-      >
+      <Link to={"/profile"} className="btn btn-success btn-lg col-2 mx-5  ">
         Finish
-      </button>
+      </Link>
+      <Login
+        text={"please connect again"}
+        openLogin={isOpenLogin}
+        onCloseLogin={() => setIsOpenLogin(false)}
+      />
     </div>
   );
 };
