@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom";
 import { Progress } from "./progress";
+import { useContext } from "react";
+import { UserContext } from "../../../Contexts/userContext";
 export const LastForm = (props) => {
+  const { setUsername } = useContext(UserContext);
   return (
     <div>
       <Progress third="third" />
@@ -16,12 +20,13 @@ export const LastForm = (props) => {
         journey
       </p>
 
-      <button
-        onClick={() => props.setCurrentForm(0)}
+      <Link
+        onClick={() => setUsername((prev) => prev + "a")}
+        to={"/"}
         className="btn btn-success btn-lg col-2 mx-5  "
       >
         Finish
-      </button>
+      </Link>
     </div>
   );
 };

@@ -121,7 +121,7 @@ class UserController extends AbstractController
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
         return $this->json(["user doesnt not exist" => $data]);
     }
-    #[Route('/change_username', name: "change_username")]
+    #[Route('/change_userdata', name: "change_username")]
     public function changeUsername(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
     {
         if (null == $user) {
@@ -132,9 +132,28 @@ class UserController extends AbstractController
         }
         $data = json_decode($request->getContent(), true);
         $user->setUsername($data['username']);
+        $user->setOccupation($data['occupation']);
+        $user->setCountry($data['country']);
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
         return $this->json(["user changed"]);
+    }
+    #[Route('/change_description', name: "change_description")]
+    public function changeDescription(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
+        $data = json_decode($request->getContent(), true);
+        $user->setDescription($data['description']);
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->json(["description changed"]);
     }
 }

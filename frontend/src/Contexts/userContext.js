@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
     } catch (error) {
       setUsername("");
       setUserRoles("");
+      setUserProfileData("");
       setLoading(false);
     }
   };

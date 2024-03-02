@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Progress } from "./progress";
 import { Table } from "./table";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../Contexts/userContext";
 export const SecondForm = (props) => {
   const [Languages, setLanguages] = useState("");
   const [language, setLanguage] = useState("");
+
   const addLanguage = () => {
     if (!Languages.includes(language)) {
       setLanguages([...Languages, language]);
@@ -25,6 +27,7 @@ export const SecondForm = (props) => {
     try {
       let url = "http://localhost:8000/add_freelancer";
       const response = await axios.post(url, freelancerData);
+
       console.log(response);
     } catch (error) {
       console.log(error);

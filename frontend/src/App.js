@@ -42,15 +42,19 @@ function App() {
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
+                <Route path="/Customer" element={<Customer />} />
+                <Route path="/favori" element={<FavoriteButton />} />
+                {/*profile private route only for freelancer and client role */}
                 <Route
-                  path="/Customer"
+                  path="/profile"
                   element={
-                    //custom private route that get element and role as parameter
-                    <Customer />
+                    <PrivateRoute
+                      //pass the elemnt and alloroles as props
+                      element={<ProfilePage />}
+                      allowRoles={["ROLE_CLIENT", "ROLE_FREELANCER"]}
+                    />
                   }
                 />
-                <Route path="/favori" element={<FavoriteButton />} />
-                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/chatList" element={<messages />} />
                 <Route
                   path="/freelancer"
@@ -64,7 +68,12 @@ function App() {
 
                 {/* Ajoutez une route pour la deuxième page */}
                 <Route path="/SecondPage" element={<SecondPage />} />
-                <Route path="/DescriptionPage" element={<DescriptionPage setCurrentForm={handleBeginClick} />} />
+                <Route
+                  path="/DescriptionPage"
+                  element={
+                    <DescriptionPage setCurrentForm={handleBeginClick} />
+                  }
+                />
                 <Route path="/Customer" element={<Customer />} />
               </Routes>
             </div>

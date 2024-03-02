@@ -16,21 +16,12 @@ const Gig = () => {
 
   return (
     <div>
-      {currentForm === 0 && (
-        <firstPage setCurrentForm={setCurrentForm} />
-      )}
-      {currentForm === 1 && (
-        <fecondPage setCurrentForm={setCurrentForm} />
-      )}
-      
+      {currentForm === 0 && <firstPage setCurrentForm={setCurrentForm} />}
+      {currentForm === 1 && <fecondPage setCurrentForm={setCurrentForm} />}
 
       {/* Boutons de navigation */}
-      {currentForm !== 0 && (
-        <button onClick={handlePrevious}>Previous</button>
-      )}
-      {currentForm !== 4 && (
-        <button onClick={handleNext}>Next</button>
-      )}
+      {currentForm !== 0 && <button onClick={handlePrevious}>Previous</button>}
+      {currentForm !== 4 && <button onClick={handleNext}>Next</button>}
     </div>
   );
 };

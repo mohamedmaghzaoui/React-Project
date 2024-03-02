@@ -1,3 +1,4 @@
+//import libraries and component
 import React, { useContext, useEffect, useState } from "react";
 import "./profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,14 +8,15 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../Contexts/userContext.js";
-import axios from "axios";
-import { Freelancer } from "../Freelancer/freelance.js";
+
 import { EditProfilePopup } from "./EditProfilePopup.js";
 import { Desc } from "./Desc.js";
 import { LanguageForm } from "./LanguageForm.js";
+import { Link } from "react-router-dom";
 
 export const ProfilePage = () => {
-  const { username } = useContext(UserContext); // Assuming setUsername is a function to set username
+  const { userRoles } = useContext(UserContext);
+  const { username } = useContext(UserContext);
   const { userProfileData } = useContext(UserContext);
   const [showPopup, setShowPopup] = useState(false); // Déclaration de showPopup avec useState
   const [showPopupDesc, setShowPopupDesc] = useState(false); // Déclaration de showPopup avec useState
@@ -47,6 +49,7 @@ export const ProfilePage = () => {
           <div className="profile-text">
             <span>Votre nom d'affichage </span>
             <FontAwesomeIcon
+              style={{ cursor: "pointer" }}
               icon={faPencilAlt}
               className="pencil-icon"
               onClick={togglePopup}
@@ -82,7 +85,11 @@ export const ProfilePage = () => {
             <span className="text-left">Description</span>
 
             <span className="text-right" onClick={togglePopupDesc}>
-              Modifier Description
+              <FontAwesomeIcon
+                style={{ cursor: "pointer" }}
+                icon={faPencilAlt}
+                className="pencil-icon"
+              />
             </span>
           </div>
 
@@ -99,18 +106,25 @@ export const ProfilePage = () => {
             <span className="text-left">Langues</span>
 
             <span className="text-right" onClick={togglePopupLanguage}>
-              {userProfileData.languages.map((value) => {
-                return (
-                  <div>
-                    <span>{value}</span>
-                  </div>
-                );
-              })}
+              {userProfileData.languages &&
+                userProfileData.languages.map((value) => {
+                  return (
+                    <div>
+                      <span>{value}</span>
+                    </div>
+                  );
+                })}
             </span>
           </div>
           {showPopupLanguage && <LanguageForm onClose={togglePopupLanguage} />}
         </div>
-        <div className="small-card">Small Card 3</div>
+        <div className="small-card">
+          {userRoles.includes("ROLE_FREELANCER") ? (
+            <span>freelancer</span>
+          ) : (
+            <span>client</span>
+          )}
+        </div>
       </div>
       <div className="space"></div>
       <div className="large-card-container">
@@ -283,9 +297,13 @@ export const ProfilePage = () => {
           <span className="m-5 text fw-bold">
             Prêt à gagner de l'argent selon vos propres règles ?
           </span>
-          <button onClick={Freelancer} className="btn btn-success btn-long">
-            Devenir freelancer{" "}
-          </button>
+          <Link to={"/freelancer"} className="btn btn-success btn-long">
+            {userRoles.includes("ROLE_FREELANCER") ? (
+              <span>See your gigs</span>
+            ) : (
+              <span>Become a freelancer</span>
+            )}
+          </Link>
         </div>
       </div>
     </div>
