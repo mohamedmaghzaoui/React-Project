@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { ChatContext } from "../../../Contexts/chatContext";
 
-export const ChatForm = (props) => {
+export const ChatForm = (props, openNewChat, onCloseNewChat) => {
   
   const [chattitle, setChatForm] = useState();
   const [ChatError, setChatError] = useState("");
@@ -31,9 +31,10 @@ export const ChatForm = (props) => {
       console.log(error);
     }
   };
-
+  if (!openNewChat) {
   return (
     <div>
+       
       <h2>Chose your chat Title</h2>
       <input
         onInput={(e) => handelInput(e)}
@@ -60,5 +61,6 @@ export const ChatForm = (props) => {
         Finish
       </button>
     </div>
-  );
+    );
+      }
 };

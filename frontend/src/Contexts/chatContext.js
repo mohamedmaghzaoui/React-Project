@@ -1,6 +1,7 @@
 //ChatContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import  ChatList from "../Pages/Chat/chat.js";
 axios.defaults.withCredentials = true;
 
 export const ChatContext = createContext();
@@ -23,7 +24,7 @@ export const ChatProvider = ({ children }) => {
   }, []); 
   return (
     <ChatContext.Provider value={{ GetChat: getChatData, chattitle, setChattitle }}>
-      {!loading && children}
+       <ChatList /> 
     </ChatContext.Provider>
   );
 };

@@ -8,14 +8,27 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ChatList = () => {
-  const { GetChat, chattitle, setChattitle } = useContext(ChatContext);
-  
+  const { GetChat, chattitle, } = useContext(ChatContext) || {};
+  const { isOpenNewChat, setIsOpenNewChat} = useState(false);
+ const { isCloseNewChat, setIsCloseNewChat}= useState(false);
   return (
-    <div>
+    <div className="container item-center">
       <h2>Chat</h2>
      <p>Chattitle: {chattitle}</p>
-      <button onClick={GetChat}>Get Chat</button>
-      <ChatForm />
+     <button
+          className="btn btn-primary"
+          //hide form
+          onClick={setIsOpenNewChat(false)}
+        >
+          new Chat
+        </button>
+        <ChatForm />
+  <div className="container">
+ <button onClick={GetChat}>Get Chat</button>
+      
+      </div>
+
+      
     </div>
   );
 }
