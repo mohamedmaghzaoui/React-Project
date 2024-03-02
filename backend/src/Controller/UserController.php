@@ -156,26 +156,6 @@ public function getChats(#[CurrentUser] User $user): Response
         $entityManager->flush();
         return $this->json(["user changed"]);
     }
-<<<<<<< HEAD
-
-
-#[Route('/change_description', name: "change_description")]
-public function changeDescription(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
-{
-    if (null == $user) {
-        return $this->json([
-            'invalid credentials',
-        ], Response::HTTP_UNAUTHORIZED);
-        # code...
-    }
-    $data = json_decode($request->getContent(), true);
-    $user->setDescription($data['description']);
-
-    $entityManager = $doctrine->getManager();
-    $entityManager->persist($user);
-    $entityManager->flush();
-    return $this->json(["description changed"]);
-=======
     #[Route('/change_description', name: "change_description")]
     public function changeDescription(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
     {
@@ -193,6 +173,4 @@ public function changeDescription(Request $request, ManagerRegistry $doctrine, #
         $entityManager->flush();
         return $this->json(["description changed"]);
     }
->>>>>>> 9b4b1b9db6fbb6b3e950a26ec58206acf88d2e20
 }
-}}
