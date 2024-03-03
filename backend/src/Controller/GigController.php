@@ -43,12 +43,31 @@ class GigController extends AbstractController
     }
 
 
-    #[Route("/gig/{id}", name: "gig")]
-
-    public function show(Gig $gig): Response
+    #[Route("/allGigs", name: "allGigs")]
+    public function getAllGigs(ManagerRegistry $doctrine): Response
     {
-        return $this->render('gig/show.html.twig', [
-            'gig' => $gig,
-        ]);
+
+        $repository = $doctrine->getRepository(Gig::class);
+        $gigs = $repository->findAll();
+
+        $serializedGigs = [];
+        foreach ($gigs as $gig) {
+            $user = $gig->getUser();
+
+            $serializedGigs[] = [
+                'id' => $gig->getId(),
+                'title' => $gig->getTitle(),
+                'description' => $gig->getDescription(),
+                'price' => $gig->getPrice(),
+                'category' => $gig->getCategory(),
+                'username' => $user ? $user->getUsername() : null,
+                'userDescription' => $user ? $user->getDescription() : null,
+                'userCountry' => $user ? $user->getCountry() : null,
+                'userLanguages' => $user ? $user->getLanguages() : null,
+                'userOccupation' => $user ? $user->getOccupation() : null,
+            ];
+        }
+
+        return $this->json($serializedGigs);
     }
 }

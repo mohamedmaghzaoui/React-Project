@@ -1,51 +1,53 @@
 .gigCard {
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  display: inline-block; /* Display the gig cards inline */
+  width: 400px; /* Set a fixed width for each gig card */
 }
 
 .gigCard img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.25rem;
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
 }
 
 .user img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .star img {
-    width: 20px;
-    height: auto;
-    margin-right: 5px;
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
 }
 
 .details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .item-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .price {
-    text-align: right;
-    margin-left: 15rem;
+  text-align: right;
+  margin-left: 15rem;
 }
 
 .price span {
-    font-size: 0.875rem;
-    color: #6c757d;
+  font-size: 0.875rem;
+  color: #6c757d;
 }
 
 .price h1 {
-    font-size: 1rem;
-    color: #495057;
+  font-size: 1rem;
+  color: #495057;
 }
