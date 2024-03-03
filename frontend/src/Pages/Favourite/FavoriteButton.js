@@ -14,7 +14,7 @@ const FavoriteButton = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingList, setEditingList] = useState(null);
 
-  // Load lists from localStorage on component mount
+  
   useEffect(() => {
     const storedLists = localStorage.getItem("favoriteLists");
     if (storedLists) {
