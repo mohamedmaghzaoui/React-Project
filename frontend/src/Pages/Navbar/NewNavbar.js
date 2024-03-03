@@ -34,7 +34,7 @@ const NewNavbar = () => {
   return (
     <nav id="navbar" className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
       <div className="container">
-        <a id="navbar-brand" className="navbar-brand" href="/">FreeEz</a>
+        <a id="navbar-brand" className="navbar-brand" href="/">Gig-Genius</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span id="navbar-toggler-icon" className="navbar-toggler-icon"></span>
         </button>

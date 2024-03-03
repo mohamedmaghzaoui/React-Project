@@ -28,7 +28,7 @@ function MainNavbar() {
             className="offset navbar-brand fw-bold text-success"
             to="/"
           >
-            FreeEz
+            Gig-Genius
           </Link>
 
           <button
