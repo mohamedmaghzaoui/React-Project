@@ -26,7 +26,7 @@ const IMAGE_STYLE = {
   marginRight: "20px",
 };
 
-export default function Login({ openLogin, onCloseLogin }) {
+export default function Login({ openLogin, onCloseLogin, text }) {
   // Generate JSX code for error message
 
   if (!openLogin) return null;
@@ -55,7 +55,9 @@ export default function Login({ openLogin, onCloseLogin }) {
           />
         </div>
         <div style={FORM_STYLE}>
-          <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Login</div>
+          <div style={{ fontSize: "1.5rem", marginBottom: "20px" }}>
+            {text ? text : <span>login</span>}
+          </div>
           <RenderForm closeForm={onCloseLogin} />
         </div>
       </div>

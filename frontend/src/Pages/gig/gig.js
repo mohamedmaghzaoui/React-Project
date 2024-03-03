@@ -14,7 +14,7 @@ const Gig = () => {
   ];
 
   return (
-    <div className="gig">
+<div className="gig">
       <div className="container">
         <div className="left">
           <span className="breadCrumbs">Graphics & Design</span>
@@ -215,6 +215,9 @@ const Gig = () => {
         <div className="right"></div> {/* This div was missing in your code */}
       </div>
     </div>
+
+    
+
   );
 };
 

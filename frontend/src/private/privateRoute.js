@@ -8,7 +8,7 @@ export const PrivateRoute = ({ element, allowRoles }) => {
 
   // if userRoles don't contain the allowRoles, navigate to the home page
   if (!userRoles || !userRoles.some((role) => allowRoles.includes(role))) {
-    // Redirect to login
+    // Redirect to home page
     return <Navigate to="/" />;
   }
 

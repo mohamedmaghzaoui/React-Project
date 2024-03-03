@@ -10,13 +10,12 @@ export const DescriptionPage = () => {
       title: "Tell us about your gig",
       icon: AiOutlineProfile,
       description:
-        "Create a Gig of the service you’re offering and start selling instantly."
+        "Create a Gig of the service you’re offering and start selling instantly.",
     },
     {
       title: "Publish your gig",
       icon: MdOutlinePublish,
-      description:
-        "Publish your Gig and start selling instantly."
+      description: "Publish your Gig and start selling instantly.",
     },
   ];
 
@@ -42,13 +41,20 @@ export const DescriptionPage = () => {
         ))}
       </div>
       <div className="col-5">
-        <video className="img-fluid" controls style={{ width: "100%", height: "auto" }}>
-          <source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/v1/video-attachments/generic_asset/asset/966b0ae895e85b526600eff1d21e3cf4-1674728725728/Seller%20onboarding%20video%20HQ" type="video/mp4" />
+        <video
+          className="img-fluid"
+          controls
+          style={{ width: "100%", height: "auto" }}
+        >
+          <source
+            src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/v1/video-attachments/generic_asset/asset/966b0ae895e85b526600eff1d21e3cf4-1674728725728/Seller%20onboarding%20video%20HQ"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
       </div>
       {/* Utilisez Link pour créer un lien vers la deuxième page */}
-      <Link to="/secondPage" className="btn btn-success col-1 offset-1">
+      <Link to="/addgig2" className="btn btn-success col-1 offset-1">
         Begin
       </Link>
     </div>
