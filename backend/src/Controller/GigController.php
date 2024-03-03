@@ -1,45 +1,48 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Gig;
+use App\Entity\User;
 use App\Form\GigType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class GigController extends AbstractController
 {
-    
+
     #[Route("/newGig", name: "newGig")]
 
-    public function new(Request $request ,ManagerRegistry $doctrine): Response
+    public function addGig(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
     {
-        {
-            
-        
-        
+        if (null == $user || !in_array('ROLE_FREELANCER', $user->getRoles())) {
+            return $this->json([
+                'message' => 'Invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            // You may also want to throw an exception or redirect the user as needed.
         }
 
+        $data = json_decode($request->getContent(), true);
         $gig = new Gig();
-        $form = $this->createForm(GigType::class, $gig);
-        $form->handleRequest($request);
+        $userId = $user->getId();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager =$doctrine->getManager();
-            $entityManager->persist($gig);
-            $entityManager->flush();
+        $gig->setTitle($data['gigTitle']);
+        $gig->setDescription($data['gigDescription']);
+        $gig->setPrice($data['gigPrice']);
+        $gig->setCategory($data['category']);
+        $gig->setUser($user);
 
-            return $this->redirectToRoute('dashboard'); // Redirection après la création du gig
-        }
-
-        return $this->render('gig/new.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($gig);
+        $entityManager->flush();
+        return $this->json(["gig is added"]);
     }
 
-    
+
     #[Route("/gig/{id}", name: "gig")]
 
     public function show(Gig $gig): Response

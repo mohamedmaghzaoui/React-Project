@@ -29,8 +29,10 @@ class Gig
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private $userProfileImage;
 
-    #[ORM\Column(type: "string", length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private $gigImage;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $category = null;
 
     public function getGigImage(): ?string
     {
@@ -112,6 +114,42 @@ class Gig
     public function setPrice($price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     */
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     */
+    public function setUser($user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
