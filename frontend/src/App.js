@@ -65,9 +65,9 @@ function App() {
                 />
 
                 {/* Ajoutez une route pour la deuxième page */}
-                <Route path="/SecondPage" element={<SecondPage />} />
+                <Route path="/addgig2" element={<SecondPage />} />
                 <Route
-                  path="/DescriptionPage"
+                  path="/addgig"
                   element={
                     <DescriptionPage setCurrentForm={handleBeginClick} />
                   }

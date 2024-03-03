@@ -54,7 +54,7 @@ export const DescriptionPage = () => {
         </video>
       </div>
       {/* Utilisez Link pour créer un lien vers la deuxième page */}
-      <Link to="/addgig2" className="btn btn-success col-1 offset-1">
+      <Link to="/secondPage" className="btn btn-success col-1 offset-1">
         Begin
       </Link>
     </div>
