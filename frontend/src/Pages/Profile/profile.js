@@ -1,5 +1,6 @@
 //import libraries and component
 import React, { useContext, useEffect, useState } from "react";
+import axios from 'axios';
 import "./profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,6 +32,49 @@ export const ProfilePage = () => {
   const togglePopupLanguage = () => {
     setShowPopupLanguage(!showPopupLanguage);
   };
+
+  const [email, setEmail] = useState();
+    useEffect(() => {
+        const fetchVerif = async () => {
+            try {
+                
+                    const response = await axios.post("http://localhost:8000/verify_stripe");
+                    
+                   
+                        setEmail(response.data.email);
+                    
+                
+            } catch (error) {
+                console.error("Error:", error);
+                // Gérer l'erreur ici si nécessaire
+            }
+        };
+
+        fetchVerif();
+    }, []);
+
+  const [stripeurl, setStripeurl] = useState(null);
+
+  const fetchData = async () => {
+     
+      try {
+          const response = await axios.post("http://localhost:8000/add_stripe");
+        
+          setStripeurl(response.data.link);
+      } catch (error) {
+          console.error("Error:", error);
+      }
+  };
+
+  const handleClick = () => {
+      fetchData();
+  };
+
+  useEffect(() => {
+      if (stripeurl) {
+          window.location.href = stripeurl;
+      }
+  }, [stripeurl]);
 
   return (
     <div className="profile-page">
@@ -297,9 +341,16 @@ export const ProfilePage = () => {
           <span className="m-5 text fw-bold">
             Prêt à gagner de l'argent selon vos propres règles ?
           </span>
+          {userRoles.includes("ROLE_FREELANCER") && email === null ? (
+              <button className='btn btn-light text-red mt-3 mb-3' onClick={handleClick}>Créer/Lier son compte Stripe</button>
+            
+            ) : (
+              <p></p>
+            )}
           <Link to={"/freelancer"} className="btn btn-success btn-long">
             {userRoles.includes("ROLE_FREELANCER") ? (
               <span>See your gigs</span>
+             
             ) : (
               <span>Become a freelancer</span>
             )}

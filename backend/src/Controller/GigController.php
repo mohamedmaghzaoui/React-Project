@@ -36,6 +36,28 @@ class GigController extends AbstractController
         $gig->setCategory($data['category']);
         $gig->setUser($user);
 
+        $stripe = new \Stripe\StripeClient('sk_test_h8UK0oVZURqGfc3UR7tI5VXT00uFt3iGPi');
+        
+        
+        $gig_stripe = $stripe->products->create([
+            'name' => $gig->getTitle(),
+            'description' => $gig->getDescription(),
+            'shippable' => true
+          ], ['stripe_account' => $user->getAcct()]);
+
+        $gig_id = $gig_stripe->id;
+
+        $gig->setStripeID($gig_id);
+        
+        $gig_price = $stripe->prices->create([
+            'product' => $gig->getStripeID(),
+            'unit_amount' => $gig->getPrice()*100,
+            'currency' => 'eur',
+          ], ['stripe_account' => $user->getAcct()]);
+
+          $gig->setStripePriceID($gig_price->id);
+
+          
         $entityManager = $doctrine->getManager();
         $entityManager->persist($gig);
         $entityManager->flush();

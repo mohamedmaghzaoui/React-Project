@@ -118,8 +118,6 @@ public function getChats(#[CurrentUser] User $user): Response
             # code...
         }
 
-
-
         $data = json_decode($request->getContent(), true);
 
         $user->setDescription($data['description']);
@@ -127,17 +125,80 @@ public function getChats(#[CurrentUser] User $user): Response
         $user->setOccupation($data['occupation']);
         $user->setRoles(["ROLE_FREELANCER"]); // Initial role set to 'client'
         $user->setLanguages($data["languages"]);
+       
 
         // Persist the user to the database
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
 
-
+       
         // Authenticate the user if needed (optional)
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
         return $this->json(["user doesnt not exist" => $data]);
     }
+
+    #[Route('/add_stripe', name: "add_stripe")]
+    public function addStripe(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
+
+        $stripe = new \Stripe\StripeClient('sk_test_h8UK0oVZURqGfc3UR7tI5VXT00uFt3iGPi');
+
+        $account = $stripe->accounts->create([
+         'type' => 'standard',
+        ]);
+       
+       
+       
+       
+        $link = $stripe->accountLinks->create([
+           'account' => $account->id,
+           'refresh_url' => 'http://127.0.0.1:3000/profile',
+           'return_url' => 'http://127.0.0.1:3000/profile',
+           'type' => 'account_onboarding',
+         ]);  
+
+       
+        $user->setAcct($account->id);
+
+        // Persist the user to the database
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $url = $link->url;
+        // Authenticate the user if needed (optional)
+        // Note: Authenticating the user immediately might not be necessary depending on your use case.
+        return $this->json(["link" => $url]);
+    }
+
+    #[Route('/verify_stripe', name: "verify_stripe")]
+    public function verifyStripe(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
+
+        $stripe = new \Stripe\StripeClient('sk_test_h8UK0oVZURqGfc3UR7tI5VXT00uFt3iGPi');
+
+        $retrieve = $stripe->accounts->retrieve($user->getAcct(), []);
+
+        $email = $retrieve->email;
+        
+        // Authenticate the user if needed (optional)
+        // Note: Authenticating the user immediately might not be necessary depending on your use case.
+        return $this->json(["email" => $email]);
+    }
+
     #[Route('/change_userdata', name: "change_username")]
     public function changeUsername(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
     {

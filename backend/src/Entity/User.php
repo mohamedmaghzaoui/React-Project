@@ -40,6 +40,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 55)]
     private ?string $username = null;
 
+    
+    #[ORM\Column(length: 255)]
+    private ?string $acct = "";
+    
+    
     #[ORM\Column]
     private array $roles = [];
 
@@ -112,7 +117,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getAcct(): ?string
+    {
+        return $this->acct;
+    }
 
+    public function setAcct(string $acct): static
+    {
+        $this->acct = $acct;
+
+        return $this;
+    }
     /** mettre 'name, lastname username et email' **/
 
     /**

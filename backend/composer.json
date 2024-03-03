@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
         "nelmio/cors-bundle": "^2.4",
+        "stripe/stripe-php": "^13.13",
         "symfony/asset": "7.*",
         "symfony/console": "7.*",
         "symfony/dotenv": "7.*",

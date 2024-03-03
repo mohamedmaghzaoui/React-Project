@@ -20,6 +20,12 @@ class Gig
     #[ORM\Column(type: "string", length: 255)]
     private $title;
 
+    #[ORM\Column(length: 255)]
+    private ?string $stripe_id = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $stripe_price_id = null;
+
     #[ORM\Column(type: "text")]
     private $description;
 
@@ -82,6 +88,30 @@ class Gig
         return $this;
     }
 
+    public function getStripeID(): ?string
+    {
+        return $this->stripe_id;
+    }
+
+    public function setStripeID(string $stripe_id): static
+    {
+        $this->stripe_id = $stripe_id;
+
+        return $this;
+    }
+
+    public function getStripePriceID(): ?string
+    {
+        return $this->stripe_price_id;
+    }
+
+    public function setStripePriceID(string $stripe_price_id): static
+    {
+        $this->stripe_price_id = $stripe_price_id;
+
+        return $this;
+    }
+    
     /**
      * Get the value of description
      */
