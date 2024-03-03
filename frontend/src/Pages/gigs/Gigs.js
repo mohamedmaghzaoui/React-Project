@@ -3,6 +3,8 @@ import './Gigs.css';
 import plus from "../gigCard/Components/plus.png";
 import GigCard from "../gigCard/Components/GigCard";
 import gigsData from "../../Data.json";
+import { Link } from "react-router-dom"; // Importez Link depuis react-router-dom
+
 
 const Gigs = () => {
     const [gigs, setGigs] = useState(gigsData);
@@ -26,6 +28,7 @@ const Gigs = () => {
                         <input type="text" placeholder="min" />
                         <input type="text" placeholder="max" />
                         <button>Search</button>
+
                     </div>
                     <div className="right">
                         <span className="sortBy">Sort by : </span>
