@@ -46,12 +46,6 @@ function MainNavbar() {
           {showSearchBar && ( // Conditionally render search bar
             <SearchBar />
           )}
-          <span className="mx-5">{username}</span>
-          {username ? (
-            <button className="btn btn-danger">logout</button>
-          ) : (
-            <span className="mx-5"></span>
-          )}
 
           <div
             id="navbarSupportedContent"

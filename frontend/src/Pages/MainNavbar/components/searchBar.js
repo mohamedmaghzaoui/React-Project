@@ -1,16 +1,15 @@
 export const SearchBar = () => {
   return (
-    <div>
-      <form
-        style={{ position: "fixed", marginTop: "-15px" }}
-        class="d-flex col-4"
-        role="search"
-      >
-        <input className="form-control " type="text" />
-        <button class="btn btn-outline-dark" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-1 col-9"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success" type="submit">
+        Search
+      </button>
+    </form>
   );
 };
