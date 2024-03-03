@@ -51,3 +51,19 @@
   font-size: 1rem;
   color: #495057;
 }
+
+.link {
+    text-decoration: none; /* Supprimer l'effet de soulignement */
+    color: inherit; /* Utiliser la couleur par défaut du texte */
+    cursor: pointer; /* Indiquer qu'il s'agit d'un élément cliquable */
+    display: inline-block; /* Rendre le lien en bloc pour permettre le dimensionnement */
+  }
+  
+  .link:hover {
+    opacity: 0.8; /* Réduire légèrement l'opacité lorsqu'on survole le lien */
+  }
+  
+  .link:focus {
+    outline: none; /* Supprimer la bordure de mise au point par défaut */
+  }
+  

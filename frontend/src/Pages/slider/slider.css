@@ -1,0 +1,39 @@
+.slider {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .slider button:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  .slider button.prev {
+    left: 10px;
+  }
+  
+  .slider button.next {
+    right: 10px;
+  }
+  
+  .slider .slide {
+    position: relative;
+    width: 100%; /* Assurez-vous que le conteneur de la diapositive a une largeur de 100% */
+  }
+  
+  .slider img {
+    width: 50%; /* Assurez-vous que l'image à l'intérieur du slider a une largeur de 100% */
+    height: auto; /* Assurez-vous que la hauteur de l'image est automatiquement ajustée */
+  }
+  

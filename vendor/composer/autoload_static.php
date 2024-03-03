@@ -106,7 +106,7 @@ class ComposerStaticInit3ba5865ee439cf319452b0df1a1dfb7c
         ),
         'Doctrine\\ORM\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM',
+            0 => __DIR__ . '/..' . '/doctrine/orm/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
