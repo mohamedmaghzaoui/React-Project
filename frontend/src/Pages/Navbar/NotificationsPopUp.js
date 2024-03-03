@@ -64,6 +64,9 @@ export const Notifications =({ openPop, onClosePop })=> {
       <button style={{ position: "absolute", top: "5px", right: "5px", border: "none", background: "none", cursor: "pointer" }} onClick={onClosePop}>x</button>
       <div className="title">Notifications</div>
       <br />
+      No notifications yet 
+      <br />
+      Stay tuned
       <div className="notifications">{renderNotifications}</div>
     </div>
   );

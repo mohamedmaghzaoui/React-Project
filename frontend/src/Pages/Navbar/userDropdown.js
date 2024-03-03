@@ -27,8 +27,13 @@ export const UserDropDown = () => {
         <Link to={"/freelancer"} className="dropdown-item" href="#">
           Become a freelancer
         </Link>
+        
       </li>
       <hr />
+      <li><Link to={"/Gigs"} className="dropdown-item" href="#">
+          Gigs
+        </Link></li>
+        <hr/>
       <li>
         <Link className="dropdown-item" href="#">
           Setting

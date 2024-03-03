@@ -29,10 +29,10 @@ const Gigs = () => {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">FreeEZ GRAPHICS&DESIGN</span>
+        <span className="breadcrumbs">Gig-Genius GRAPHICS&DESIGN</span>
         <h1>AI Artist</h1>
         <p>
-          Explore the boundaries of art and technology with FreeEZ AI artists.
+          Explore the boundaries of art and technology with Gig-Genius AI artists.
         </p>
         <div className="menu">
           <div className="left">

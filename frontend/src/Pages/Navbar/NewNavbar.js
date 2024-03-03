@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { GoSearch, GoHeart, GoMail, GoBell, GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
 import "./NewNavbar.css";
+import { UserDropDown } from "./userDropdown";
 import { Notifications } from "./NotificationsPopUp";
-import {UserDropDown} from'./userDropdown'
-const SearchForm = () => (
 
+const SearchForm = () => (
   <form id="search-form" className="form-inline mx-auto">
     <div className="input-group">
-      <input id="search-input" className="form-control" type="search" placeholder="Quel service rechercheriez-vous aujourd'hui?" aria-label="Search" />
+      <input
+        id="search-input"
+        className="form-control"
+        type="search"
+        placeholder="Quel service rechercheriez-vous aujourd'hui?"
+        aria-label="Search"
+      />
       <div className="input-group-append">
-        <button id="btn-icon" className="btn btn-success btn-icon" type="submit" data-toggle="tooltip" data-bs-tooltip="Rechercher"><GoSearch /></button>
+        <button
+          id="btn-icon"
+          className="btn btn-success btn-icon"
+          type="submit"
+          data-toggle="tooltip"
+          data-bs-tooltip="Rechercher"
+        >
+          <GoSearch />
+        </button>
       </div>
     </div>
   </form>
@@ -19,7 +34,12 @@ const SearchForm = () => (
 const WelcomeDropdownItem = () => (
   <li>
     <Link className="dropdown-item" to="#">
-      <span className="fw-medium">hello<br /><span style={{ fontSize: "15px", color: "#62646A" }}>Découvrez notre plateforme</span></span>
+      <span className="fw-medium">
+        hello<br />
+        <span style={{ fontSize: "15px", color: "#62646A" }}>
+          Découvrez notre plateforme
+        </span>
+      </span>
     </Link>
   </li>
 );
@@ -29,21 +49,60 @@ const NewNavbar = () => {
   const [isOpenJoin, setIsOpenJoin] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [notification, setNotifications] = useState(false);
-  
+
+  const [openPop, setOpenPop] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("https://api.example.com/notifications")
+      .then((response) => {
+        setNotifications(response.data.notifications);
+      })
+      .catch((error) => {
+        console.error("Error fetching notifications:", error);
+      });
+  }, []);
+
+  const handleNotificationClick = () => {
+    setOpenPop(!openPop);
+  };
 
   return (
-    <nav id="navbar" className="navbar navbar-expand-lg navbar-dark bg-custom mb-4">
+    <nav
+      id="navbar"
+      className="navbar navbar-expand-lg navbar-dark bg-custom mb-4"
+    >
       <div className="container">
-        <a id="navbar-brand" className="navbar-brand" href="/">Gig-Genius</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a id="navbar-brand" className="navbar-brand" href="/">
+          Gig-Genius
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span id="navbar-toggler-icon" className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <SearchForm />
           <ul id="navbar-nav" className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle mx-3 text-dark" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Commandes</Link>
-              <div className="dropdown-menu"><WelcomeDropdownItem /></div>
+              <Link
+                className="nav-link dropdown-toggle mx-3 text-dark"
+                to="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Commandes
+              </Link>
+              <div className="dropdown-menu">
+                <WelcomeDropdownItem />
+              </div>
             </li>
             {[GoHeart, GoMail, GoBell, GoPerson].map((Icon, index) => (
               <li className="nav-item" key={index}>
@@ -54,6 +113,9 @@ const NewNavbar = () => {
                   data-toggle="tooltip"
                   data-bs-tooltip={
                     ["Cœur", "Messagerie", "Cloche", "Profil"][index]
+                  }
+                  onClick={() =>
+                    index === 2 ? handleNotificationClick() : null
                   }
                 >
                   {Icon == GoHeart ? (
@@ -71,7 +133,7 @@ const NewNavbar = () => {
                   {Icon == GoBell ? (
                     <Link to={"/notif"}>
                       {" "}
-                      <Icon  />{" "}
+                      <Icon />{" "}
                     </Link>
                   ) : null}
                   {Icon == GoPerson ? (
@@ -95,6 +157,9 @@ const NewNavbar = () => {
           {isOpenJoin && <JoinModal onClose={() => setIsOpenJoin(false)} />}
         </div>
       </div>
+      {openPop && (
+        <Notifications openPop={openPop} onClosePop={handleNotificationClick} />
+      )}
     </nav>
   );
 };
@@ -106,8 +171,12 @@ const Modal = ({ onClose, children }) => (
   </div>
 );
 
-const LoginModal = ({ onClose }) => <Modal onClose={onClose}>Content for the login modal</Modal>;
+const LoginModal = ({ onClose }) => (
+  <Modal onClose={onClose}>Content for the login modal</Modal>
+);
 
-const JoinModal = ({ onClose }) => <Modal onClose={onClose}>Content for the join modal</Modal>;
+const JoinModal = ({ onClose }) => (
+  <Modal onClose={onClose}>Content for the join modal</Modal>
+);
 
 export default NewNavbar;

@@ -1,5 +1,5 @@
 // Home.js
-import React from "react";
+import React ,  { useContext, useEffect, useState }from "react";
 import { ServicesIconsList } from "./Components/ServicesIconsList";
 import "./Css/home.css";
 
@@ -8,8 +8,16 @@ import { Footer } from "./Components/Footer";
 import { Cards } from "./Components/Card";
 //styles using css modules
 import styles from "./Css/home.module.css";
+import { UserContext } from "../../Contexts/userContext.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWaveSquare,
+} from "@fortawesome/free-solid-svg-icons";
+
 
 export const Home = () => {
+  const { username } = useContext(UserContext);
+
   return (
     //begin home page container
     <div>
@@ -20,8 +28,8 @@ export const Home = () => {
           <div style={{ marginTop: "7%" }} className="row container-fluid">
             {/* first element*/}
             <div className=" px-5 col-8 ">
-              <h1 className=" text-light     fw-bold">
-                Find the right Freelance
+              <h1 className=" text-light     fw-bold"> <FontAwesomeIcon icon={faWaveSquare} style={{color: "#FFD43B",}} /> Hi<span className="mx-5">{username}</span>
+<br/>Find the right Freelance
               </h1>
               <h1 className=" text-light  fw-bold">do the right Work</h1>
               <p className="text-light fw-semibold fs-5">

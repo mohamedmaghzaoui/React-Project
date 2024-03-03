@@ -5,7 +5,7 @@ import React from 'react';
 import MonImage from '../src/imageheader.png';
 import ImageService from '../src/rectanglegris.png';
 
-class App extends React.Component {
+class Decouvrir extends React.Component {
 render() {
   return (
     <div>
@@ -348,4 +348,4 @@ render() {
 }
 }
 
-export default App;
+export default Decouvrir;
