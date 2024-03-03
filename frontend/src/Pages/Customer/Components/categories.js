@@ -4,7 +4,7 @@ import styles from "../customer.module.css";
 import { CategoriesCard } from "./categoriesCard";
 export const Categories = () => {
   //dynamic category change
-  const [Category, setCategory] = useState("Chose your Category");
+  const [Category, setCategory] = useState("Technology");
   //category lisy
   const categories = ["Technology", "Graphics", "Animation", "Design"];
   return (
@@ -45,7 +45,7 @@ export const Categories = () => {
         </div>
         <br />
       </div>
-      ;
+      ;{/* pass the category name as prop */}
       <CategoriesCard Category={Category} />
     </div>
   );

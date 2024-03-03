@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Chat;
 use App\Entity\User;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -79,10 +80,34 @@ class UserController extends AbstractController
         return $this->json([
             "userid" => $user->getId(),
             "username" => $user->getUsername(),
-            "role" => $user->getRoles()
+            "role" => $user->getRoles(),
+            "userProfileData" => [
+                "occupation" => $user->getOccupation(),
+                "description" => $user->getDescription(),
+                "languages" => $user->getLanguages(),
+                "country" => $user->getCountry(),
+                "email" => $user->getEmail()
+            ]
+
 
         ]);
     }
+
+#[Route('/get_chats', name: 'get_chats')]
+public function getChats(#[CurrentUser] User $user): Response
+{
+    if (null == $user) {
+        return $this->json([
+            'invalid credentials',
+        ], Response::HTTP_UNAUTHORIZED);
+        # code...
+    }
+    return $this->json([
+        $user->getChats(),
+        ]);
+
+}
+
     #[Route('/add_freelancer', name: "add_freelancer")]
     public function addFreelancer(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
     {
@@ -96,27 +121,6 @@ class UserController extends AbstractController
 
 
         $data = json_decode($request->getContent(), true);
-        $uploadedFile = $request->files->get('user_image');
-
-        if ($uploadedFile instanceof UploadedFile) {
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-
-            try {
-                $uploadedFile->move(
-                    $this->getParameter('user_images_directory'),
-                    $newFilename
-                );
-            } catch (\Exception $e) {
-                return $this->json([
-                    'message' => 'Error uploading file',
-                ], Response::HTTP_INTERNAL_SERVER_ERROR);
-            }
-
-            $user->setUserImage($newFilename);
-        }
-
-
 
         $user->setDescription($data['description']);
         $user->setCountry($data['country']);
@@ -134,7 +138,7 @@ class UserController extends AbstractController
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
         return $this->json(["user doesnt not exist" => $data]);
     }
-    #[Route('/change_username', name: "change_username")]
+    #[Route('/change_userdata', name: "change_username")]
     public function changeUsername(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
     {
         if (null == $user) {
@@ -145,9 +149,28 @@ class UserController extends AbstractController
         }
         $data = json_decode($request->getContent(), true);
         $user->setUsername($data['username']);
+        $user->setOccupation($data['occupation']);
+        $user->setCountry($data['country']);
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
         return $this->json(["user changed"]);
+    }
+    #[Route('/change_description', name: "change_description")]
+    public function changeDescription(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
+        $data = json_decode($request->getContent(), true);
+        $user->setDescription($data['description']);
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->json(["description changed"]);
     }
 }

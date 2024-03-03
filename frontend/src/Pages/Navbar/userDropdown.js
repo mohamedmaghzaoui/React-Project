@@ -9,7 +9,7 @@ export const UserDropDown = () => {
     try {
       await axios.get("http://localhost:8000/logout");
     } catch (error) {
-      setUsername(""); //symfony will return error when calling this route with axios
+      setUsername((prev) => prev + "a"); //symfony will return error when calling this route with axios
     }
   };
   return (

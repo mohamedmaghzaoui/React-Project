@@ -4,6 +4,7 @@ import * as yup from "yup"; //yup library for error validation
 import { yupResolver } from "@hookform/resolvers/yup"; //yup resolver to connect between useForm and yup
 import { useContext, useState } from "react";
 import { UserContext } from "../../../../Contexts/userContext";
+import { Navigate } from "react-router-dom";
 
 const FORM_STYLE = {
   flex: "1",
@@ -44,6 +45,7 @@ export const RenderForm = (props) => {
 
       setUsername((prev) => prev + "a"); //change the username state by adding letter a  to re render
       props.closeForm();
+      <Navigate to="/profile" />;
     } catch (error) {
       //if erros is 401 show invalid credential error
       if (error.response && error.response.status === 401) {

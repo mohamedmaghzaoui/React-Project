@@ -7,8 +7,8 @@ export const Cards = () => {
   const arrayCards = [
     "Web design",
     "web development",
-    "Photographie",
-    "Marketing",
+    "Mobilde development",
+    "backend development ",
   ];
   return (
     <div className="py-1 ">

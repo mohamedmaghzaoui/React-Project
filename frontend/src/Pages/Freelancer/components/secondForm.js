@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Progress } from "./progress";
 import { Table } from "./table";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../Contexts/userContext";
 export const SecondForm = (props) => {
   const [Languages, setLanguages] = useState("");
   const [language, setLanguage] = useState("");
+
   const addLanguage = () => {
     if (!Languages.includes(language)) {
       setLanguages([...Languages, language]);
@@ -24,11 +26,8 @@ export const SecondForm = (props) => {
     console.log(freelancerData);
     try {
       let url = "http://localhost:8000/add_freelancer";
-      const response = await axios.post(url, freelancerData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(url, freelancerData);
+
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -57,7 +56,7 @@ export const SecondForm = (props) => {
             class="form-select col"
             aria-label="Default select example"
           >
-            <option selected>Select your current Occupation</option>
+            <option selected>Technology</option>
             <option value="Technology">Technology</option>
             <option value="Graphics">Graphics</option>
             <option value="Animation">Animation</option>

@@ -1,5 +1,7 @@
 import { Technology } from "./category";
 import { Graphics } from "./category";
+import { Animations } from "./category";
+import { Design } from "./category";
 
 export const CategoriesCard = (props) => {
   let categoryCard = Technology;
@@ -12,6 +14,12 @@ export const CategoriesCard = (props) => {
       break;
     case "Graphics":
       categoryCard = Graphics;
+      break;
+    case "Animation":
+      categoryCard = Animations;
+      break;
+    case "Design":
+      categoryCard = Design;
       break;
     default:
       break;
