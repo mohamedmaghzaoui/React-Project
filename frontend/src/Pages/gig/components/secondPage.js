@@ -88,7 +88,7 @@ const SecondPage = ({ setCurrentForm }) => {
           {/* Utilisez Link pour créer un lien vers la première page */}
           {/* Utilisez Link pour créer un lien vers la première page */}
           <button className="btn btn-success">Add</button>
-          <Link to="/DescriptionPage" className="btn btn-success">
+          <Link to="/addgig" className="btn btn-success">
             Back
           </Link>
         </div>
