@@ -9,6 +9,9 @@ const Gigs = () => {
   const [gigs, setGigs] = useState(null);
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
+  const [searchedGigs, setSearchedGigs] = useState("");
+  const [minValue, setMinValue] = useState("");
+  const [maxValue, setMaxValue] = useState("");
   const getGigData = async () => {
     try {
       const response = await axios.get("http://localhost:8000/allGigs");
@@ -32,13 +35,22 @@ const Gigs = () => {
         <span className="breadcrumbs">Gig-Genius GRAPHICS&DESIGN</span>
         <h1>AI Artist</h1>
         <p>
-          Explore the boundaries of art and technology with Gig-Genius AI artists.
+          Explore the boundaries of art and technology with Gig-Genius AI
+          artists.
         </p>
         <div className="menu">
           <div className="left">
             <span>Budget</span>
-            <input type="text" placeholder="min" />
-            <input type="text" placeholder="max" />
+            <input
+              onChange={(e) => setMinValue(e.target.value)}
+              type="number"
+              placeholder="min"
+            />
+            <input
+              onChange={(e) => setMaxValue(e.target.value)}
+              type="number"
+              placeholder="max"
+            />
             <button>Search</button>
           </div>
           <div className="right">

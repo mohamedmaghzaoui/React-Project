@@ -47,8 +47,9 @@ export const FirstForm = (props) => {
             class="form-select col"
             aria-label="Default select example"
           >
-            <option selected>France</option>
-            <option value="France">France</option>
+            <option selected value="France">
+              France
+            </option>
             <option value="Germany">Germany</option>
             <option value="UK">UK</option>
             <option value="USA">USA</option>

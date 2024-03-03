@@ -93,20 +93,19 @@ class UserController extends AbstractController
         ]);
     }
 
-#[Route('/get_chats', name: 'get_chats')]
-public function getChats(#[CurrentUser] User $user): Response
-{
-    if (null == $user) {
+    #[Route('/get_chats', name: 'get_chats')]
+    public function getChats(#[CurrentUser] User $user): Response
+    {
+        if (null == $user) {
+            return $this->json([
+                'invalid credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+            # code...
+        }
         return $this->json([
-            'invalid credentials',
-        ], Response::HTTP_UNAUTHORIZED);
-        # code...
-    }
-    return $this->json([
-        $user->getChats(),
+            $user->getChats(),
         ]);
-
-}
+    }
 
     #[Route('/add_freelancer', name: "add_freelancer")]
     public function addFreelancer(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user): Response
@@ -126,7 +125,9 @@ public function getChats(#[CurrentUser] User $user): Response
         $user->setCountry($data['country']);
         $user->setOccupation($data['occupation']);
         $user->setRoles(["ROLE_FREELANCER"]); // Initial role set to 'client'
-        $user->setLanguages($data["languages"]);
+        if (isset($data["languages"])) {
+            $user->setLanguages($data["languages"]);
+        }
 
         // Persist the user to the database
         $entityManager = $doctrine->getManager();
@@ -136,7 +137,7 @@ public function getChats(#[CurrentUser] User $user): Response
 
         // Authenticate the user if needed (optional)
         // Note: Authenticating the user immediately might not be necessary depending on your use case.
-        return $this->json(["user doesnt not exist" => $data]);
+        return $this->json(["freelancer added" => $data]);
     }
     #[Route('/change_userdata', name: "change_username")]
     public function changeUsername(Request $request, ManagerRegistry $doctrine, #[CurrentUser] User $user)

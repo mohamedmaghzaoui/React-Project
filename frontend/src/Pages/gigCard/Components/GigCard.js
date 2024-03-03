@@ -24,17 +24,17 @@ const GigCard = ({ item, index }) => {
             <img src="https://fiverr-res.cloudinary.com/t_profile_thumb,q_auto,f_auto/attachments/profile/photo/690bb0e381bc3fe55bcd83a4e7914fbc-1706099369762/509849b5-9e3b-4260-ae3f-be22d8a49861.png" />
             <span>{item.username}</span>
           </div>
-          <p>{item.desc}</p>
+          <h className="w-100">{item.desc}</h>
           <div className="star">
             <img src={star} alt="" id="starimg" />
-            <span>{item.star}</span>
+            <span className="">{item.star}</span>
           </div>
           <div className="like"></div>
         </div>
         <hr />
         <div className="details">
           <div className="item-info">
-            <span>{item.description}</span>
+            <span className="">{item.description}</span>
             <span className="price">STARTING AT {item.price}</span>
           </div>
         </div>

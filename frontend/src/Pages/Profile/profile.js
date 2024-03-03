@@ -297,13 +297,15 @@ export const ProfilePage = () => {
           <span className="m-5 text fw-bold">
             Prêt à gagner de l'argent selon vos propres règles ?
           </span>
-          <Link to={"/freelancer"} className="btn btn-success btn-long">
-            {userRoles.includes("ROLE_FREELANCER") ? (
-              <span>See your gigs</span>
-            ) : (
-              <span>Become a freelancer</span>
-            )}
-          </Link>
+          {userRoles.includes("ROLE_FREELANCER") ? (
+            <Link to={"/addgig"} className="btn btn-success btn-long">
+              add a gig
+            </Link>
+          ) : (
+            <Link to={"/freelancer"} className="btn btn-success btn-long">
+              Devenir freelancer
+            </Link>
+          )}
         </div>
       </div>
     </div>

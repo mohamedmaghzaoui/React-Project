@@ -2,6 +2,7 @@ import { Technology } from "./category";
 import { Graphics } from "./category";
 import { Animations } from "./category";
 import { Design } from "./category";
+import { Link } from "react-router-dom";
 
 export const CategoriesCard = (props) => {
   let categoryCard = Technology;
@@ -34,9 +35,9 @@ export const CategoriesCard = (props) => {
             <div className="card-body">
               <h5 className="card-title">{card.title}</h5>
               <p className="card-text">{card.text}</p>
-              <a href="#" className="btn btn-dark">
-                Check
-              </a>
+              <Link to="/gigs" className="btn btn-dark ">
+                check
+              </Link>
             </div>
           </div>
         ))}

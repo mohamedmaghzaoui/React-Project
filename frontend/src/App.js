@@ -53,7 +53,16 @@ function App() {
                 />
                 <Route path="/favori" element={<FavoriteButton />} />
                 <Route path="/chatList" element={<ChatList />} />
-                <Route path="/profile" element={<ProfilePage />} />
+
+                <Route
+                  path="/profile"
+                  element={
+                    <PrivateRoute
+                      element={<ProfilePage />}
+                      allowRoles={["ROLE_CLIENT", "ROLE_FREELANCER"]}
+                    />
+                  }
+                />
                 <Route
                   path="/freelancer"
                   element={

@@ -56,8 +56,9 @@ export const SecondForm = (props) => {
             class="form-select col"
             aria-label="Default select example"
           >
-            <option selected>Technology</option>
-            <option value="Technology">Technology</option>
+            <option selected value="Technology">
+              Technology
+            </option>
             <option value="Graphics">Graphics</option>
             <option value="Animation">Animation</option>
             <option value="Design">Design</option>
@@ -68,6 +69,7 @@ export const SecondForm = (props) => {
         <div className="row  my-3">
           <label className="col-3">Languages</label>
           <input
+            required
             onChange={(e) => setLanguage(e.target.value)} //set the language state to current value
             className="form-control col"
             type=""
