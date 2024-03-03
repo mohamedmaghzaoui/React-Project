@@ -31,6 +31,7 @@ export const FirstForm = (props) => {
         <div className="row my-3">
           <label className="col-3">Profile Description</label>
           <textarea
+            required
             {...register("description")}
             className="form-control col"
             cols="30"
@@ -41,11 +42,12 @@ export const FirstForm = (props) => {
         <div className="row  my-3">
           <label className="col-3">Country</label>
           <select
+            required
             {...register("country")}
             class="form-select col"
             aria-label="Default select example"
           >
-            <option selected>Select your Country</option>
+            <option selected>France</option>
             <option value="France">France</option>
             <option value="Germany">Germany</option>
             <option value="UK">UK</option>

@@ -59,14 +59,19 @@ function App() {
                   element={
                     <PrivateRoute
                       element={<Freelancer />}
-                      allowRoles={["ROLE_CLIENT", "ROLE_FREELANCER"]}
+                      allowRoles={["ROLE_CLIENT"]}
                     />
                   }
                 />
 
                 {/* Ajoutez une route pour la deuxième page */}
                 <Route path="/SecondPage" element={<SecondPage />} />
-                <Route path="/DescriptionPage" element={<DescriptionPage setCurrentForm={handleBeginClick} />} />
+                <Route
+                  path="/DescriptionPage"
+                  element={
+                    <DescriptionPage setCurrentForm={handleBeginClick} />
+                  }
+                />
                 <Route path="/Customer" element={<Customer />} />
               </Routes>
             </div>

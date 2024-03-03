@@ -56,7 +56,7 @@ export const SecondForm = (props) => {
             class="form-select col"
             aria-label="Default select example"
           >
-            <option selected>Select your current Occupation</option>
+            <option selected>Technology</option>
             <option value="Technology">Technology</option>
             <option value="Graphics">Graphics</option>
             <option value="Animation">Animation</option>
