@@ -110,6 +110,13 @@ const SecondPage = ({ setCurrentForm }) => {
             <option value="Graphics">Graphics</option>
             <option value="Animation">Animation</option>
             <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Translation">Translation</option>
+            <option value="Video">Video</option>
+            <option value="Programming">Programming</option>
+            <option value="Business">Business</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Photography">Photography</option>
           </select>
         </div>
         <div className="d-flex justify-content-between">

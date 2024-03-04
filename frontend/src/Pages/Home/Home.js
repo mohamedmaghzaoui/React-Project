@@ -63,10 +63,10 @@ export const Home = () => {
           You need it, we've got it
         </h3>
         <div className="d-flex flex-wrap justify-content-center">
-          <ServicesIconsList
+         <ServicesIconsList
             name="Graphics"
             src="https://cdn-icons-png.flaticon.com/512/4091/4091459.png"
-            href=""
+           
           />
           <ServicesIconsList
             name="Marketing"

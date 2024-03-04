@@ -34,9 +34,13 @@ const GigCard = ({ item, index }) => {
         <hr />
         <div className="details">
           <div className="item-info">
-            <span>{item.description}</span>
-            <span className="price">STARTING AT {item.price}</span>
+            <span className="text-truncate" style={{maxWidth: '50px'}}>{item.description}</span>
+            <span className="price">{item.price}€</span>
           </div>
+          
+        </div>
+        <div className="d-flex justify-content-end mt-2">
+        <Link to={`/${item.id}`} className="btn btn-light">En Voir Plus</Link>
         </div>
       </div>
     </Link>

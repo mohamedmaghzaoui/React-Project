@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react"; // Importez useState pour définir l'état
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Importez useState pour définir l'état
 import { Customer } from "./Pages/Customer/Customer";
 import { Home } from "./Pages/Home/Home";
 import { Navbar } from "./Pages/MainNavbar/navbar";
@@ -20,6 +21,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { ServicesIconsList } from "./Pages/Home/Components/ServicesIconsList";
 import { PrivateRoute } from "./private/privateRoute";
+import { GigTotal } from "./Pages/GigTotal/GigTotal";
+import GigsTech from "./Pages/gigs/GigsTech";
+import GigsGraph from "./Pages/gigs/GigsGraph";
+import GigsAnim from "./Pages/gigs/GigsAnim";
+import GigsDesign from "./Pages/gigs/GigsDesign";
+import GigsMarketing from "./Pages/gigs/GigsMarketing";
+import GigsBusiness from "./Pages/gigs/GigsBusiness";
+import GigsLifestyle from "./Pages/gigs/GigsLifestyle";
+import GigsPhotography from "./Pages/gigs/GigsPhotography";
+import GigsProg from "./Pages/gigs/GigsProg";
+import GigsTranslation from "./Pages/gigs/GigsTranslation";
+import GigsVideo from "./Pages/gigs/GigsVideo";
 
 function App() {
   // Définissez la fonction handleBeginClick pour gérer le clic sur le bouton "Begin"
@@ -27,6 +40,24 @@ function App() {
     // Vous pouvez ajouter ici le code pour gérer le clic du bouton "Begin"
   };
 
+  const [gigs, setGigs] = useState([]);
+  useEffect(() => {
+      const fetchGigs = async () => {
+          try {
+              axios.get("http://127.0.0.1:8000/allGigs")
+              .then(res => {
+                  
+                  setGigs(res.data);
+              })
+  
+  
+          } catch (error) {
+              console.error("Error fetching gigs:", error);
+          }
+      };
+  
+      fetchGigs();
+  }, []);
   return (
     <div className="">
       <UserProvider>
@@ -36,11 +67,25 @@ function App() {
             <Navbar className="" />
             <div className=" ">
               <Routes>
+              {gigs.map((gig) => (
+                    <Route key={gig.id} path={`/${gig.id}`} element={<GigTotal gig={gig} />} />
+                ))}
                 <Route path="/" element={<Home />} />
                 <Route path="/Customer" element={<Customer />} />
                 <Route path="/GigsPage" element={<GigsPage gigs={[]} />} />
                 <Route path="/GigForm" element={<GigForm />} />
                 <Route path="/Gigs" element={<Gigs gigs={[]} />} />
+                <Route path="/Gigs/technology" element={<GigsTech gigs={[]} />} />
+                <Route path="/Gigs/graphics" element={<GigsGraph gigs={[]} />} />
+                <Route path="/Gigs/animation" element={<GigsAnim gigs={[]} />} />
+                <Route path="/Gigs/design" element={<GigsDesign gigs={[]} />} />
+                <Route path="/Gigs/marketing" element={<GigsMarketing gigs={[]} />} />
+                <Route path="/Gigs/business" element={<GigsBusiness gigs={[]} />} />
+                <Route path="/Gigs/lifestyle" element={<GigsLifestyle gigs={[]} />} />
+                <Route path="/Gigs/photography" element={<GigsPhotography gigs={[]} />} />
+                <Route path="/Gigs/programming" element={<GigsProg gigs={[]} />} />
+                <Route path="/Gigs/translation" element={<GigsTranslation gigs={[]} />} />
+                <Route path="/Gigs/video" element={<GigsVideo gigs={[]} />} />
                 <Route path="/Gig" element={<Gig Gig={[]} />} />
                 <Route path="/Message" element={<messages />} />
 

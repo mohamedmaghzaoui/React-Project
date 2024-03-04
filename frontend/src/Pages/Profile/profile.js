@@ -33,7 +33,7 @@ export const ProfilePage = () => {
     setShowPopupLanguage(!showPopupLanguage);
   };
 
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState(null);
     useEffect(() => {
         const fetchVerif = async () => {
             try {
@@ -342,7 +342,7 @@ export const ProfilePage = () => {
             Prêt à gagner de l'argent selon vos propres règles ?
           </span>
           {userRoles.includes("ROLE_FREELANCER") && email === null ? (
-              <button className='btn btn-light text-red mt-3 mb-3' onClick={handleClick}>Créer/Lier son compte Stripe</button>
+              <button className='btn btn-light mt-3 mb-3' onClick={handleClick}>Créer/Lier son compte Stripe</button>
             
             ) : (
               <p></p>
